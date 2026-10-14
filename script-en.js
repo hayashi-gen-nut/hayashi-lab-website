@@ -259,6 +259,24 @@ function openActivityDetail(key){
     activityPhoto.innerHTML=`<span>${d.photoLabel||'ACTIVITY PHOTO'}</span>`;
     setBackgroundFromCandidates(activityPhoto,activityMainImageCandidates(key,d));
   }
+  // Official publication links for the university VOS feature.
+  const previousLinks=activityDialog.querySelector('.vos-official-links');
+  if(previousLinks) previousLinks.remove();
+  if(key==='20260731-vos238-technology-pioneer'||key==='20260415-vos237-doctoral-feature'){
+    const links=document.createElement('div');
+    links.className='vos-official-links';
+    links.style.cssText='display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;';
+    const english=document.documentElement.lang==='en';
+    (key==='20260415-vos237-doctoral-feature' ?
+      [['https://www.nagaokaut.ac.jp/outline/pr/assets/VOS237.pdf',english?'VOS No. 237 (PDF)':'VOS第237号（PDF）']] :
+      [['https://www.nagaokaut.ac.jp/research/featured/technology-pioneer/hayashi/index.html',english?'Official university article':'大学公式記事を読む'],['https://www.nagaokaut.ac.jp/outline/pr/assets/VOS238.pdf',english?'VOS No. 238 (PDF)':'VOS第238号（PDF）']]).forEach(([url,label])=>{
+      const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=label+' ↗';
+      a.style.cssText='display:inline-block;padding:9px 14px;border:1px solid #8aa6b7;border-radius:8px;font-size:14px;color:inherit;text-decoration:none;';
+      links.appendChild(a);
+    });
+    const body=document.getElementById('activity-modal-body');
+    if(body)body.insertAdjacentElement('afterend',links);
+  }
   renderActivityGallery(key,d);
   activityDialog.showModal();
 }
@@ -391,7 +409,8 @@ renderNews();
     CONFERENCE:{ja:'学会発表',en:'CONFERENCE',photoClass:'photo-conference',photoLabel:'CONFERENCE / PRESENTATION'},
     COLLABORATION:{ja:'共同研究',en:'COLLABORATION',photoClass:'photo-collaboration',photoLabel:'INTERNATIONAL COLLABORATION'},
     LAB_SEMINAR:{ja:'研究発表',en:'LAB SEMINAR',photoClass:'photo-seminar',photoLabel:'LAB SEMINAR'},
-    LAB_EVENT:{ja:'イベント',en:'LAB EVENT',photoClass:'photo-event',photoLabel:'LAB EVENT'}
+    LAB_EVENT:{ja:'イベント',en:'LAB EVENT',photoClass:'photo-event',photoLabel:'LAB EVENT'},
+    MEDIA:{ja:'大学広報・メディア掲載',en:'MEDIA FEATURE',photoClass:'photo-event',photoLabel:'UNIVERSITY FEATURE'}
   };
   const activitySelections=(r,prefix,count=6)=>Array.from({length:count},(_,i)=>String(r[`${prefix}_${i+1}`]||'').trim()).filter(Boolean);
   function activityMembersFromRow(r,memberRows,lang){
