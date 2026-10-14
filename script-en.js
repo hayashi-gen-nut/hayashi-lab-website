@@ -222,6 +222,9 @@ const activityPhoto=document.getElementById('activity-modal-photo');
 function renderActivityConferenceInfo(d){
   const box=document.getElementById('activity-conference-info');
   if(!box) return;
+  // Conference-specific fields must never appear on collaboration/visit articles.
+  const isConference = /^(CONFERENCE|学会発表)$/i.test(String(d.category||'').trim());
+  if(!isConference){ box.hidden=true; return; }
   const fields={
     title:d.presentationTitle||'',
     conference:d.conferenceName||'',
