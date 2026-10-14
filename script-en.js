@@ -9,9 +9,9 @@ function setMobileMenu(open){
 menu?.setAttribute('aria-expanded','false');
 menu?.addEventListener('click',()=>setMobileMenu(!nav?.classList.contains('mobile-open')));
 nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-  if(window.innerWidth<=1240) setMobileMenu(false);
+  if(window.innerWidth<900) setMobileMenu(false);
 }));
-window.addEventListener('resize',()=>{if(window.innerWidth>1240)setMobileMenu(false)});
+window.addEventListener('resize',()=>{if(window.innerWidth>=900)setMobileMenu(false)});
 
 const researchData={
   steel:{
