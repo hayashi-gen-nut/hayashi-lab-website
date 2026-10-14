@@ -260,7 +260,12 @@ function openActivityDetail(key){
   document.getElementById('activity-modal-title').textContent=d.title;
   document.getElementById('activity-modal-lead').textContent=d.lead;
   document.getElementById('activity-modal-body').textContent=d.body;
-  document.getElementById('activity-modal-members').textContent=d.members;
+  const membersText=String(d.members||'').trim();
+  const membersElement=document.getElementById('activity-modal-members');
+  if(membersElement){
+    membersElement.textContent=membersText;
+    membersElement.parentElement.hidden=!membersText;
+  }
   renderActivityConferenceInfo(d);
   document.getElementById('activity-modal-tags').innerHTML=d.tags.map(x=>`<li>${x}</li>`).join('');
   if(activityPhoto){

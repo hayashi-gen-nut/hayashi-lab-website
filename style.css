@@ -2747,3 +2747,12 @@ footer{
   }
   .schedule-summary span::after {content:'↓';font-size:15px!important;line-height:16px!important;}
 }
+
+/* v9: Activity detail: report first, members/place underneath (all screens) */
+.activity-modal-story{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:22px!important}
+.activity-modal-story>div{min-width:0}
+.activity-modal-story #activity-modal-body{overflow-wrap:anywhere;word-break:normal}
+.activity-modal-story #activity-modal-members{overflow-wrap:anywhere}
+
+/* Hide the entire Members / Place section when no value is provided. */
+.activity-modal-story > div[hidden]{display:none!important}
