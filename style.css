@@ -2490,3 +2490,62 @@ footer{
 
 /* v47: streamlined navigation and KOSEN-to-PhD pathways */
 .pathway-intro{max-width:880px;margin:38px auto 22px;text-align:center}.pathway-intro h3{font-size:clamp(23px,2.5vw,35px);line-height:1.4;margin:9px 0 12px;color:#173449}.pathway-intro p{line-height:1.9}.pathway-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:24px 0}.pathway-grid article{border:1px solid #dce5eb;background:#fff;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:11px;box-shadow:0 5px 22px rgba(18,51,76,.05)}.pathway-grid span{font-size:11px;font-weight:800;letter-spacing:.12em;color:#b36526}.pathway-grid h3{font-size:20px;color:#173449;margin:0}.pathway-grid p{font-size:14px;line-height:1.85;margin:0;flex:1}.pathway-grid a{font-weight:700;color:#145b82;text-decoration:underline;text-underline-offset:4px}.pathway-actions{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.pathway-actions a{border:1px solid #cadce7;border-radius:999px;padding:9px 15px;font-weight:700;font-size:13px;color:#174767;background:#f6fafc}.pathway-actions a:hover{background:#e5f2f8}.pathway-note{font-size:12px;line-height:1.7;color:#596d7b;margin-bottom:32px}@media(max-width:850px){.pathway-grid{grid-template-columns:1fr}.pathway-grid article{padding:20px}}
+
+/* ==========================================================
+   v51 Mobile layout refinement (2026-10-14)
+   Desktop styling intentionally left unchanged.
+   ========================================================== */
+@media (max-width: 760px) {
+  html, body { max-width:100%; overflow-x:clip; }
+  .hero { margin-top:72px!important; height:auto!important; min-height:690px!important; overflow:hidden!important; }
+  .hero-bg { background-position:55% center!important; background-size:cover!important; }
+  .hero-overlay { background:linear-gradient(90deg,rgba(4,18,32,.82),rgba(4,18,32,.26))!important; }
+  .hero-content {
+    position:relative!important; left:auto!important; right:auto!important; top:auto!important;
+    width:auto!important; max-width:none!important; margin:0!important;
+    padding:clamp(100px,16vh,145px) 22px 90px!important;
+    transform:none!important; min-width:0!important;
+  }
+  .hero .eyebrow { font-size:12px!important; line-height:1.65!important; letter-spacing:.035em!important; overflow-wrap:anywhere!important; }
+  .hero h1 { font-size:clamp(34px,9vw,47px)!important; line-height:1.13!important; letter-spacing:.015em!important; max-width:100%!important; overflow-wrap:normal!important; }
+  .hero .tagline { font-size:clamp(15px,4.1vw,19px)!important; line-height:1.65!important; letter-spacing:.015em!important; overflow-wrap:normal!important; }
+  .hero .jp { font-size:15px!important; line-height:1.85!important; letter-spacing:.025em!important; }
+  .hero-univ-line { font-size:13px!important; line-height:1.8!important; letter-spacing:.01em!important; }
+  .hero-actions { display:flex!important; flex-wrap:wrap!important; gap:8px!important; }
+  .hero-actions .button { margin:8px 0 0!important; max-width:100%!important; }
+  .prospective-fit-note {
+    display:grid!important; grid-template-columns:minmax(0,1fr)!important;
+    gap:16px!important; padding:23px 20px!important; min-width:0!important;
+  }
+  .prospective-fit-note>div,.prospective-fit-note>ul { min-width:0!important; width:auto!important; }
+  .prospective-fit-note h3 { font-size:clamp(19px,5vw,23px)!important; line-height:1.55!important; overflow-wrap:anywhere!important; }
+  .prospective-fit-note .eyebrow { font-size:11px!important; line-height:1.5!important; letter-spacing:.1em!important; }
+  .prospective-fit-note ul { padding-left:22px!important; margin:0!important; }
+  .prospective-fit-note li { font-size:15px!important; line-height:1.85!important; margin:0 0 10px!important; overflow-wrap:anywhere!important; }
+  .prospective-core-message {
+    padding:28px 21px!important; border-left-width:5px!important;
+    min-width:0!important; overflow-wrap:anywhere!important;
+  }
+  .prospective-core-message h3,
+  .prospective-core-message h3 strong { font-size:clamp(22px,5.7vw,28px)!important; line-height:1.65!important; letter-spacing:0!important; }
+  .prospective-core-message>p:last-child {
+    font-size:15px!important; line-height:1.95!important;
+    color:#e4edf3!important; font-weight:500!important;
+  }
+  .prospective-core-message .eyebrow { font-size:11px!important; letter-spacing:.1em!important; }
+  .prospective-clean, .prospective-two-col, .prospective-two-col>article,
+  .pathway-grid, .pathway-grid article, .growth-support { min-width:0!important; }
+  .prospective-two-col { grid-template-columns:minmax(0,1fr)!important; }
+  .prospective-clean { padding-left:20px!important; padding-right:20px!important; }
+  .prospective-clean-head h2 { font-size:clamp(28px,7vw,36px)!important; }
+  .prospective-two-col>article { padding:25px 20px!important; }
+  .prospective-check-list span { font-size:15px!important; line-height:1.85!important; }
+  .section-head, .subsection-head { grid-template-columns:minmax(0,1fr)!important; }
+  .section-head>*, .subsection-head>* { min-width:0!important; }
+}
+@media (max-width: 390px) {
+  .hero-content { padding-left:18px!important; padding-right:18px!important; }
+  .hero h1 { font-size:33px!important; }
+  .prospective-clean { padding-left:16px!important; padding-right:16px!important; }
+  .prospective-core-message h3,.prospective-core-message h3 strong { font-size:21px!important; }
+}
