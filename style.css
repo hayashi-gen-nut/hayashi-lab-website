@@ -2765,3 +2765,68 @@ footer{
 .activity-modal-photo.vos-cover-photo{background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#eef1f3!important}
 .activity-modal-photo.vos-cover-photo::after{display:none}
 .activity-modal-photo.vos-cover-photo span{display:none}
+
+/* v12: consistent left-aligned section headings and content */
+.prospective-clean-head {
+  width: 100%;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+}
+.prospective-clean-head > p:last-child {
+  max-width: 950px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+}
+.pathway-intro {
+  width: 100%;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+}
+.pathway-intro > p:not(.eyebrow) { max-width: 950px; }
+.skills-overview-head {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  text-align: left !important;
+}
+.skills-overview-head .eyebrow,
+.skills-overview-head h3 { margin: 0 !important; text-align: left !important; }
+@media (max-width: 850px) {
+  .skills-overview-head { display: flex !important; gap: 8px !important; }
+  .pathway-intro { text-align: left !important; }
+}
+
+/* v13: adaptive desktop navigation — one row on wide screens,
+   two rows on medium desktops, compact menu on narrow screens. */
+@media (min-width:1600px) {
+  .header {height:82px!important;gap:18px!important;padding-left:3vw!important;padding-right:3vw!important}
+  .header .brand {flex:0 0 auto!important;min-width:0!important}
+  .header-right {flex:1 1 auto!important;min-width:0!important;gap:16px!important;justify-content:flex-end!important}
+  .header-right nav.nav-two-row {display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:17px!important;min-width:0!important;flex-wrap:nowrap!important}
+  .header-right nav.nav-two-row .nav-row {display:contents!important}
+  .header-right nav.nav-two-row .nav-row:first-child {padding:0!important;border:0!important}
+  .header-right nav.nav-two-row a {font-size:12px!important;white-space:nowrap!important;letter-spacing:0!important}
+  .header-right .lang-switch,.header-right .presentation-launch {flex-shrink:0!important}
+}
+@media (min-width:1241px) and (max-width:1599px) {
+  .header-right nav.nav-two-row {display:flex!important;flex-direction:column!important;align-items:flex-end!important;gap:6px!important}
+  .header-right nav.nav-two-row .nav-row {display:flex!important;justify-content:flex-end!important;gap:17px!important;white-space:nowrap!important}
+  .header-right nav.nav-two-row a {font-size:12px!important;white-space:nowrap!important}
+  .header-right nav.nav-two-row .nav-row:first-child {padding-bottom:0!important;border-bottom:0!important}
+}
+
+/* v14: Hero title adapts to viewport; remove duplicated affiliation line in HTML. */
+@media (min-width: 761px) {
+  .hero-content { max-width: min(1100px, 88vw) !important; width: 88vw; }
+  .hero h1 { font-size: clamp(34px, 4.5vw, 70px) !important; letter-spacing: .025em !important; white-space: nowrap; max-width: none !important; }
+}
+@media (max-width: 760px) {
+  .hero h1 { white-space: normal !important; overflow-wrap: normal !important; }
+}
