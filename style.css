@@ -2888,3 +2888,17 @@ footer{
 }
 @media(max-width:420px){.header .brand small{display:none!important;}.header .header-right .presentation-launch{display:none!important;}}
 .header .header-right nav.nav-adaptive a:hover,.header .header-right nav.nav-adaptive a:focus-visible{color:#17709a!important;}
+
+/* v18: icons with small labels, single-row nav and consistent facility header */
+@media(min-width:900px) and (max-width:1749px){
+ .header .header-right nav.nav-adaptive a{flex-direction:column!important;gap:3px!important;width:clamp(48px,5.0vw,75px)!important;padding:5px 0!important;text-align:center!important;}
+ .header .header-right nav.nav-adaptive .nav-label{display:block!important;font-size:clamp(8px,.67vw,10px)!important;line-height:1.1!important;font-weight:600!important;}
+ .header .header-right nav.nav-adaptive .nav-icon{display:block!important;width:20px!important;height:20px!important;}
+ .header .header-right nav.nav-adaptive{gap:clamp(1px,.25vw,5px)!important;}
+ .header .brand span{font-size:clamp(12px,1.2vw,16px)!important;}
+ .header .brand small{font-size:clamp(8px,.7vw,11px)!important;}
+}
+.facilities-page .header{position:relative!important;top:auto!important;}
+.facilities-page .fac-hero{margin-top:0!important;}
+.facilities-page .header .header-right nav.nav-adaptive a{color:#18384f!important;}
+@media(max-width:899px){.facilities-page .header{position:relative!important;}.facilities-page .header .header-right nav.nav-adaptive{position:absolute!important;top:72px!important;}}
