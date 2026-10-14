@@ -2689,3 +2689,10 @@ footer{
  .header .lang-switch {font-size:10px!important;margin-right:2px!important;}
  .header .lang-switch a {font-size:10px!important;padding:5px 2px!important;}
 }
+
+/* Public contact section: show one embedded form, never admin setup instructions. */
+.contact-layout.contact-form-only{display:block;max-width:860px;margin-inline:auto}
+.contact-form-only .google-form-embed{width:100%;min-width:0}
+.contact-form-only .google-form-embed iframe{width:100%;min-height:920px;max-width:100%;border:0}
+.contact-form-only .contact-form-fallback[hidden]{display:none!important}
+@media(max-width:640px){.contact-layout.contact-form-only{margin:0}.contact-form-only .google-form-embed{border:0;background:transparent}.contact-form-only .google-form-embed iframe{min-height:1100px}.contact-form-only .contact-form-fallback{padding:18px}.contact-form-only .contact-form-fallback h3{font-size:20px}}

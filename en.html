@@ -811,33 +811,14 @@
        For collaboration, laboratory visits, research inquiries, and related questions, please use the form below.
       </p>
 </div>
-<div class="contact-layout">
-<div class="contact-copy">
-<h3>
-        Contact us through Google Forms
-       </h3>
-<p>
-        After publishing your form, enter its public URL in the
-        <code>
-         SiteSettings
-        </code>
-        sheet of the Excel file. The form will then appear automatically on this page.
-       </p>
-<a class="button outline is-hidden" href="#" id="google-form-open" rel="noopener" target="_blank">
-        Open Google Form　↗
-       </a>
-<div class="google-form-placeholder" id="google-form-placeholder">
-        The Google Form URL has not been configured yet.
-        <br/>
-<small>
-         Enter the public URL in SiteSettings → google_form_url.
-        </small>
-</div>
+<div class="contact-layout contact-form-only">
+<div class="contact-copy contact-form-fallback" id="contact-form-fallback" hidden>
+<h3>Contact Form</h3>
+<p>Please use the contact form below.</p>
+<a class="button outline is-hidden" href="#" id="google-form-open" rel="noopener" target="_blank">Open form in a new tab ↗</a>
 </div>
 <div class="google-form-embed is-hidden" id="google-form-embed-wrap">
-<iframe id="google-form-iframe" loading="lazy" title="Contact Google Form">
-        Loading…
-       </iframe>
+<iframe id="google-form-iframe" loading="lazy" title="Contact Form"></iframe>
 </div>
 </div>
 </div>

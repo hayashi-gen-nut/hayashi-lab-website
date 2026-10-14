@@ -57,15 +57,16 @@
     const open=document.getElementById('google-form-open');
     const wrap=document.getElementById('google-form-embed-wrap');
     const frame=document.getElementById('google-form-iframe');
-    const placeholder=document.getElementById('google-form-placeholder');
+    const fallback=document.getElementById('contact-form-fallback');
     if(formUrl && /docs\.google\.com\/forms|forms\.gle/i.test(formUrl)){
       if(open){open.href=formUrl;open.classList.remove('is-hidden');}
-      if(placeholder) placeholder.classList.add('is-hidden');
+      if(fallback) fallback.hidden=true;
       // Published Google Form URLs normally end in /viewform. The embedded form uses ?embedded=true.
       let embedUrl=formUrl;
       if(/forms\.gle/i.test(embedUrl)){
         // Short forms.gle links cannot be transformed reliably, so keep the external button only.
         if(wrap) wrap.classList.add('is-hidden');
+        if(fallback) fallback.hidden=false;
       }else{
         embedUrl=embedUrl.replace(/([?&])embedded=true(&|$)/,'$1').replace(/[?&]$/,'');
         embedUrl += (embedUrl.includes('?')?'&':'?')+'embedded=true';
@@ -75,7 +76,7 @@
     }else{
       if(open) open.classList.add('is-hidden');
       if(wrap) wrap.classList.add('is-hidden');
-      if(placeholder) placeholder.classList.remove('is-hidden');
+      if(fallback){fallback.hidden=false;fallback.querySelector('p').textContent=document.documentElement.lang==='en'?'Please contact the laboratory using the contact details provided on this website.':'お問い合わせは研究室の連絡先までお願いします。';}
     }
   }
 

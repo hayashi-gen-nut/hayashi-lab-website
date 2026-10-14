@@ -870,33 +870,14 @@
        共同研究、研究室見学、研究相談などのお問い合わせはこちらからお願いします。
       </p>
 </div>
-<div class="contact-layout">
-<div class="contact-copy">
-<h3>
-        Google Formからお問い合わせください
-       </h3>
-<p>
-        フォームを公開後，Excelの
-        <code>
-         SiteSettings
-        </code>
-        シートにGoogle FormのURLを入力すると，このページ内に自動でフォームが表示されます。
-       </p>
-<a class="button outline is-hidden" href="#" id="google-form-open" rel="noopener" target="_blank">
-        Google Formを開く　↗
-       </a>
-<div class="google-form-placeholder" id="google-form-placeholder">
-        Google FormのURLはまだ設定されていません。
-        <br/>
-<small>
-         SiteSettings → google_form_url に公開URLを入力してください。
-        </small>
-</div>
+<div class="contact-layout contact-form-only">
+<div class="contact-copy contact-form-fallback" id="contact-form-fallback" hidden>
+<h3>お問い合わせフォーム</h3>
+<p>お問い合わせは以下のフォームからお願いします。</p>
+<a class="button outline is-hidden" href="#" id="google-form-open" rel="noopener" target="_blank">フォームを別ウィンドウで開く ↗</a>
 </div>
 <div class="google-form-embed is-hidden" id="google-form-embed-wrap">
-<iframe id="google-form-iframe" loading="lazy" title="お問い合わせ Google Form">
-        読み込んでいます…
-       </iframe>
+<iframe id="google-form-iframe" loading="lazy" title="お問い合わせフォーム"></iframe>
 </div>
 </div>
 </div>
