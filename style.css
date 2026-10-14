@@ -2632,3 +2632,60 @@ footer{
   .approach-copy .button {padding:12px 18px!important;}
   .lab-culture-section .eyebrow,.career-grid .eyebrow,.international-policy .eyebrow {font-size:11px!important;letter-spacing:.08em!important;}
 }
+
+/* v3 Mobile design system: typography and rhythm (desktop unchanged) */
+@media (max-width:760px) {
+ :root { --m-section:26px;--m-card:20px;--m-body:15px;--m-list:14px;--m-label:11px;--m-muted:12px; }
+ body {font-size:var(--m-body)!important;line-height:1.65!important;-webkit-text-size-adjust:100%;}
+ .section,.prospective-section,.research-style-section {padding-top:42px!important;padding-bottom:42px!important;}
+ .section-head,.subsection-head {margin-bottom:18px!important;}
+ .section-head h2,.section h2,.access h2,.prospective-clean-head h2,.research-framework .framework-title,.lab-culture-section .section-head h2,.schedule-intro h3,.international-policy h3 {font-size:var(--m-section)!important;line-height:1.35!important;letter-spacing:0!important;overflow-wrap:normal!important;word-break:normal!important;}
+ .section-head p,.subsection-head p,.research-framework .framework-lead,.approach-copy p:not(.eyebrow):not(.approach-keywords),.prospective-clean-head>p:last-child,.pathway-intro p,.international-items p,.career-grid article p:not(.eyebrow),.growth-support>p,.prospective-core-message>p:last-child,.schedule-intro>p,.news-text {font-size:var(--m-body)!important;line-height:1.65!important;font-weight:400!important;letter-spacing:0!important;}
+ .eyebrow,.section .eyebrow,.prospective-section .eyebrow,.career-grid .eyebrow,.international-policy .eyebrow {font-size:var(--m-label)!important;line-height:1.35!important;letter-spacing:.09em!important;}
+ .research-framework {gap:12px!important;margin-top:24px!important;}
+ .research-framework .framework-title {margin:0!important;}
+ .research-framework .framework-lead {margin:0 0 6px!important;}
+ .framework-card {min-height:195px!important;}
+ .framework-card>div {padding:17px 19px!important;}
+ .framework-card h3,.card h3,.career-grid article h3,.growth-support h3,.schedule-phase-body h4,.skills-overview-grid h4,.culture-principles article h3,.research-style-grid h4 {font-size:var(--m-card)!important;line-height:1.4!important;letter-spacing:0!important;}
+ .framework-card p,.card p,.research-style-grid p,.skills-overview-grid p,.culture-principles article p,.schedule-phase-body li,.prospective-check-list span {font-size:var(--m-list)!important;line-height:1.6!important;letter-spacing:0!important;}
+ .card {min-height:240px!important;}
+ .card>div {padding:18px 19px!important;}
+ .card b,.framework-card b {font-size:var(--m-label)!important;letter-spacing:.09em!important;}
+ .news-section {display:flex!important;flex-direction:column!important;gap:0!important;padding:27px 20px 30px!important;}
+ .news-title {display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:3px!important;margin:0 0 14px!important;}
+ .news-title .eyebrow {margin:0!important;font-size:var(--m-label)!important;}
+ .news-title h2 {font-size:var(--m-section)!important;line-height:1.35!important;margin:0!important;}
+ .news-toggle {align-self:flex-end!important;margin-top:-26px!important;margin-bottom:2px!important;font-size:11px!important;}
+ .news-list-wrap {width:100%!important;}
+ .news-row {grid-template-columns:auto 1fr auto!important;grid-template-areas:'date cat arrow' 'text text text'!important;padding:12px 0!important;row-gap:3px!important;}
+ .news-row time {grid-area:date!important;font-size:var(--m-muted)!important;}
+ .news-row .news-cat {grid-area:cat!important;font-size:var(--m-label)!important;}
+ .news-row .news-text {grid-area:text!important;}
+ .news-row .news-arrow {grid-area:arrow!important;}
+ .culture-principles article,.skills-overview-grid article {padding:15px 16px!important;}
+ .culture-principles article h3,.skills-overview-grid h4 {margin:5px 0!important;}
+ .culture-principles article p,.skills-overview-grid p {margin:0!important;}
+ .schedule-phase-label {padding:11px 16px!important;gap:10px!important;}
+ .schedule-phase-label strong {font-size:22px!important;}
+ .schedule-phase-body {padding:16px!important;}
+ .schedule-phase-body li {margin:0 0 6px!important;padding-left:14px!important;}
+ .career-grid article,.prospective-two-col>article,.international-policy,.growth-support,.prospective-core-message {padding:19px 17px!important;}
+ .career-grid article h3 {overflow-wrap:normal!important;word-break:normal!important;}
+ .career-grid article p:not(.eyebrow) {margin-bottom:9px!important;}
+ .approach-copy {padding:24px 18px!important;}
+ .approach-copy h2 {font-size:var(--m-section)!important;line-height:1.35!important;}
+ .approach-copy .approach-keywords {font-size:clamp(10px,2.7vw,12px)!important;white-space:nowrap!important;letter-spacing:-.025em!important;word-spacing:-.06em!important;}
+ .header .lang-switch {display:flex!important;align-items:center!important;gap:4px!important;padding:0!important;margin:0 6px 0 0!important;border:0!important;font-size:11px!important;letter-spacing:0!important;white-space:nowrap!important;}
+ .header .lang-switch a {display:inline-block!important;padding:7px 3px!important;font-size:11px!important;}
+ .header .brand {max-width:58vw!important;min-width:0!important;}
+ .header .brand span {font-size:clamp(10px,2.8vw,12px)!important;white-space:nowrap!important;letter-spacing:.035em!important;}
+ .header-right {display:flex!important;align-items:center!important;gap:4px!important;}
+ .header .menu {margin:0!important;padding:5px!important;font-size:23px!important;}
+}
+@media (max-width:380px) {
+ .header .brand {max-width:55vw!important;}
+ .header .brand span {font-size:10px!important;}
+ .header .lang-switch {font-size:10px!important;margin-right:2px!important;}
+ .header .lang-switch a {font-size:10px!important;padding:5px 2px!important;}
+}
