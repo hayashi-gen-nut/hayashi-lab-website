@@ -1,0 +1,13 @@
+'use client';
+import {useEffect,useMemo,useState} from 'react';
+import {supabase} from '../lib/supabase';
+
+type DayPresence={day:string;on_campus:boolean};
+const jp=(iso:string)=>{const d=new Date(iso+'T12:00:00+09:00');return `${d.getMonth()+1}/${d.getDate()} (${['日','月','火','水','木','金','土'][d.getDay()]})`};
+export default function FacultyPresence({startDate,admin,compact=false}:{startDate:string;admin:boolean;compact?:boolean}){
+ const dates=useMemo(()=>Array.from({length:compact?1:7},(_,i)=>{const d=new Date(startDate+'T12:00:00+09:00');d.setDate(d.getDate()+i);return d.toLocaleDateString('en-CA',{timeZone:'Asia/Tokyo'})}),[startDate]);
+ const [states,setStates]=useState<Record<string,boolean>>({});const [saving,setSaving]=useState<string|null>(null);const [error,setError]=useState('');
+ useEffect(()=>{let active=true;const load=async()=>{if(!supabase)return;const {data,error}=await supabase.from('faculty_day_presence').select('day,on_campus').gte('day',dates[0]).lte('day',dates[dates.length-1]);if(!active)return;if(error){setError('学内状況を読み込めません / Unable to load presence: '+error.message);return;}setError('');setStates(Object.fromEntries(((data||[]) as DayPresence[]).map(x=>[x.day,x.on_campus])))};void load();const timer=setInterval(()=>{if(!document.hidden)void load()},60000);return()=>{active=false;clearInterval(timer)}},[dates]);
+ const toggle=async(day:string,onCampus:boolean)=>{if(!supabase||!admin)return;const previous=states[day]??false;setStates(v=>({...v,[day]:onCampus}));setSaving(day);setError('');const {error}=await supabase.from('faculty_day_presence').upsert({day,on_campus:onCampus},{onConflict:'day'});if(error){setStates(v=>({...v,[day]:previous}));setError('保存に失敗しました / Save failed: '+error.message)}setSaving(null)};
+ return <section className={compact?'faculty-presence-inline':'panel faculty-presence-panel'}>{!compact&&<div className="top"><div><h3>教員の学内状況 / Faculty On-Campus Status</h3></div><small className="muted">☑ 学外 / Off campus　□ 学内 / On campus</small></div>}{error&&<div className="schedule-hint" role="alert">{error}</div>}<div className="faculty-presence-week">{dates.map(day=><div className="faculty-presence-day" key={day}>{!compact&&<span>{jp(day)}</span>}{admin?<label className="faculty-presence-check" title={states[day]?"□ 学内 / On campus":"☑ 学外 / Off campus"}><input aria-label={`${day}: ${states[day]?"学内 / On campus":"学外 / Off campus"}`} type="checkbox" checked={!states[day]} disabled={saving===day} onChange={e=>void toggle(day,!e.target.checked)} /><span className="faculty-meaning">{states[day]?'学内 / On campus':'学外 / Off campus'}</span></label>:<strong className={states[day]?'is-on-campus':'is-off-campus'}>{states[day]?'学内 / On campus':'学外 / Off campus'}</strong>}</div>)}</div></section>
+}
