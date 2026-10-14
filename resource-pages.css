@@ -15,3 +15,8 @@
 .lecture-present-chips span{font-size:clamp(29px,2.35vw,40px)!important;padding:19px 26px!important}
 .title-slide .lecture-present-lead{color:#fff!important}
 @media(max-width:700px){.lecture-present-slide h2{font-size:38px!important}.lecture-present-lead{font-size:22px!important}.lecture-present-slide li{font-size:20px!important}.lecture-present-chips span{font-size:22px!important}}
+
+/* v19: Shared primary navigation on lecture pages */
+.resource-page .header .header-right nav.nav-adaptive a { color:#18384f!important; }
+.resource-page .header .lang-switch { display:flex!important; }
+.resource-page .header .header-right nav.nav-adaptive a[aria-current="page"] { color:#176c95!important; }
