@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Steel Structure Lab. | Gen Hayashi | Nagaoka University of Technology</title>
+<meta content="Steel Structure Lab., Hayashi Research Group, Nagaoka University of Technology (NUT), Japan. Research on steel bridges, steel structures, FRP/CFRP, connections and repair, structural health monitoring, FEM, point clouds and AI through experiments, analysis and field engineering." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/><meta content="Gen Hayashi / 林 厳" name="author"/><link href="https://whs.nagaokaut.ac.jp/struct/hayashi/en.html" rel="canonical"/><link href="https://whs.nagaokaut.ac.jp/struct/hayashi/" hreflang="ja" rel="alternate"/><link href="https://whs.nagaokaut.ac.jp/struct/hayashi/en.html" hreflang="en" rel="alternate"/><link href="https://whs.nagaokaut.ac.jp/struct/hayashi/" hreflang="x-default" rel="alternate"/><meta content="website" property="og:type"/><meta content="Steel Structure Lab. | Nagaoka University of Technology" property="og:site_name"/><meta content="Steel Structure Lab. | Gen Hayashi | Nagaoka University of Technology" property="og:title"/><meta content="Steel Structure Lab., Hayashi Research Group, Nagaoka University of Technology (NUT), Japan. Research on steel bridges, steel structures, FRP/CFRP, connections and repair, structural health monitoring, FEM, point clouds and AI through experiments, analysis and field engineering." property="og:description"/><meta content="https://whs.nagaokaut.ac.jp/struct/hayashi/en.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="https://whs.nagaokaut.ac.jp/struct/hayashi/images/featured/bridge_panorama.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Steel Structure Lab. | Gen Hayashi | Nagaoka University of Technology" name="twitter:title"/><meta content="Steel Structure Lab., Hayashi Research Group, Nagaoka University of Technology (NUT), Japan. Research on steel bridges, steel structures, FRP/CFRP, connections and repair, structural health monitoring, FEM, point clouds and AI through experiments, analysis and field engineering." name="twitter:description"/><meta content="https://whs.nagaokaut.ac.jp/struct/hayashi/images/featured/bridge_panorama.jpg" name="twitter:image"/><script id="seo-jsonld" type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#website",
+      "url": "https://whs.nagaokaut.ac.jp/struct/hayashi/",
+      "name": "Steel Structure Lab. | Nagaoka University of Technology",
+      "alternateName": [
+        "長岡技術科学大学 鋼構造研究室",
+        "Hayashi Research Group"
+      ],
+      "inLanguage": [
+        "ja",
+        "en"
+      ]
+    },
+    {
+      "@type": "ResearchOrganization",
+      "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#lab",
+      "url": "https://whs.nagaokaut.ac.jp/struct/hayashi/",
+      "name": "Steel Structure Lab. – Hayashi Research Group",
+      "alternateName": [
+        "Nagaoka University of Technology Steel Structure Lab.",
+        "鋼構造研究室",
+        "林研究グループ"
+      ],
+      "parentOrganization": {
+        "@type": "CollegeOrUniversity",
+        "name": "Nagaoka University of Technology",
+        "alternateName": [
+          "長岡技術科学大学",
+          "NUT"
+        ],
+        "url": "https://www.nagaokaut.ac.jp/"
+      },
+      "member": {
+        "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#gen-hayashi"
+      },
+      "knowsAbout": [
+        "Steel bridges",
+        "Steel structures",
+        "Bridge engineering",
+        "Bridge maintenance",
+        "Structural health monitoring",
+        "FRP",
+        "CFRP",
+        "High-strength bolted connections",
+        "Repair and strengthening",
+        "Finite element analysis",
+        "FEM",
+        "Point clouds",
+        "Artificial intelligence"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "940-2188",
+        "addressRegion": "新潟県",
+        "addressLocality": "長岡市",
+        "streetAddress": "上富岡町1603-1",
+        "addressCountry": "JP"
+      },
+      "sameAs": [
+        "https://ntic.nagaokaut.ac.jp/seeds-collection/laboratory-83t338"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#gen-hayashi",
+      "name": "Gen Hayashi",
+      "alternateName": [
+        "林 厳",
+        "HAYASHI Gen"
+      ],
+      "jobTitle": "Associate Professor",
+      "affiliation": {
+        "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#lab"
+      },
+      "url": "https://whs.nagaokaut.ac.jp/struct/hayashi/#members",
+      "sameAs": [
+        "https://researchmap.jp/hys_g",
+        "https://ntic.nagaokaut.ac.jp/seeds-collection/laboratory-83t338"
+      ],
+      "knowsAbout": [
+        "Steel bridges",
+        "Steel structures",
+        "Bridge engineering",
+        "Bridge maintenance",
+        "Structural health monitoring",
+        "FRP",
+        "CFRP",
+        "High-strength bolted connections",
+        "Repair and strengthening",
+        "Finite element analysis",
+        "FEM",
+        "Point clouds",
+        "Artificial intelligence"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/en.html#webpage",
+      "url": "https://whs.nagaokaut.ac.jp/struct/hayashi/en.html",
+      "name": "Steel Structure Lab. – Hayashi Research Group, Nagaoka University of Technology",
+      "description": "Steel Structure Lab., Hayashi Research Group, Nagaoka University of Technology (NUT), Japan. Research on steel bridges, steel structures, FRP/CFRP, connections and repair, structural health monitoring, FEM, point clouds and AI through experiments, analysis and field engineering.",
+      "isPartOf": {
+        "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#website"
+      },
+      "about": {
+        "@id": "https://whs.nagaokaut.ac.jp/struct/hayashi/#lab"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}</script></head>
+<body>
+<header class="header">
+<a class="brand" href="#top"><span>STEEL STRUCTURE LAB.</span><small>Nagaoka University of Technology / NUT</small></a>
+<div class="header-right">
+<nav class="nav-two-row" aria-label="Main navigation"><div class="nav-row"><a href="#news">News</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#members">Members</a></div><div class="nav-row"><a href="#activities">Activities</a><a href="#prospective">Study &amp; Career</a><a href="#contact">Contact</a></div></nav>
+<div aria-label="Language" class="lang-switch"><a href="index.html" lang="ja">JP</a><span>/</span><a class="active" href="en.html" lang="en">EN</a></div>
+<button aria-label="Presentation mode" class="presentation-launch" type="button">PRESENT</button>
+</div><button aria-label="Menu" class="menu">☰</button></header>
+<main id="top">
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+<div class="hero-bg">
+</div>
+<div class="hero-overlay">
+</div>
+<div class="hero-content">
+<p class="eyebrow">Nagaoka University of Technology (NUT)</p>
+<h1>
+      STEEL STRUCTURE
+      <br/>
+      LAB.
+     </h1>
+<p class="tagline">
+      Steel Structures. Maintenance. Digital Technology.
+     </p>
+<p class="jp">
+      Exploring the future of infrastructure through experiments, analysis, and field engineering.
+     </p><p class="hero-univ-line">Department of Civil and Environmental Engineering / Steel Structure Lab.</p>
+<div class="hero-actions">
+<a class="button light" href="#research">
+       Explore Research
+       <span>
+        →
+       </span>
+</a>
+<a class="button ghost" href="#activities">
+       Lab Activities
+       <span>
+        →
+       </span>
+</a>
+</div>
+</div>
+<div class="hero-index">
+     RESEARCH / PEOPLE / FIELD / GLOBAL
+    </div>
+</section>
+<!-- ==================== NEWS ==================== -->
+<section class="news-section" id="news">
+<div class="news-title">
+<p class="eyebrow">
+      NEWS
+     </p>
+<h2>
+      News
+     </h2>
+<button class="news-toggle" id="news-toggle" type="button">
+      VIEW ALL →
+     </button>
+</div>
+<div class="news-list-wrap" id="news-list">
+</div>
+</section>
+<!-- ==================== RESEARCH ==================== -->
+<section class="section research" id="research">
+<div class="section-head">
+<div>
+<p class="eyebrow">
+       RESEARCH
+      </p>
+<h2>
+       Research
+      </h2>
+</div>
+<p>
+      We investigate steel and composite structures through experiments, numerical analysis, and monitoring, with the aim of improving structural performance and extending service life.
+     </p>
+</div>
+<div class="cards">
+<article class="card card-steel">
+<div>
+<b>
+        STEEL STRUCTURES
+       </b>
+<h3>
+        Steel Structures &amp; Bridges
+       </h3>
+<p>
+        Mechanical behaviour, load-carrying capacity, deterioration, repair, and connections in steel bridges and members
+       </p>
+</div>
+<button aria-label="Steel Structures &amp; Bridgesの詳細を見る" class="card-detail" data-research="steel" type="button">
+       ↗
+      </button>
+</article>
+<article class="card card-composite">
+<div>
+<b>
+        COMPOSITE STRUCTURES
+       </b>
+<h3>
+        Composite Structures &amp; FRP
+       </h3>
+<p>
+        Mechanical performance, durability, connections, repair and strengthening of FRP structural systems
+       </p>
+</div>
+<button aria-label="Composite Structures &amp; FRPの詳細を見る" class="card-detail" data-research="composite" type="button">
+       ↗
+      </button>
+</article>
+<article class="card card-experiment">
+<div>
+<b>
+        EXPERIMENT &amp; ANALYSIS
+       </b>
+<h3>
+        Experiments &amp; Numerical Analysis
+       </h3>
+<p>
+        Structural performance assessment combining loading tests, material tests, and finite element analysis
+       </p>
+</div>
+<button aria-label="Experiments &amp; Numerical Analysisの詳細を見る" class="card-detail" data-research="experiment" type="button">
+       ↗
+      </button>
+</article>
+<article class="card card-monitor">
+<div>
+<b>
+        STRUCTURAL HEALTH MONITORING
+       </b>
+<h3>
+        Structural Health Monitoring
+       </h3>
+<p>
+        Condition assessment and maintenance technologies using vibration, sensing, image and point-cloud data
+       </p>
+</div>
+<button aria-label="Structural Health Monitoringの詳細を見る" class="card-detail" data-research="monitor" type="button">
+       ↗
+      </button>
+</article>
+</div><div class="research-framework" id="research-framework"><h3 class="framework-title">Connecting build, diagnose, and manage</h3><p class="framework-lead">We study the bridge life cycle as one connected process spanning structures, damage, diagnosis, and maintenance.</p><article class="framework-card" style="background-image:url('images/featured/girder_transport_night.jpg')"><div><b>BUILD</b><h3>Build</h3><p>Develop structures, connections, repair and strengthening technologies.</p></div></article><article class="framework-card" style="background-image:url('images/featured/pedestrian_bridge.jpg')"><div><b>DIAGNOSE</b><h3>Diagnose</h3><p>Evaluate structural condition from corrosion, damage, vibration, and measurement data.</p></div></article><article class="framework-card" style="background-image:url('images/featured/management_pointcloud.png')"><div><b>MANAGE</b><h3>Manage</h3><p>Connect experiments, analysis, and digital technologies to rational infrastructure management.</p></div></article></div>
+</section>
+<!-- ==================== PUBLICATIONS ==================== -->
+<section class="section publications-section" id="publications">
+<div class="section-head publications-head">
+<div>
+<p class="eyebrow">
+       PUBLICATIONS
+      </p>
+<h2>
+       Publications
+      </h2>
+</div>
+<p>
+      Peer-reviewed journal papers are organised by year. Click a year to expand the list.
+     </p>
+</div>
+<!-- PUBLICATIONS are generated automatically from publicationData in script-en.js.
+     You do not need to add year blocks or paper rows in this HTML file. -->
+<div aria-live="polite" class="publication-total-card">
+<span>PEER-REVIEWED PAPERS</span>
+<div><strong id="publication-total">0</strong><small> TOTAL</small></div>
+</div>
+<div class="publication-years" id="publication-years">
+</div>
+<p class="publication-note">
+     * Peer-reviewed papers only. Bibliographic information is loaded automatically from the Publications sheet in Excel.
+    </p>
+</section>
+<!-- ==================== APPROACH ==================== -->
+<section class="approach" id="approach">
+<div class="approach-carousel js-approach-carousel"><div class="approach-carousel-track"></div><div class="approach-carousel-caption"><span class="approach-carousel-label"></span></div><div aria-label="Approach images" class="approach-carousel-dots"></div></div>
+<div class="approach-copy">
+<p class="eyebrow">
+      OUR APPROACH
+     </p>
+<h2>
+      Connecting experiments,
+      <br/>
+      analysis and the field
+     </h2>
+<p>
+      Our research does not end in the laboratory. We identify real engineering problems in the field, verify structural behaviour through experiments, deepen understanding through analysis, and develop ideas through discussion with researchers and engineers in Japan and abroad.
+     </p>
+<a class="button dark" href="#activities">
+      See Activities →
+     </a>
+<p class="approach-keywords">Experiment × Analysis × Field</p></div>
+</section><section class="section research-style-section" id="research-style"><div class="subsection-head research-style-head"><div><p class="eyebrow">RESEARCH STYLE</p><h3>Research style</h3></div><p>We connect practical engineering challenges to research while also exploring materials, structures, and analytical technologies for the next 10–20 years.</p></div><div class="research-style-grid"><article><b>70%</b><h4>From practical challenges</h4><p>Research begins with technical issues in bridge fabrication and maintenance, with real-world application in mind.</p></article><article><b>30%</b><h4>Future-oriented research</h4><p>We also explore new materials, structural concepts, advanced analysis, and AI for future implementation.</p></article></div></section>
+<!-- ==================== MEMBERS / ALUMNI ==================== -->
+<section class="section members-section" id="members">
+<div class="section-head">
+<div>
+<p class="eyebrow">
+       MEMBERS
+      </p>
+<h2>Members</h2>
+</div>
+<p>Each member has an individual research topic and advances research through discussion and collaboration across academic years.</p>
+</div>
+<div class="members-table"><div class="data-loading">Loading data from Excel…</div></div>
+<div class="alumni-block" id="alumni">
+<div class="subsection-head">
+<div>
+<p class="eyebrow">
+        ALUMNI
+       </p>
+<h3>
+        Alumni
+       </h3>
+</div>
+<p>Research topics pursued by former members are listed by graduation year.</p>
+</div>
+<div class="members-table alumni-table"><div class="data-loading">Loading data from Excel…</div></div>
+</div>
+</section>
+<!-- ==================== COLLABORATION / COLLABORATORS ==================== -->
+<section class="section collaborators-section" id="collaborators">
+<div class="section-head collaborators-head">
+<div>
+<p class="eyebrow">COLLABORATORS</p>
+<h2>Research Collaborators</h2>
+</div>
+<p>Researchers with whom we collaborate through joint research, student exchange, and research discussions. Domestic and international collaborators are shown separately for clarity.</p>
+</div>
+<div class="collaborator-accordions">
+<details class="collaborator-accordion">
+<summary>
+<span class="collaborator-summary-title"><b>Japan</b><small>Domestic collaborators</small></span>
+<span class="collaborator-summary-count" id="collaborators-domestic-count">0</span>
+<span aria-hidden="true" class="collaborator-summary-plus">+</span>
+</summary>
+<div class="collaborator-list" id="collaborators-domestic"><div class="data-loading">Loading data from Excel…</div></div>
+</details>
+<details class="collaborator-accordion">
+<summary>
+<span class="collaborator-summary-title"><b>International</b><small>Overseas collaborators</small></span>
+<span class="collaborator-summary-count" id="collaborators-international-count">0</span>
+<span aria-hidden="true" class="collaborator-summary-plus">+</span>
+</summary>
+<div class="collaborator-list" id="collaborators-international"><div class="data-loading">Loading data from Excel…</div></div>
+</details>
+</div>
+</section>
+<!-- ==================== ACTIVITIES ==================== -->
+<section class="section activities-section" id="activities">
+<div class="section-head activity-head">
+<div>
+<p class="eyebrow">
+       ACTIVITIES
+      </p>
+<h2>Laboratory Activities</h2>
+</div>
+<p>Field visits, conference presentations, experiments, international exchange, and other day-to-day laboratory activities are organised by year.</p>
+</div><div class="experience-highlights" id="experience-highlights"><article class="experience-card" data-experience="field-visit"><div class="experience-photo" style="background-image:url('images/featured/akashi_field_visit.jpg')"><span>FIELD VISIT</span></div><div class="experience-copy"><h3>Field visits</h3><p>Visit real bridges and construction sites to understand structural, maintenance, and construction challenges firsthand.</p></div></article><article class="experience-card" data-experience="field-experiment"><div class="experience-photo" style="background-image:url('images/featured/field_experiment_repair.jpg')"><span>FIELD EXPERIMENT</span></div><div class="experience-copy"><h3>Field experiments</h3><p>Gain experience with measurements, repair work, and maintenance-related investigations on real structures.</p></div></article><article class="experience-card" data-experience="lab-experiment"><div class="experience-photo" style="background-image:url('images/featured/lab_large_frame.jpg')"><span>LAB EXPERIMENT</span></div><div class="experience-copy"><h3>Laboratory experiments</h3><p>Observe structural behavior directly through loading tests, material tests, and long-term experiments.</p></div></article><article class="experience-card" data-experience="international-conference"><div class="experience-photo" style="background-image:url('images/featured/international_conference.jpg')"><span>INTERNATIONAL CONFERENCE</span></div><div class="experience-copy"><h3>International conferences</h3><p>Present research internationally and discuss it with researchers and engineers from around the world.</p></div></article></div>
+<!-- ACTIVITY EDIT GUIDE
+     Add activities only in activityData in script-en.js.
+     The date (e.g. 2027.04.10) is used to group entries automatically by year.
+     The newest year opens automatically; previous years remain collapsed. -->
+<div class="activity-years" id="activity-years">
+</div>
+</section>
+<!-- ==================== PROSPECTIVE STUDENTS ==================== -->
+<section class="prospective-section prospective-clean" id="prospective">
+<div class="prospective-clean-head">
+<p class="eyebrow">FOR PROSPECTIVE STUDENTS</p>
+<h2>For Prospective Students</h2>
+<p>We are not looking only for students who are already highly capable. We value the attitude to learn, try, improve, and gradually expand what you can do.</p>
+</div>
+<div class="pathway-intro"><p class="eyebrow">FROM KOSEN TO THE WORLD</p><h3>From a college of technology to graduate study, a PhD, and beyond.</h3><p>Explore research opportunities for students transferring from a Japanese college of technology (KOSEN), entering a Master's program after an advanced course, or considering doctoral study.</p></div><div class="pathway-grid"><article><span>01 / KOSEN → BACHELOR</span><h3>KOSEN undergraduate students</h3><p>Learn about third-year transfer, laboratory placement, experiments, analysis, field visits, and practical training.</p><a href="#schedule">Explore the learning pathway →</a></article><article><span>02 / KOSEN → MASTER</span><h3>KOSEN advanced-course students</h3><p>Discover research topics, graduate study, publications, international activities, and opportunities to deepen your expertise.</p><a href="#research">Explore research themes →</a></article><article><span>03 / MASTER → PhD</span><h3>Future doctoral researchers</h3><p>Learn how doctoral research develops independent thinking, international publications, collaboration, and pathways into academia, research institutions, and industry.</p><a href="#schedule">Explore the doctoral pathway →</a></article></div><div class="pathway-actions"><a href="#lab-culture">Our mentoring philosophy</a><a href="#access">Visit and access</a><a href="#contact">Admissions and research inquiries</a></div><p class="pathway-note">For current admissions eligibility, selection procedures, and financial support, consult the university's official guidance. Prospective students are welcome to contact us.</p>
+<div class="prospective-core-message">
+<p class="eyebrow">OUR MESSAGE</p>
+<h3>You do not need to be capable from day one.<br/><strong>We support students who are willing to become capable.</strong></h3>
+<p>Research directions are proposed based on funding, facilities, collaborations, and laboratory expertise. Within that framework, we respect what students want to try, learn, and challenge, and discuss how those goals can be realized.</p>
+</div><div class="skills-overview" id="skills-overview"><div class="skills-overview-head"><p class="eyebrow">SKILLS STUDENTS DEVELOP</p><h3>Skills developed through research</h3></div><div class="skills-overview-grid"><article><b>01</b><h4>Think</h4><p>Identify problems and develop evidence-based solutions.</p></article><article><b>02</b><h4>Communicate</h4><p>Explain ideas through writing, discussion, presentations, and English.</p></article><article><b>03</b><h4>Execute</h4><p>Plan, iterate, and carry work through to completion.</p></article><article><b>04</b><h4>Collaborate</h4><p>Work sincerely with students, researchers, and engineers.</p></article><article><b>05</b><h4>Expertise</h4><p>Develop expertise in steel structures, maintenance, experiments, and analysis.</p></article></div></div>
+<div class="prospective-two-col">
+<article>
+<p class="eyebrow">WHO FITS THIS LAB</p><h3>Attitudes we value</h3>
+<ul class="prospective-check-list">
+<li><b>Try first</b><span>Do not decide something is impossible before investigating and trying.</span></li>
+<li><b>Improve step by step</b><span>Use feedback and failure to improve the next attempt.</span></li>
+<li><b>Think for yourself</b><span>Bring your own ideas and reasoning when you ask for advice.</span></li>
+<li><b>Work with integrity</b><span>Respect deadlines, communication, and commitments to others.</span></li>
+<li><b>Be open to new experiences</b><span>Conferences, overseas activities, field visits, industry, and university exchange.</span></li>
+<li><b>Leave something behind</b><span>Pass knowledge, experience, and useful materials on to the next students.</span></li>
+</ul>
+</article>
+<article>
+<p class="eyebrow">WHAT THE LAB PROVIDES</p><h3>The environment we aim to provide</h3>
+<ul class="prospective-check-list support-list">
+<li><b>Close discussion</b><span>Individual meetings and everyday consultation to shape the direction together.</span></li>
+<li><b>Hands-on experiment and analysis</b><span>Learn by actually working on experiments, analyses, and senior students' projects.</span></li>
+<li><b>External presentation</b><span>From M1 onward, we emphasize presenting and discussing results outside the laboratory.</span></li>
+<li><b>Experience beyond the lab</b><span>Field/factory visits, collaborations, university exchange, and overseas research internships.</span></li>
+<li><b>Career support</b><span>Information gathering for practical training and career choices, including our professional network.</span></li>
+<li><b>Support for challenges</b><span>When students want to try something, we discuss feasibility and support it as far as possible.</span></li>
+</ul>
+</article>
+</div>
+<div class="prospective-fit-note">
+<div><p class="eyebrow">MAY NOT BE A GOOD FIT</p><h3>This laboratory may not fit you if you prefer to...</h3></div>
+<ul><li>do only the minimum that you are instructed to do</li><li>decide that you cannot do something before trying</li><li>ignore feedback or repeat the same problems without improvement</li><li>prioritize only your own convenience without communicating with others</li></ul>
+</div>
+<div class="prospective-cta simple-cta"><div><b>LAB VISIT / RESEARCH CONSULTATION</b><p>Prospective students are welcome to visit the laboratory and discuss our research.</p></div><a class="button light" href="#access">Visit the laboratory　→</a></div>
+</section>
+<!-- ==================== ACCESS ==================== -->
+<section class="section lab-culture-section" id="lab-culture">
+<div class="section-head"><div><p class="eyebrow">LAB CULTURE &amp; DEVELOPMENT</p><h2>How we develop researchers</h2></div><p>We do not select for being “already capable.” We value attitude, integrity, and the willingness to become capable through sustained effort.</p></div>
+<div class="culture-principles">
+<article><span>01</span><h3>Try first</h3><p>Do not decide that something is impossible before trying. Investigate, test, and change the approach when necessary.</p></article>
+<article><span>02</span><h3>Develop your own view</h3><p>We want students to bring their own ideas and aspirations into discussion, not simply wait for instructions.</p></article>
+<article><span>03</span><h3>Learn from failure</h3><p>Failure itself is not the problem. Share it, understand why it happened, and use it to determine the next step.</p></article>
+<article><span>04</span><h3>Work with integrity</h3><p>Deadlines, communication, and respect for other people's time are habits that remain useful far beyond research.</p></article>
+<article><span>05</span><h3>Broaden your experience</h3><p>We encourage conferences, international experience, field visits, collaboration, and interaction beyond the laboratory.</p></article>
+</div>
+<div class="growth-support"><div><p class="eyebrow">SUPPORT</p><h3>We support what you want to achieve.</h3></div><p>Research topics are guided by available funding, facilities, collaborations, and the laboratory's research direction. Within that framework, we strongly value what each student wants to try, learn, or experience. When an idea is too far from a feasible direction, we discuss it and reshape it together rather than simply rejecting it.</p></div>
+<section class="schedule-detailed" id="schedule">
+<div class="schedule-intro"><div><p class="eyebrow">B4 → M1 → M2 → D / DEVELOPMENT PATH</p><h3>Development from B4 through the Doctoral Course</h3></div><p>Students progress in stages from fundamentals to practice, external presentation, and independent research. The schedule below is a standard model and is adjusted through discussion according to the research topic, coursework, practical training, and individual plans.</p></div>
+<div class="schedule-phase"><div class="schedule-phase-label"><strong>B4</strong><span>SPRING / APR–AUG</span></div><div class="schedule-phase-body"><h4>Build the foundations of research</h4><ul><li>Join the laboratory in April</li><li>Take Bridge Engineering</li><li>Weekly seminar through Civil and Environmental Engineering Experiment &amp; Exercise I</li><li>Journal reading and fundamental experiment / analysis training</li><li>Take English Practice</li><li>Assist senior students’ experiments and analyses to learn research practice</li><li>Select a topic related to practical training and begin research gradually with M1 external presentations in mind</li><li>Join field/factory visits, FEM seminars, and inter-university exchange where useful and agreed</li><li>Prepare for the graduate-school entrance examination</li></ul><p class="schedule-note">When substantial laboratory work is requested, payment is provided in principle.</p></div></div>
+<div class="schedule-phase"><div class="schedule-phase-label"><strong>B4</strong><span>SUMMER</span></div><div class="schedule-phase-body"><h4>Gain hands-on experiment and analysis experience</h4><ul><li>Because many experiments and analyses are carried out in summer, students may be asked to assist after discussing availability</li><li>Schedules are agreed in advance, including travel and time at home</li><li>Substantial laboratory work is paid in principle</li></ul></div></div>
+<div class="schedule-phase"><div class="schedule-phase-label"><strong>B4</strong><span>AUTUMN–SPRING / SEP–MAR</span></div><div class="schedule-phase-body"><h4>Practical training or intensive research</h4><ul><li>International practical training generally starts around September; domestic training around October</li><li>Before departure, seminars are held about twice a week through Experiment &amp; Exercise II and related activities</li><li>Journal reading, preparation related to the host organization, experiment / analysis, and English Practice</li><li>After practical training, laboratory work may be requested in February–March after discussion</li><li>Graduation trips and other plans are free, but long absences should be discussed early</li></ul><div class="schedule-subbox"><b>For students choosing the research-project option</b><p>From September to the end of February, students generally work on research on a full-time basis (approximately 8 hours per day, 5 days per week), with weekly individual meetings to review progress. The purpose is concentrated, planned research—not simply being present in the laboratory.</p></div></div></div>
+<div class="schedule-phase"><div class="schedule-phase-label"><strong>M1</strong><span>SPRING / APR–AUG</span></div><div class="schedule-phase-body"><h4>Develop research and prepare to present externally</h4><ul><li><b>Internal progression:</b> continue B4 research and, where appropriate, prepare papers and external presentations from B4 results</li><li><b>Students entering from elsewhere:</b> discuss and determine a research topic based on previous experience and interests</li><li>Weekly laboratory seminar as a course</li><li>Separate weekly individual research meeting in principle</li><li>Students interested in overseas research internships discuss host institutions and topics</li><li>Assist with experiments / analyses where needed; substantial requested work is paid in principle</li><li>TA duties for relevant courses</li></ul></div></div>
+<div class="schedule-phase"><div class="schedule-phase-label"><strong>M1</strong><span>AUTUMN–SPRING / SEP–MAR</span></div><div class="schedule-phase-body"><h4>Present research externally and broaden experience</h4><ul><li>Continue research and develop results into domestic/international conference presentations and journal papers where appropriate</li><li>Weekly individual research meeting in principle</li><li>Weekly laboratory seminar from September</li><li>Overseas research internships of roughly 2–3 months for students who choose this path</li><li>Collaboration, university exchange, and field/factory visits as appropriate</li></ul></div></div>
+<div class="schedule-phase"><div class="schedule-phase-label"><strong>M2</strong><span>APR–FEB</span></div><div class="schedule-phase-body"><h4>Lead, complete, and hand over your research</h4><ul><li>Plan the work independently, interpret results, and propose the next research steps</li><li>Master’s research, individual meetings, conference presentations, and journal papers</li><li>Support junior students and contribute to laboratory activities</li><li>Complete and revise the thesis, organize data, prepare publications, and hand over research materials</li><li>Research normally continues through the end of February rather than ending at thesis submission</li><li>Graduation travel should be planned early around research and revision schedules</li></ul></div></div>
+<div class="schedule-summary"><b>B4: Learn &amp; experience</b><span>→</span><b>M1: Challenge externally</b><span>→</span><b>M2: Lead &amp; leave knowledge</b><span>→</span><b>D: Become an independent researcher</b></div>
+<article class="schedule-phase doctoral-phase"><div class="schedule-phase-label"><strong>D</strong><span>DOCTORAL COURSE</span></div><div class="schedule-phase-body"><h4>Become an independent researcher, including university and college-of-technology faculty</h4><ul><li>Define research questions independently and plan and execute the research</li><li>Continuously publish results in international journals</li><li>Present at domestic and international conferences and expand research networks</li><li>Gain experience leading collaborative research and mentoring students</li><li>Develop overseas research activities and international collaboration where appropriate</li><li>Build a record that supports careers in universities, colleges of technology, and research institutions after the PhD</li></ul><p class="schedule-note">The doctoral course is the training stage in which this laboratory invests most heavily. To develop researchers, including university and college-of-technology faculty, we prioritize faculty time, research funding, conferences, overseas activities, and collaborative research opportunities as far as possible.</p></div></article></section>
+<div class="career-grid"><article><p class="eyebrow">INTERNSHIP</p><h3>Company internships</h3><p>We do not actively recommend very short company internships of only a few days because they rarely provide a deep understanding of actual work. Participation is discussed case by case. We place greater emphasis on substantial practical training and choose placements with future career options in mind.</p></article><article><p class="eyebrow">CAREER SUPPORT</p><h3>Career support</h3><p>Students can only access part of the information needed to understand a company. When useful, we help gather information through alumni, collaborators, and engineers in industry so that both the student and the employer can make a better, more sustainable match.</p></article></div>
+<div class="international-policy"><div><p class="eyebrow">FOR INTERNATIONAL APPLICANTS</p><h3>International applicant policy</h3></div><div class="international-items"><p><strong>Master's applicants:</strong> We generally accept overseas Master's applicants through the five-year integrated <a class="inline-link" href="https://whs.nagaokaut.ac.jp/sti/" rel="noopener noreferrer" target="_blank">GIGAKU Innovation Program ↗</a>, with the expectation of continuing through the doctoral stage.</p><p><strong>Japanese:</strong> High Japanese proficiency is not required at entry, but students are expected to commit to learning enough Japanese for daily communication during the approximately five-year period.</p><p><strong>Doctoral applicants: </strong>At least three international journal papers are expected as a minimum laboratory target. We place particular emphasis on preparing students for careers as university or college-of-technology faculty and independent researchers after the PhD.</p><p><strong>Research topic:</strong> Topics are generally proposed by the laboratory based on funded projects, collaborations, facilities, and future research directions, then refined in discussion with the student.</p></div></div>
+</section><section class="access-section" id="access">
+<div class="section access-inner">
+<div class="section-head access-head">
+<div>
+<p class="eyebrow">
+        ACCESS
+       </p>
+<h2>
+        Access
+       </h2>
+</div>
+<p>
+       Campus access information and delivery guidance for large specimens and equipment to the large-scale structural laboratory.
+      </p>
+</div>
+<div class="access-grid">
+<div class="access-map-card">
+<iframe id="access-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Nagaoka%20University%20of%20Technology&amp;output=embed" title="Nagaoka University of Technology Google Map">
+</iframe>
+</div>
+<div class="access-info-card">
+<p class="eyebrow">
+        CAMPUS
+       </p>
+<h3 id="access-lab-name">
+        Steel Structure Lab. – Hayashi Research Group
+       </h3>
+<p id="access-affiliation">
+        Department of Civil and Environmental Engineering, Nagaoka University of Technology
+       </p>
+<p id="access-address">
+        1603-1 Kamitomioka, Nagaoka, Niigata 940-2188, Japan
+       </p>
+<a class="button outline" href="https://www.google.com/maps/search/?api=1&amp;query=Nagaoka%20University%20of%20Technology" id="access-map-link" rel="noopener" target="_blank">
+        Open in Google Maps　↗
+       </a>
+</div>
+</div>
+<div class="access-support-grid">
+<article class="access-support-card delivery-card">
+<div>
+<p class="eyebrow">
+         LARGE-SCALE LABORATORY
+        </p>
+<h3 id="delivery-pdf-label">
+         Delivery route to the Large-Scale Structural Laboratory
+        </h3>
+<p>
+         The guide shows two delivery routes, one from the main gate and one from the southwest side of campus. For large vehicles, please confirm road width, turning clearance, and current campus traffic conditions in advance.
+        </p>
+</div>
+<a class="button outline" href="docs/large_lab_delivery_route.pdf" id="delivery-pdf-link" rel="noopener" target="_blank">
+        View delivery-route PDF　↗
+       </a>
+</article>
+<article class="access-support-card visit-card">
+<div>
+<p class="eyebrow">
+         LAB VISIT
+        </p>
+<h3>
+         Lab visits and collaboration inquiries
+        </h3>
+<p>
+         For laboratory visits, research collaboration, or consultation on experimental facilities, please use the inquiry form below.
+        </p>
+</div>
+<a class="button outline" href="#contact">
+        Contact us　↓
+       </a>
+</article>
+</div>
+</div>
+</section>
+<!-- ==================== DETAIL MODALS ==================== -->
+<!-- ACTIVITY DETAIL MODAL
+     写真や文章を追加・変更する場合は script-en.js の activityData を編集してください。 -->
+<dialog class="activity-dialog" id="activity-dialog">
+<div class="activity-modal">
+<button aria-label="Close" class="activity-modal-close" type="button">
+      ×
+     </button>
+<div class="activity-modal-media">
+<div class="activity-modal-photo" id="activity-modal-photo">
+<span>ACTIVITY PHOTO</span>
+</div>
+<div aria-label="Activity photos" class="activity-modal-gallery" id="activity-modal-gallery"></div>
+</div>
+<div class="activity-modal-content">
+<div class="activity-modal-meta">
+<time id="activity-modal-date">
+</time>
+<span id="activity-modal-category">
+</span>
+</div>
+<p class="eyebrow" id="activity-modal-en">
+       ACTIVITY
+      </p>
+<h2 id="activity-modal-title">
+       Activity Title
+      </h2>
+<p class="activity-modal-lead" id="activity-modal-lead">
+</p>
+<div class="activity-conference-info" hidden="" id="activity-conference-info">
+<p class="detail-label">CONFERENCE PRESENTATION</p>
+<h3>Presentation Details</h3>
+<dl>
+<div data-conf-row="title"><dt>Presentation title</dt><dd id="activity-modal-presentation-title"></dd></div>
+<div data-conf-row="conference"><dt>Conference</dt><dd id="activity-modal-conference-name"></dd></div>
+<div data-conf-row="presenter"><dt>Presenter</dt><dd id="activity-modal-presenter"></dd></div>
+<div data-conf-row="venue"><dt>Venue</dt><dd id="activity-modal-venue"></dd></div>
+</dl>
+</div>
+<div class="activity-modal-story">
+<div>
+<p class="detail-label">
+         ACTIVITY REPORT
+        </p>
+<h3>
+         Activity Report
+        </h3>
+<p id="activity-modal-body">
+</p>
+</div>
+<div>
+<p class="detail-label">
+         MEMBERS / PLACE
+        </p>
+<h3>
+         Members / Place
+        </h3>
+<p id="activity-modal-members">
+</p>
+</div>
+</div>
+<div class="activity-modal-related">
+<p class="detail-label">
+        RELATED RESEARCH
+       </p>
+<h3>
+        Related Research / Keywords
+       </h3>
+<ul id="activity-modal-tags">
+</ul>
+</div>
+<p class="activity-edit-note">
+       * This detail view is a sample. Edit the photo, date, text, participants, and keywords in
+       <code>
+        activityData
+       </code>
+       in
+       <code>
+        script-en.js
+       </code>
+       .
+      </p>
+</div>
+</div>
+</dialog>
+<!-- FACULTY PROFILE MODAL
+     Edit the profile in the FacultyProfile sheet of data/lab_data.xlsx. -->
+<dialog class="member-dialog" id="member-dialog">
+<div class="member-modal">
+<button aria-label="Close" class="member-modal-close" type="button">
+      ×
+     </button>
+<div class="member-modal-side">
+<div class="member-portrait" id="member-portrait">
+<span>
+        PROFILE PHOTO
+       </span>
+</div>
+<div class="member-side-meta">
+<p>
+        FACULTY
+       </p>
+<strong id="member-side-position">
+        Associate Professor
+       </strong>
+<span id="member-side-affiliation">
+        Nagaoka University of Technology
+       </span>
+</div>
+</div>
+<div class="member-modal-content">
+<p class="eyebrow">
+       PROFILE
+      </p>
+<h2 id="member-name-ja">
+       Gen Hayashi
+      </h2>
+<p class="member-name-en" id="member-name-en">
+       林 厳
+      </p>
+<p class="member-profile-lead" id="member-profile-lead">
+</p>
+<div class="member-profile-grid">
+<div>
+<p class="detail-label">
+         RESEARCH FIELDS
+        </p>
+<h3>
+         Research Fields
+        </h3>
+<ul id="member-fields">
+</ul>
+</div>
+<div>
+<p class="detail-label">
+         EDUCATION / CAREER
+        </p>
+<h3>
+         Education / Career
+        </h3>
+<ul id="member-career">
+</ul>
+</div>
+</div>
+<div class="member-profile-block">
+<p class="detail-label">
+        CURRENT RESEARCH
+       </p>
+<h3>
+        Current Research Topics
+       </h3>
+<ul id="member-topics">
+</ul>
+</div>
+<div class="member-profile-block">
+<p class="detail-label">
+        MESSAGE
+       </p>
+<h3>
+        Research &amp; Supervision
+       </h3>
+<p id="member-message">
+</p>
+</div>
+<div class="member-profile-actions">
+<a href="#publications" id="member-publications-link">
+        Publications →
+       </a>
+<a href="mailto:" id="member-email-link">
+        Contact →
+       </a>
+</div>
+<div class="member-profile-links" id="member-profile-links">
+<a hidden="" href="#" id="member-researchmap-link" rel="noopener" target="_blank">
+        researchmap ↗
+       </a>
+<a hidden="" href="#" id="member-orcid-link" rel="noopener" target="_blank">
+        ORCID ↗
+       </a>
+<a hidden="" href="#" id="member-scholar-link" rel="noopener" target="_blank">
+        Google Scholar ↗
+       </a>
+<a hidden="" href="#" id="member-scopus-link" rel="noopener" target="_blank">Scopus ↗</a></div>
+<p class="member-edit-note">
+       * Edit the photo, career, research topics, and contact details in the
+       <code>
+        FacultyProfile
+       </code>
+       sheet of
+       <code>
+        data/lab_data.xlsx
+       </code>
+       .
+      </p>
+</div>
+</div>
+</dialog>
+<dialog class="research-dialog" id="research-dialog">
+<div class="research-modal">
+<button aria-label="Close" class="research-close" type="button">
+      ×
+     </button>
+<div class="research-photo" id="research-photo">
+<span>
+       RESEARCH PHOTO
+      </span>
+</div>
+<div class="research-detail">
+<p class="eyebrow" id="research-en">
+       RESEARCH
+      </p>
+<h2 id="research-title">
+       Research Topic
+      </h2>
+<p class="research-lead" id="research-lead">
+</p>
+<div class="research-story">
+<div class="research-story-block">
+<p class="detail-label">
+         BACKGROUND &amp; AIM
+        </p>
+<h3>
+         Background &amp; Aim
+        </h3>
+<p id="research-background">
+</p>
+</div>
+<div class="research-story-block">
+<p class="detail-label">
+         WHAT WE DO
+        </p>
+<h3>
+         What We Do
+        </h3>
+<p id="research-whatwedo">
+</p>
+</div>
+</div>
+<div class="research-detail-grid">
+<div>
+<p class="detail-label">
+         RESEARCH TOPICS
+        </p>
+<ul id="research-topics">
+</ul>
+</div>
+<div>
+<p class="detail-label">
+         METHODS
+        </p>
+<ul id="research-methods">
+</ul>
+</div>
+</div>
+<div class="research-example">
+<p class="detail-label">
+        CURRENT / EXAMPLE PROJECT
+       </p>
+<h3 id="research-example-title">
+</h3>
+<p id="research-example-text">
+</p>
+</div>
+</div>
+</div>
+</dialog>
+<section class="contact-section" id="contact">
+<div class="section contact-inner">
+<div class="section-head contact-head">
+<div>
+<p class="eyebrow">
+        CONTACT
+       </p>
+<h2>
+        Contact
+       </h2>
+</div>
+<p id="contact-intro">
+       For collaboration, laboratory visits, research inquiries, and related questions, please use the form below.
+      </p>
+</div>
+<div class="contact-layout">
+<div class="contact-copy">
+<h3>
+        Contact us through Google Forms
+       </h3>
+<p>
+        After publishing your form, enter its public URL in the
+        <code>
+         SiteSettings
+        </code>
+        sheet of the Excel file. The form will then appear automatically on this page.
+       </p>
+<a class="button outline is-hidden" href="#" id="google-form-open" rel="noopener" target="_blank">
+        Open Google Form　↗
+       </a>
+<div class="google-form-placeholder" id="google-form-placeholder">
+        The Google Form URL has not been configured yet.
+        <br/>
+<small>
+         Enter the public URL in SiteSettings → google_form_url.
+        </small>
+</div>
+</div>
+<div class="google-form-embed is-hidden" id="google-form-embed-wrap">
+<iframe id="google-form-iframe" loading="lazy" title="Contact Google Form">
+        Loading…
+       </iframe>
+</div>
+</div>
+</div>
+</section>
+<!-- PRESENTATION MODE IS AUTO-SYNCED FROM HP SOURCE SECTIONS. Edit HP content/photos, not the presentation copies. --><div aria-hidden="true" class="presentation-shell" id="presentation-shell">
+<div class="presentation-top"><strong>STEEL STRUCTURE LAB.</strong><span id="presentation-counter">1 / 11</span><button id="presentation-close" type="button">ESC / CLOSE</button></div>
+<div class="presentation-slides">
+<section class="presentation-slide presentation-photo-hero active" data-slide="1"><div class="presentation-photo-overlay"></div><div class="presentation-content"><p class="eyebrow">NAGAOKA UNIVERSITY OF TECHNOLOGY (NUT)</p><h2>Steel Structure Lab.</h2><h3>Hayashi Research Group</h3><p class="presentation-lead">Exploring steel structures through experiments, analysis, field work, and data.</p><ul class="presentation-talk-points hero-points"><li>Steel-structure and bridge-engineering group at Nagaoka University of Technology (NUT)</li><li>Research on steel structures, composite structures, and bridge maintenance</li><li>Combining practice-driven topics with forward-looking academic research</li><li>Connecting experiments, analysis, field measurements, and data</li><li>Developing people who can think, communicate, and act independently</li></ul></div></section>
+<section class="presentation-slide" data-slide="2"><p class="eyebrow">RESEARCH OVERVIEW</p><h2>Connecting Build, Diagnose, and Manage</h2><div class="presentation-visual-three"><article class="pv-build"><span>BUILD</span><h3>Build</h3><p>New structures, connections, and materials</p></article><article class="pv-diagnose"><span>DIAGNOSE</span><h3>Diagnose</h3><p>Damage, corrosion, and condition assessment</p></article><article class="pv-manage"><span>MANAGE</span><h3>Manage</h3><p>Repair, monitoring, and AI</p></article></div><ul class="presentation-talk-points"><li>Treat bridge construction, diagnosis, and management as one connected process</li><li>Develop new structural systems, connections, and repair methods</li><li>Evaluate damaged and corroded bridge components</li><li>Advance maintenance using monitoring, AI, and point clouds</li><li>Start research from real bridges and practical engineering needs</li></ul></section>
+<section class="presentation-slide" data-slide="3"><p class="eyebrow">RESEARCH THEMES</p><h2>Main research themes</h2><div class="presentation-photo-grid four"><article style="--bg:url('images/featured/fabrication_shop.jpg')"><div><h3>Corrosion &amp; repair</h3><p>Load capacity and repair of steel bridges</p></div></article><article style="--bg:url('images/featured/cfrp_repair.jpg')"><div><h3>FRP &amp; composites</h3><p>Connections, long-term behavior, repair</p></div></article><article style="--bg:url('images/featured/lab_large_loading.jpg')"><div><h3>High-strength bolts &amp; testing</h3><p>Joint behavior, slip, bolt force</p></div></article><article style="--bg:url('images/featured/approach_analysis_v34.png')"><div><h3>Analysis &amp; AI</h3><p>FEM, point clouds, digital technologies</p></div></article></div><ul class="presentation-talk-points"><li>Residual strength and repair of corroded steel members</li><li>Structural use, connections, and durability of GFRP/CFRP</li><li>High-strength bolted friction joints and thin high-strength steel members</li><li>Bridge condition assessment using vibration, point clouds, images, and AI</li></ul></section>
+<section class="presentation-slide" data-slide="4"><p class="eyebrow">HOW WE WORK</p><h2>Experiment × Analysis × Field</h2><div class="presentation-approach-layout"><div class="presentation-approach-carousel js-approach-carousel"><div class="approach-carousel-track"></div><div class="approach-carousel-caption"><span class="approach-carousel-label"></span></div><div aria-label="Approach images" class="approach-carousel-dots"></div></div><div class="presentation-approach-points"><div class="presentation-approach-steps"><article class="presentation-approach-step"><span class="approach-step-no">01</span><h3>FIELD | Find the problem</h3><p>Identify research questions from real bridges, construction, and maintenance.</p></article><article class="presentation-approach-step"><span class="approach-step-no">02</span><h3>EXPERIMENT | Observe behavior</h3><p>Use loading and material tests to capture structural behavior directly.</p></article><article class="presentation-approach-step"><span class="approach-step-no">03</span><h3>ANALYSIS | Understand mechanisms</h3><p>Use FEM and data analysis to explain stress, deformation, and damage.</p></article><article class="presentation-approach-step"><span class="approach-step-no">04</span><h3>DEVELOP | Advance the research</h3><p>Connect field, experiment, and analysis through discussion with researchers and engineers.</p></article></div></div></div></section>
+<section class="presentation-slide" data-slide="5"><p class="eyebrow">RESEARCH STYLE</p><h2>Practice-driven and academic research</h2><div class="presentation-balance"><div class="balance-donut"><span>70<small>%</small></span></div><div class="balance-copy"><h3>Practice-driven research: about 70%</h3><ul><li>Problems from bridge fabrication and maintenance</li><li>Industry collaboration</li><li>Application to real structures</li></ul><h3>Forward-looking academic research: about 30%</h3><ul><li>Challenges for the next 10–20 years</li><li>New materials, structures, and advanced analysis</li></ul></div></div><ul class="presentation-talk-points"><li>Much of our work starts from practical engineering issues</li><li>Research themes often emerge from collaboration and field problems</li><li>We also pursue challenging topics looking 10–20 years ahead</li><li>Collaboration with companies, universities, and colleges is important</li><li>We consider both practical impact and academic novelty</li></ul></section>
+<section class="presentation-slide" data-slide="6"><p class="eyebrow">ACTIVITIES &amp; EXPERIENCE</p><h2>Experience beyond the laboratory</h2><div class="presentation-photo-grid four"><article><div><h3>Field visits</h3><p></p></div></article><article><div><h3>Field experiments</h3><p></p></div></article><article><div><h3>Laboratory experiments</h3><p></p></div></article><article><div><h3>International conferences</h3><p></p></div></article></div><ul class="presentation-talk-points"><li>Present results outside the lab and receive feedback from others</li><li>See how research connects to real engineering through field and factory visits</li><li>Broaden perspectives through discussion with universities, companies, and overseas researchers</li><li>Overseas research internships are encouraged when appropriate</li></ul></section><section class="presentation-slide presentation-recent-slide" data-slide="recent"><p class="eyebrow">RECENT ACTIVITIES</p><h2>Recent activities</h2><p class="presentation-brief">The three most recent activities are shown automatically from the website.</p><div class="presentation-recent-grid"><article class="presentation-recent-card"><div class="recent-activity-photo"></div><div class="recent-activity-copy"><p class="recent-activity-meta">—</p><h3>ACTIVITY</h3><p class="recent-activity-summary"></p></div></article><article class="presentation-recent-card"><div class="recent-activity-photo"></div><div class="recent-activity-copy"><p class="recent-activity-meta">—</p><h3>ACTIVITY</h3><p class="recent-activity-summary"></p></div></article><article class="presentation-recent-card"><div class="recent-activity-photo"></div><div class="recent-activity-copy"><p class="recent-activity-meta">—</p><h3>ACTIVITY</h3><p class="recent-activity-summary"></p></div></article></div></section>
+<section class="presentation-slide" data-slide="7"><p class="eyebrow">SKILLS STUDENTS DEVELOP</p><h2>Skills developed through research</h2><div class="presentation-skill-grid"><article><b>01</b><h3>Think</h3><p>Identify and solve problems</p></article><article><b>02</b><h3>Communicate</h3><p>Explain in writing, discussion, and English</p></article><article><b>03</b><h3>Execute</h3><p>Plan and carry work through</p></article><article><b>04</b><h3>Collaborate</h3><p>Work responsibly with diverse people</p></article><article><b>05</b><h3>Expertise</h3><p>Steel structures, maintenance, analysis</p></article></div><ul class="presentation-talk-points"><li>Ability to identify and solve problems independently</li><li>Ability to think logically and communicate ideas clearly</li><li>Planning, responsibility, and persistence</li><li>Ability to connect experiments, analysis, and literature</li><li>Ability to work with others and turn ideas into outcomes</li></ul></section>
+<section class="presentation-slide" data-slide="8"><p class="eyebrow">MINDSET</p><h2>Mindset we value</h2><h3>We support students who are willing to become capable.</h3><ul class="presentation-bullets"><li>Willing to try first</li><li>Willing to improve step by step</li><li>Think and discuss for yourself</li><li>Use feedback and failure to improve</li><li>Collaborate and work with integrity</li><li>Open to new experiences</li><li>Pass useful knowledge and experience to the next students</li></ul><p class="presentation-detail-note">See Students / Culture on the main website for details.</p></section>
+<section class="presentation-slide" data-slide="9"><p class="eyebrow">GROWTH PATH</p><h2>B4 → M1 → M2 → D</h2><div class="presentation-schedule-mini four-stage"><article><b>B4</b><h3>Learn &amp; experience</h3><p>Reading / experiments &amp; analysis / practical-training preparation / graduate admission</p></article><article><b>M1</b><h3>Take on challenges</h3><p>Research / conferences / papers / overseas research</p></article><article><b>M2</b><h3>Become independent</h3><p>Lead research / master’s thesis / papers / pass knowledge to juniors</p></article><article class="doctor-card"><b>D</b><h3>Grow as a researcher</h3><p>International journals / collaboration / student mentoring / university &amp; KOSEN faculty</p></article></div><ul class="presentation-talk-points"><li>The doctoral course is the phase in which the laboratory invests most heavily in researcher development</li><li>We place particular emphasis on developing researchers, including university and college-of-technology faculty</li><li>Faculty time, research funding, conferences, overseas activities, and collaborative research opportunities are prioritised</li><li>We also develop professional engineers, while placing special emphasis on researcher and educator development</li></ul><p class="presentation-detail-note">A detailed semester-by-semester schedule is available on the main website.</p></section>
+<section class="presentation-slide" data-slide="10"><p class="eyebrow">CAREER &amp; PRACTICAL TRAINING</p><h2>Think beyond getting the offer.</h2><ul class="presentation-bullets"><li>Practical training placements are discussed with future careers and employers in mind</li><li>Short company internships of only a few days are not generally recommended; participation is discussed based on purpose</li><li>We prioritize deeper experiences through conferences, field work, collaboration, and overseas activities</li><li>We support information gathering through collaborators, alumni, and industry contacts</li><li>We try to understand the actual work and environment beyond recruiting materials</li><li>We aim for career choices that reduce mismatch and benefit both students and employers</li></ul><p class="presentation-detail-note">See the main website for our detailed career policy.</p></section>
+</div>
+<div class="presentation-bottom"><button id="presentation-prev" type="button">← PREV</button><span>← → to move / Esc to close</span><button id="presentation-next" type="button">NEXT →</button></div>
+</div>
+</main>
+<footer>
+<p>
+    Building a sustainable future through structural engineering.
+   </p>
+<small>
+    STRUCTURAL ENGINEERING LAB.
+   </small>
+</footer>
+<script src="script-en.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
+</script>
+<script src="data-loader.js">
+</script><script src="approach-carousel.js"></script><script src="presentation-sync.js"></script>
+</body>
+</html>
