@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://whs.nagaokaut.ac.jp/struct/hayashi/</loc>
-    <lastmod>2026-10-08</lastmod>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://whs.nagaokaut.ac.jp/struct/hayashi/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://whs.nagaokaut.ac.jp/struct/hayashi/en.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://whs.nagaokaut.ac.jp/struct/hayashi/" />
+    <loc>https://hayashi-lab-website.vercel.app/</loc>
   </url>
   <url>
-    <loc>https://whs.nagaokaut.ac.jp/struct/hayashi/en.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://whs.nagaokaut.ac.jp/struct/hayashi/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://whs.nagaokaut.ac.jp/struct/hayashi/en.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://whs.nagaokaut.ac.jp/struct/hayashi/" />
+    <loc>https://hayashi-lab-website.vercel.app/en.html</loc>
   </url>
 </urlset>
