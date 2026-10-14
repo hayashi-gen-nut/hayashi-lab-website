@@ -272,7 +272,13 @@ function openActivityDetail(key){
     activityPhoto.className=`activity-modal-photo ${d.photoClass||''}`;
     activityPhoto.style.backgroundImage='';
     activityPhoto.innerHTML=`<span>${d.photoLabel||'ACTIVITY PHOTO'}</span>`;
-    setBackgroundFromCandidates(activityPhoto,activityMainImageCandidates(key,d));
+    if(key==='20260731-vos238-technology-pioneer'||key==='20260415-vos237-doctoral-feature'){
+      const cover=key==='20260731-vos238-technology-pioneer'?'vos238':'vos237';
+      activityPhoto.classList.add('vos-cover-photo');
+      activityPhoto.style.backgroundImage=`url("images/activities/2026/${cover}_feature/${cover}_feature.jpg")`;
+    }else{
+      setBackgroundFromCandidates(activityPhoto,activityMainImageCandidates(key,d));
+    }
   }
   // Official publication links for the university VOS feature.
   const previousLinks=activityDialog.querySelector('.vos-official-links');

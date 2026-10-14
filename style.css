@@ -2756,3 +2756,12 @@ footer{
 
 /* Hide the entire Members / Place section when no value is provided. */
 .activity-modal-story > div[hidden]{display:none!important}
+
+/* v11: full-width activity report; hide unpopulated member block */
+.activity-modal-story{display:block!important}
+.activity-modal-story>div+div{margin-top:24px}
+.activity-modal-story>div[hidden]{display:none!important}
+.activity-modal-story #activity-modal-body{font-size:15px;line-height:1.95;color:#253745}
+.activity-modal-photo.vos-cover-photo{background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#eef1f3!important}
+.activity-modal-photo.vos-cover-photo::after{display:none}
+.activity-modal-photo.vos-cover-photo span{display:none}
