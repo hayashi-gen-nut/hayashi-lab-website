@@ -271,6 +271,10 @@ function openActivityDetail(key){
   if(activityPhoto){
     activityPhoto.className=`activity-modal-photo ${d.photoClass||''}`;
     activityPhoto.style.backgroundImage='';
+    activityPhoto.style.backgroundSize='';
+    activityPhoto.style.backgroundRepeat='';
+    activityPhoto.style.backgroundColor='';
+    activityPhoto.style.backgroundPosition='';
     activityPhoto.innerHTML=`<span>${d.photoLabel||'ACTIVITY PHOTO'}</span>`;
     if(key==='20260731-vos238-technology-pioneer'||key==='20260415-vos237-doctoral-feature'){
       const cover=key==='20260731-vos238-technology-pioneer'?'vos238':'vos237';
@@ -299,6 +303,18 @@ function openActivityDetail(key){
     if(body)body.insertAdjacentElement('afterend',links);
   }
   renderActivityGallery(key,d);
+  if(key==='20261021-bridge-news'){
+    const links=document.createElement('div'); links.className='vos-official-links';
+    links.style.cssText='display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;';
+    const en=document.documentElement.lang==='en';
+    for(const [ext,label] of [['pdf',en?'Read article (Japanese PDF)':'記事を読む（PDF）'],['png',en?'View full article image':'記事画像を拡大']]){
+      const a=document.createElement('a');a.href='images/activities/2026/bridge_news_20261021/bridge_news_20261021.'+ext;
+      a.target='_blank';a.rel='noopener noreferrer';a.textContent=label+' ↗';
+      a.style.cssText='display:inline-block;padding:9px 14px;border:1px solid #8aa6b7;border-radius:8px;color:inherit;text-decoration:none;'; links.appendChild(a);
+    }
+    document.getElementById('activity-modal-body').insertAdjacentElement('afterend',links);
+    if(activityPhoto){activityPhoto.style.backgroundSize='contain';activityPhoto.style.backgroundRepeat='no-repeat';activityPhoto.style.backgroundColor='#fff';activityPhoto.style.backgroundPosition='center';activityPhoto.querySelector('span')?.remove();}
+  }
   activityDialog.showModal();
 }
 document.querySelectorAll('.activity-detail-button').forEach(btn=>btn.addEventListener('click',e=>{
