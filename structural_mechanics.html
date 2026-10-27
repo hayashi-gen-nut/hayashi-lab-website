@@ -1,0 +1,924 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>構造力学｜静定構造ランダム問題</title><style>
+:root{--ink:#192c3d;--muted:#6e7f8e;--line:#dce4eb;--paper:#fff;--bg:#f3f6f9;--load:#c23b38;--reaction:#2567a4;--force:#2165a3}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:var(--bg);color:var(--ink)}header{background:#fff;border-bottom:1px solid var(--line);padding:17px max(16px,calc((100vw - 1100px)/2))}h1{font-size:19px;margin:0}header p{margin:5px 0 0;font-size:12px;color:var(--muted)}main{max-width:1100px;margin:18px auto;padding:0 13px 35px}.toolbar{background:white;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-wrap:wrap;align-items:end;gap:10px}.field{display:grid;gap:5px;min-width:150px;flex:1}.field label{font-size:11px;font-weight:700;color:var(--muted)}select,button{font:inherit;min-height:43px;border-radius:8px;padding:8px 13px}select{border:1px solid #bac8d4;background:#fff;color:var(--ink)}button{border:1px solid #c8d4de;background:white;color:var(--ink);font-weight:650;cursor:pointer}button.primary{background:#1c527d;color:white;border-color:#1c527d}button.active{border-color:#087d70;background:#e8f6f3;color:#07695e}.buttons{display:flex;gap:8px;flex-wrap:wrap}.panel{margin-top:14px;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}.panelhead{padding:14px 17px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.panelhead h2{margin:0;font-size:15px}.hint{font-size:11px;color:var(--muted)}.drawing{padding:8px 12px 17px;overflow-x:auto}svg{display:block;width:100%;height:auto;min-width:480px}#answer{display:none}#answer.visible{display:block}.results{padding:15px;display:grid;gap:13px}.resultgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.metric{background:#f5f8fa;border:1px solid #e4eaf0;border-radius:9px;padding:10px 12px;font-variant-numeric:tabular-nums}.metric small{display:block;color:var(--muted);margin-bottom:6px}.metric strong{font-size:16px}.matrix{overflow:auto;background:#f7f9fb;border:1px solid var(--line);padding:12px;border-radius:8px;font:12px/1.6 ui-monospace,Menlo,monospace;white-space:pre}.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.sw{display:inline-block;width:15px;height:3px;vertical-align:middle;margin-right:5px}.note{font-size:12px;color:var(--muted);line-height:1.8;margin:14px 4px}.error{color:#a92e2b;padding:15px}.foot{font-size:11px;color:var(--muted);text-align:center;margin:20px 0}@media(max-width:620px){h1{font-size:17px}.buttons{width:100%}.buttons button{flex:1;font-size:12px;padding:8px 7px}.field{min-width:130px}main{margin-top:11px}.drawing{padding:5px}.panelhead{padding:12px}}
+.language-switch{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:9px}.language-switch span{font-size:12px;margin-right:8px;color:var(--muted)}.language-switch button{min-height:30px;padding:4px 12px;font-size:12px}.language-switch button.lang-active{background:#1c527d;color:#fff;border-color:#1c527d}.counts{display:flex;flex-wrap:wrap;gap:9px}.counts label{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink);background:#f4f7fa;padding:8px;border-radius:7px}.counts input{width:54px;padding:5px;border:1px solid #bac8d4;border-radius:5px;font-size:15px}.buttons button.active{background:#e7f0fa;color:#1c527d;border-color:#6b99ba}.calcsteps{padding:10px 0;font-size:13px;line-height:1.85}.calcsteps h4{margin:12px 0 5px}.calcsteps p{margin:5px 0}.calcsteps table{border-collapse:collapse;width:100%;font-size:12px}.calcsteps th,.calcsteps td{border-bottom:1px solid #e1e8ef;padding:6px 8px;text-align:left}.calcsteps code{white-space:pre-wrap;overflow-wrap:anywhere}.critical-table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}.critical-table th,.critical-table td{border-bottom:1px solid #dde6ef;padding:6px 8px;text-align:left}.trussgeometry{margin:16px 4px 4px;border:1px solid #dce4eb;border-radius:9px;padding:12px;background:#fbfcfe}.trussgeometry summary{font-weight:700;cursor:pointer}.geometrygrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}.geometrygrid h4{margin:0 0 7px;font-size:13px}.geometrygrid table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}.geometrygrid th,.geometrygrid td{padding:5px 8px;border-bottom:1px solid #e0e7ee;text-align:right}.geometrygrid th:first-child,.geometrygrid td:first-child{text-align:left}.geomnote{font-size:11px;color:#607283;margin:0 0 8px}@media(max-width:600px){.geometrygrid{grid-template-columns:1fr}}
+.mode-start{background:white;border:1px solid #d6e0e9;border-radius:13px;padding:18px;margin-bottom:14px}.mode-start h2{font-size:17px;margin:0 0 12px}.mode-choices{display:flex;gap:12px}.mode-choices .choice{flex:1;min-height:57px;border:2px solid #cbd9e5;background:#f8fafc;font-size:16px}.mode-choices .choice.selected{background:#eaf3fb;border-color:#1c527d;color:#174a71}#elasticPanel{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:end}#elasticPanel label{display:grid;gap:5px;font-size:12px;font-weight:700}#elasticPanel input{padding:9px;border-radius:7px;border:1px solid #b5c4d3;max-width:160px}#deformationOutput{background:white}.def-table{border-collapse:collapse;width:100%;font-size:13px}.def-table td,.def-table th{border-bottom:1px solid #e4e9ee;padding:9px;text-align:left}.formula{background:#f4f8fb;padding:12px;border-radius:8px;font-family:Arial,sans-serif;line-height:1.9}.def-notes{font-size:12px;color:#637589;line-height:1.7}/* v23: readable technical drawings */
+body{font-family:Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;background:#edf2f7}
+main{max-width:1280px}header{padding:20px max(20px,calc((100vw - 1254px)/2));border-top:4px solid #245b85}
+.toolbar,.panel{box-shadow:0 4px 18px #203b5510;border-color:#d6e0e9}.toolbar{padding:18px;gap:12px}.panel{border-radius:14px}.panelhead{background:#f8fafc;padding:16px 20px}.panelhead .hint{font-size:12px;line-height:1.6}.field label{font-size:12px}.drawing{padding:12px 16px 20px}button{transition:background .15s,box-shadow .15s}button:hover{background:#eef5fb;box-shadow:0 2px 5px #203b5514}button.primary:hover{background:#163f60}button:focus-visible,select:focus-visible{outline:3px solid #85b8e3;outline-offset:2px}.metric{background:#f7fafc;border-left:3px solid #3981b8;padding:14px}.metric strong{font-size:18px}.graphic-tools{display:flex;justify-content:flex-end;align-items:center;gap:6px;padding:10px 16px;border-bottom:1px solid #e8edf2;background:white}.graphic-tools button{min-height:32px;padding:4px 12px;font-size:13px}.graphic-tools output{min-width:48px;text-align:center;font-size:12px;color:#536b7f}.drawing svg{min-width:760px}#sections{overflow:auto}#sections svg{min-width:850px}.critical-table th,.calcsteps th{background:#f0f5f9}.critical-table td,.calcsteps td{padding:9px 8px}.foot{letter-spacing:.04em}@media(max-width:620px){.toolbar{padding:12px}.drawing{padding:6px}.panelhead{padding:12px}header{padding:16px}h1{font-size:16px}}@media print{header,.toolbar,.graphic-tools,.note,.foot{display:none}main{max-width:none;padding:0}.panel{box-shadow:none;break-inside:avoid}.drawing svg{min-width:0!important;width:100%!important}}
+
+.indet-switch{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;background:#fff;border:1px solid #d6e0e9;border-radius:12px;margin-bottom:14px}.indet-switch button{flex:1;min-width:180px}.indet-switch button.selected{background:#1c527d;color:white;border-color:#1c527d}.indet-settings{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin-bottom:12px;padding:13px 17px;border:1px solid #dce4eb;background:white;border-radius:10px}.indet-settings label{display:grid;gap:5px;font-size:12px;font-weight:700}.indet-settings select{min-width:125px}.indet-equation{padding:14px;border:1px solid #dae6f1;border-radius:9px;background:#f8fbff;line-height:1.8;font-size:13px;overflow-wrap:anywhere}.indet-equation h4{margin:10px 0 4px}.indet-equation table{border-collapse:collapse;width:100%;font-size:12px}.indet-equation td,.indet-equation th{padding:6px 8px;border-bottom:1px solid #d6e1ed;text-align:right}.indet-equation th:first-child,.indet-equation td:first-child{text-align:left}
+</style></head><body><header><h1>STRUCTURAL MECHANICS <span style="font-weight:400;color:#708090"> / 静定構造ランダム演習</span></h1><p>つり合い条件の行列計算　｜　はり・トラス・ラーメン　｜　ブラウザ内で動作</p><div class="language-switch"><span id="languageCaption">言語</span><button type="button" id="langJa" class="lang-active" aria-pressed="true">日本語</button><button type="button" id="langEn" aria-pressed="false">English</button></div></header><main><section class="indet-switch" aria-label="構造解析種別 / Structural analysis type"><button type="button" id="chooseDeterminate" class="selected">静定構造 / Statically determinate</button><button type="button" id="chooseIndeterminate">不静定構造 / Statically indeterminate</button></section><div id="indetSettings" class="indet-settings" style="display:none"><label for="indetDegree">不静定次数 / Degree of indeterminacy<select id="indetDegree"><option value="1">1 次 / Degree 1</option><option value="2">2 次 / Degree 2</option><option value="3">3 次 / Degree 3</option></select></label><label for="solverMethod">解法 / Solution method<select id="solverMethod"><option value="stiffness">剛性法 / Stiffness method</option><option value="force">余力法 / Force method</option><option value="compare">両方を比較 / Compare both</option></select></label><div class="hint">はり：余力法、トラス・ラーメン：解法を選択 / Beam: force method; truss/frame: selectable</div></div><section class="mode-start"><h2 id="choiceTitle">演習内容を選択 / Choose an exercise</h2><div class="mode-choices"><button type="button" id="chooseForce" class="choice selected">断面力図 / Section forces</button><button type="button" id="chooseDeflection" class="choice">変形を求める / Deflection</button></div><div id="elasticPanel" style="display:none"><label>EI (kN·m²) <input id="EI" type="number" min="1" value="30000"></label><label>EA (kN) <input id="EA" type="number" min="1" value="3000000"></label><label id="targetJointBox" style="display:none">節点 / Joint <select id="targetJoint"></select></label><label id="targetPosBox">x (m) <input id="targetPos" type="number" min="0" step="0.1" value="0"></label><button type="button" id="recalcDeflection">計算 / Calculate</button></div></section><div class="toolbar"><div class="field"><label for="type">構造形式</label><select id="type"><option value="beam">はり</option><option value="truss">トラス</option><option value="frame">ラーメン</option><option value="random">すべてランダム</option></select></div><div class="field"><label for="variant">構造パターン</label><select id="variant"><option value="random">ランダム</option></select></div><div class="field" style="flex-basis:100%"><label for="loadMode">荷重条件の設定方法</label><select id="loadMode" style="max-width:270px"><option value="random">完全ランダム（種類・個数も自動）</option><option value="manual">個数指定（従来方式）</option></select></div><div class="field" id="loadCountArea" style="flex-basis:100%;display:none"><label>荷重個数（種類別）</label><div class="counts"><label>集中荷重 <input id="cntP" type="number" min="0" max="8" value="2"></label><label>等分布荷重 <input id="cntU" type="number" min="0" max="8" value="1"></label><label>等変分布荷重 <input id="cntT" type="number" min="0" max="8" value="0"></label><label>集中モーメント <input id="cntC" type="number" min="0" max="8" value="1"></label></div></div><div class="buttons"><button class="primary" id="generate">↻ 新しい問題</button><button id="modeProblem">問題表示</button><button id="reaction">支点反力の表示</button><button id="modeValues">支点反力</button><button id="section">結果</button><button id="save">SVG保存</button></div></div><section class="panel"><div class="panelhead"><h2 id="subtitle">問題図</h2><span class="hint" id="metadata"></span></div><div class="graphic-tools"><button id="zoomOut" aria-label="Zoom out">−</button><output id="zoomValue">100%</output><button id="zoomIn" aria-label="Zoom in">＋</button><button id="zoomFit">全体表示 / Fit</button></div><div class="drawing" id="figure"></div></section><section class="panel" id="answer"><div class="panelhead"><h2>解答と計算過程</h2><span class="hint">正方向：右向き・上向き・反時計回り</span></div><div class="results"><h3 style="font-size:14px;margin:0">支点反力・部材力</h3><div id="metrics" class="resultgrid"></div><div id="sections"></div><details open><summary style="cursor:pointer;font-weight:700">計算過程・つり合い式</summary><div id="steps" class="calcsteps"></div></details><details><summary style="cursor:pointer;font-weight:700">つり合い行列 A x = b と計算残差</summary><pre id="matrix" class="matrix"></pre></details></div></section><section id="deformationOutput" class="panel" style="display:none"><div class="panelhead"><h2 id="defHeading">変形解析 / Deformation analysis</h2></div><div id="defContent" class="results"></div></section><p class="note">集中荷重：5 kN刻み ／ 集中モーメント：5 kN·m刻み ／ 分布荷重：2 kN/m刻み ／ 位置・寸法：1 m刻み。記号は ●＝作用点、〇＝ヒンジ。つり合い条件のみで解ける静定構造を生成します。SVG形式で図を保存できます。トラスは節点集中荷重のみ、ラーメンは集中荷重・集中モーメントに対応します。等分布・等変分布荷重の個数指定は現在はりにのみ適用されます。トラス部材軸力は引張正です。</p><div class="foot">HTML + JavaScript　・　外部ライブラリ不要　・　通信不要</div></main><script>
+'use strict';const $=id=>document.getElementById(id),INK='#192c3d',LOAD='#c23b38',REACT='#2567a4',BLUE='#2165a3',GREY='#82929e';let model=null,showR=false,showS=false,viewMode="problem";
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[ri(0,a.length-1)],step=(s,a,b)=>s*ri(a,b),fmt=v=>Math.abs(v)<1e-8?'0':Number(v.toFixed(2)).toString(),esc=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+function solve(A,b){let n=b.length;if(A.length!==n||A.some(r=>r.length!==n))throw Error('non-square');let M=A.map((row,i)=>[...row,b[i]]);for(let k=0;k<n;k++){let p=k;for(let i=k+1;i<n;i++)if(Math.abs(M[i][k])>Math.abs(M[p][k]))p=i;if(Math.abs(M[p][k])<1e-8)throw Error('unstable/singular');[M[p],M[k]]=[M[k],M[p]];let d=M[k][k];for(let j=k;j<=n;j++)M[k][j]/=d;for(let i=0;i<n;i++)if(i!==k){let q=M[i][k];for(let j=k;j<=n;j++)M[i][j]-=q*M[k][j];}}let x=M.map(r=>r[n]);let res=Math.max(...A.map((r,i)=>Math.abs(r.reduce((s,c,j)=>s+c*x[j],0)-b[i])));if(res>1e-5)throw Error('residual too large');return {x,res};}
+let generatingType='beam', activeCounts=null;
+function sampleLoadCounts(type){
+  const c={P:0,U:0,T:0,C:0};
+  const allowed=type==='beam'?['P','U','T','C']:type==='frame'?['P','C']:['P'];
+  const maxCount=type==='beam'?4:3;
+  const total=ri(1,maxCount);
+  for(let i=0;i<total;i++) c[pick(allowed)]++;
+  return c;
+}
+function loadCounts(){
+  if($('loadMode').value==='random') return activeCounts||sampleLoadCounts(generatingType);
+  return Object.fromEntries(['P','U','T','C'].map(k=>[k,Math.max(0,Math.min(8,parseInt($('cnt'+k).value,10)||0))]));
+}
+function setLoadMode(){
+  const manual=$('loadMode').value==='manual';
+  $('loadCountArea').style.display=manual?'grid':'none';
+  $('loadMode').setAttribute('aria-label',manual?'荷重個数を指定':'荷重条件を完全ランダム');
+}
+
+function loadSet(L){let out=[],counts=loadCounts();for(let kind of ['P','U','T','C'])for(let i=0;i<counts[kind];i++){
+if(kind==='P'||kind==='C')out.push({kind,x:ri(1,L-1),v:pick([-1,1])*step(5,1,kind==='P'?7:6)});
+else{let a=ri(0,L-2),b=ri(a+1,L),v=pick([-1,1])*step(2,1,6);out.push(kind==='U'?{kind,a,b,v}:{kind,a,b,v,v0:Math.random()<.5?0:pick([-1,1])*step(2,1,4)});}
+}return out;}
+function vecLoads(loads,a,b){let fy=0,m=0;for(let z of loads){if(z.kind==='U'||z.kind==='T'){let lo=Math.max(a,z.a),hi=Math.min(b,z.b);if(hi<=lo)continue;let f0=z.kind==='U'?z.v:z.v0+(z.v-z.v0)*(lo-z.a)/(z.b-z.a),f1=z.kind==='U'?z.v:z.v0+(z.v-z.v0)*(hi-z.a)/(z.b-z.a);let len=hi-lo,ff=len*(f0+f1)/2;fy+=ff;m+=len*(f0*(lo-a)/2+f0*len/6+f1*(lo-a)/2+f1*len/3);}else if(z.x>a+1e-8&&z.x<b-1e-8){if(z.kind==='P'){fy+=z.v;m+=z.v*(z.x-a)}else m+=z.v;}}return {fy,m};}
+function beam(variant){let L=ri(9,18),nh=variant==='h0'?0:variant==='h1'?1:variant==='h2'?2:pick([0,1,1,2]);let hs=[];if(nh===1)hs=[ri(3,L-3)];if(nh===2){let h1=ri(3,L-6);hs=[h1,ri(h1+3,L-3)];}let cuts=[0,...hs,L],sp=[],segCount=cuts.length-1;for(let i=0;i<segCount;i++){if(cuts[i+1]-cuts[i]<3)throw Error('short span');sp.push(ri(cuts[i]+1,cuts[i+1]-1));}let ix=ri(0,segCount-1),more=ri(cuts[ix]+1,cuts[ix+1]-1);if(sp.includes(more))throw Error('coincident supports');sp.push(more);sp.sort((a,b)=>a-b);let loads=loadSet(L);for(let z of loads)if(z.kind!=='U'&&hs.includes(z.x)){let choices=Array.from({length:L-1},(_,i)=>i+1).filter(x=>!hs.includes(x));z.x=pick(choices);}let n=2*segCount,A=Array.from({length:n},()=>Array(n).fill(0)),b=Array(n).fill(0);for(let i=0;i<segCount;i++){let a=cuts[i],right=cuts[i+1];sp.forEach((s,k)=>{if(s>a&&s<right){A[2*i][k]=1;A[2*i+1][k]=s-a;}});if(i>0)A[2*i][sp.length+i-1]=-1;if(i<hs.length){A[2*i][sp.length+i]=1;A[2*i+1][sp.length+i]=right-a;}let e=vecLoads(loads,a,right);b[2*i]=-e.fy;b[2*i+1]=-e.m;}let sol=solve(A,b),names=[...sp.map((_,i)=>`R${i+1}y`),...hs.map((_,i)=>`H${i+1}y`)];let sec=x=>{let v=0,m=0;for(let i=0;i<sp.length;i++)if(sp[i]<x-1e-8){v+=sol.x[i];m+=sol.x[i]*(x-sp[i]);}for(let z of loads){if(z.kind==='P'&&z.x<x-1e-8){v+=z.v;m+=z.v*(x-z.x);}if(z.kind==='C'&&z.x<x-1e-8)m-=z.v;if(z.kind==='U'||z.kind==='T'){let le=Math.max(0,Math.min(x,z.b)-z.a);if(le>0){let f0=z.kind==='U'?z.v:z.v0,f1=z.kind==='U'?z.v:z.v0+(z.v-z.v0)*le/(z.b-z.a);v+=le*(f0+f1)/2;m+=le*(f0*(x-z.a-le/2)/2+f1*(x-z.a-le/2)/2+(f0-f1)*le/12);}}}return [-v,-m];};for(let h of hs)if(Math.abs(sec(h)[1])>1e-5)throw Error('hinge moment');return {kind:'beam',title:'はり',L,hs,sp,loads,A,b,names,...sol,sec,variant:`内部ヒンジ ${nh} 個`};}
+function beamFixed(variant='random'){
+  let L=ri(9,18),nh=variant==='h0'?0:variant==='h1'?1:variant==='h2'?2:pick([0,1,1,2]);
+  let hs=[];
+  if(nh===1)hs=[ri(3,L-3)];
+  if(nh===2){let h1=ri(3,L-6);hs=[h1,ri(h1+3,L-3)];}
+  let cuts=[0,...hs,L],sp=[0];
+  // Each span after a hinge has exactly one roller. The fixed end supplies V and M.
+  for(let i=1;i<cuts.length-1;i++)sp.push(ri(cuts[i]+1,cuts[i+1]-1));
+  let loads=loadSet(L);
+  for(let q of loads)if((q.kind==='P'||q.kind==='C')&&hs.includes(q.x))q.x=pick(Array.from({length:L-1},(_,i)=>i+1).filter(t=>!hs.includes(t)));
+  let n=2*(nh+1),A=Array.from({length:n},()=>Array(n).fill(0)),b=Array(n).fill(0);
+  // Unknowns: [V_A, M_A, V_roll_1...V_roll_h, hinge_shear_1...hinge_shear_h]
+  for(let i=0;i<nh+1;i++){
+    let a=cuts[i],right=cuts[i+1],fyRow=2*i,mRow=2*i+1;
+    if(i===0){A[fyRow][0]=1;A[mRow][1]=1;A[mRow][0]=-a;}
+    if(i>0){A[fyRow][2+i-1]=1;A[mRow][2+i-1]=sp[i]-a;}
+    if(i>0)A[fyRow][2+nh+i-1]=-1;
+    if(i<nh){A[fyRow][2+nh+i]=1;A[mRow][2+nh+i]=right-a;}
+    let q=vecLoads(loads,a,right);b[fyRow]=-q.fy;b[mRow]=-q.m;
+  }
+  let sol=solve(A,b);
+  let sec=x=>{let v=sol.x[0],mom=sol.x[1]-sol.x[0]*x;
+    for(let i=1;i<sp.length;i++)if(sp[i]<x-1e-8){v+=sol.x[i+1];mom-=sol.x[i+1]*(x-sp[i]);}
+    for(let q of loads){
+      if(q.kind==='P'&&q.x<x-1e-8){v+=q.v;mom-=q.v*(x-q.x);}
+      if(q.kind==='C'&&q.x<x-1e-8)mom+=q.v;
+      if(q.kind==='U'||q.kind==='T'){
+        let le=Math.max(0,Math.min(x,q.b)-q.a);
+        if(le>0){let f0=q.kind==='U'?q.v:q.v0,f1=q.kind==='U'?q.v:q.v0+(q.v-q.v0)*le/(q.b-q.a);
+          v+=le*(f0+f1)/2;
+          mom-=le*((f0+f1)/2*(x-q.a-le/2)+(f0-f1)*le/12);
+        }
+      }
+    }
+    return [-v,-mom];
+  };
+  for(let h of hs)if(Math.abs(sec(h)[1])>1e-4)throw Error('hinge moment');
+  if(Math.abs(sec(L)[0])>1e-4||Math.abs(sec(L)[1])>1e-4)throw Error('free end equilibrium');
+  return {kind:'beam',title:'はり',L,hs,sp,fixed:true,loads,A,b,names:['R_Ay','M_A',...sp.slice(1).map((_,i)=>`R${i+1}y`),...hs.map((_,i)=>`H${i+1}y`)],...sol,sec,variant:`固定端・内部ヒンジ ${nh} 個・ローラー ${nh} 個`};
+}
+function truss(variant){
+ const standards=['pratt','howe','warren','pitched','king','queen'];
+ const irregular=['fan','asymmetric'];
+ const style=variant==='random'?(Math.random()<.83?pick(standards):pick(irregular)):variant;
+ const np=ri(3,5),dx=ri(2,4),H=ri(3,6); let pts=[],bars=[],L=0;
+ function B(a,b){if(a===b)throw Error('zero member');bars.push([a,b]);}
+ if(['pratt','howe','pitched'].includes(style)){
+   L=np*dx;
+   pts=[...Array.from({length:np+1},(_,i)=>[i*dx,0]),...Array.from({length:np+1},(_,i)=>[i*dx,style==='pitched'?Math.max(2,H-Math.round(Math.abs(i-np/2))):H])];
+   let top=np+1;
+   for(let i=0;i<np;i++){B(i,i+1); B(top+i,top+i+1);}
+   for(let i=0;i<=np;i++)B(i,top+i);
+   for(let i=0;i<np;i++){
+     let goesLeft=(i<np/2);
+     if(style==='howe')goesLeft=!goesLeft;
+     B(...(goesLeft?[i+1,top+i]:[i,top+i+1]));
+   }
+ }else if(style==='warren'){
+   L=np*dx;
+   // 下弦 n+1 節点と上弦 n 節点の標準ワーレン
+   pts=[...Array.from({length:np+1},(_,i)=>[i*dx,0]),...Array.from({length:np},(_,i)=>[(i+.5)*dx,H])];
+   const top=np+1;
+   for(let i=0;i<np;i++){B(i,i+1);B(i,top+i);B(top+i,i+1);if(i<np-1)B(top+i,top+i+1);}
+
+ }else if(style==='king'){
+   const d=ri(3,5);L=2*d;pts=[[0,0],[d,0],[L,0],[d,H]];
+   [[0,1],[1,2],[0,3],[3,2],[3,1]].forEach(q=>B(...q));
+ }else if(style==='queen'){
+   const d=ri(2,4);L=3*d;pts=[[0,0],[d,0],[2*d,0],[L,0],[d,H],[2*d,H]];
+   [[0,1],[1,2],[2,3],[0,4],[4,5],[5,3],[4,1],[5,2],[1,5]].forEach(q=>B(...q));
+ }else{
+   const n=np;L=n*dx;pts=Array.from({length:n+1},(_,i)=>[i*dx,0]);pts.push([style==='fan'?Math.round(L/2):ri(1,L-1),H]);
+   for(let i=0;i<n;i++) B(i,i+1);
+   for(let i=0;i<=n;i++) B(i,n+1);
+ }
+ const j=pts.length,m=bars.length,rightSupport=pts.findIndex(p=>p[0]===L&&p[1]===0);
+ if(m!==2*j-3 || rightSupport<0)throw Error('invalid truss count');
+ const A=Array.from({length:2*j},()=>Array(m+3).fill(0)),b=Array(2*j).fill(0);
+ bars.forEach(([u,v],k)=>{let dx=pts[v][0]-pts[u][0],dy=pts[v][1]-pts[u][1],len=Math.hypot(dx,dy);if(len<1e-8)throw Error('zero bar');A[2*u][k]=dx/len;A[2*u+1][k]=dy/len;A[2*v][k]=-dx/len;A[2*v+1][k]=-dy/len;});
+ A[0][m]=1;A[1][m+1]=1;A[2*rightSupport+1][m+2]=1;
+ let candidates=Array.from({length:j},(_,i)=>i).filter(i=>i!==0&&i!==rightSupport),loads=[];
+ for(let i=0,n=Math.min(loadCounts().P,candidates.length);i<n;i++){
+   let k=pick(candidates);candidates=candidates.filter(t=>t!==k);
+   let f=[pick([-1,0,0,0,1])*step(5,1,3),-step(5,1,6)];
+   b[2*k]-=f[0];b[2*k+1]-=f[1];loads.push({k,f});
+ }
+ let sol=solve(A,b),names=[...bars.map((_,i)=>`N${i+1}`),'R_Ax','R_Ay','R_By'];
+ return {kind:'truss',title:'トラス',pts,bars,loads,A,b,names,...sol,style,variant:style,L,rightSupport};
+}
+function balanceEvents(ev,c=[0,0]){let sx=0,sy=0,sm=0;for(let e of ev){sx+=e.f[0];sy+=e.f[1];sm+=(e.p[0]-c[0])*e.f[1]-(e.p[1]-c[1])*e.f[0]+(e.m||0);}return [sx,sy,sm];}
+function frame(variant){let style=variant==='random'?pick(['three','simple','cantilever']):variant,L=ri(7,15),H=ri(4,9),hx=style==='three'?ri(2,L-2):null,pts=[[0,0],[0,H],[L,H],[L,0]],segments=[[0,1],[1,2],[2,3]],loads=[];for(let i=0,n=loadCounts().P+loadCounts().C;i<n;i++){let s=ri(0,2),len=s===1?L:H,d=ri(1,len-1),p=s===0?[0,d]:s===1?[d,H]:[L,H-d],isM=i>=loadCounts().P,f=isM?[0,0]:s===1?[0,pick([-1,1])*step(5,1,7)]:[pick([-1,1])*step(5,1,7),0],m=isM?pick([-1,1])*step(5,1,5):0;if(s===1&&hx===d)throw Error('load on hinge');loads.push({s,d,p,f,m});}let ev=loads.map(({p,f,m})=>({p,f,m})),total=balanceEvents(ev),A,b,names;if(style==='three'){let left=balanceEvents(ev.filter(z=>z.p[0]<hx-1e-8),[hx,H]);A=[[1,0,1,0],[0,1,0,1],[0,0,0,L],[H,-hx,0,0]];b=[-total[0],-total[1],-total[2],-left[2]];names=['R_Ax','R_Ay','R_Bx','R_By'];}else if(style==='simple'){A=[[1,0,0],[0,1,1],[0,0,L]];b=total.map(v=>-v);names=['R_Ax','R_Ay','R_By'];}else{A=[[1,0,0],[0,1,0],[0,0,1]];b=total.map(v=>-v);names=['R_Ax','R_Ay','M_A'];}let sol=solve(A,b);let rev=[{p:[0,0],f:[sol.x[0],sol.x[1]],m:style==='cantilever'?sol.x[2]:0}];if(style==='simple')rev.push({p:[L,0],f:[0,sol.x[2]],m:0});if(style==='three')rev.push({p:[L,0],f:[sol.x[2],sol.x[3]],m:0});let sec=(s,t)=>{let [a,c]=segments[s],p=pts[a],q=pts[c],dx=q[0]-p[0],dy=q[1]-p[1],cut=[p[0]+dx*t,p[1]+dy*t],len=Math.hypot(dx,dy),v=balanceEvents([...rev.filter(r=>r.p[0]===0),...loads.filter(z=>z.s<s||(z.s===s&&z.d<len*t)).map(z=>({p:z.p,f:z.f,m:z.m}))],cut);let tx=dx/len,ty=dy/len;return[-(v[0]*tx+v[1]*ty),-(-v[0]*ty+v[1]*tx),-v[2]];};return {kind:'frame',title:'ラーメン',pts,segments,loads,A,b,names,...sol,style,hx,L,H,sec,variant:style==='three'?'3ヒンジラーメン':style==='simple'?'ピン・ローラー支持（ヒンジなし）':'片持ちラーメン（内部ヒンジなし）'};}
+function el(tag,attrs={},content=''){return `<${tag} ${Object.entries(attrs).map(([k,v])=>`${k}="${esc(v)}"`).join(' ')}>${content}</${tag}>`;}function ln(x1,y1,x2,y2,color=INK,w=2,dash=''){return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" ${dash?`stroke-dasharray="${dash}"`:''}/>`;}function tx(x,y,s,size=13,color=INK,anchor='middle',weight=500){return `<text x="${x}" y="${y}" text-anchor="${anchor}" fill="${color}" font-family="Arial,Meiryo,sans-serif" font-weight="${weight}" font-size="${Math.max(12,size)}" style="paint-order:stroke;stroke:white;stroke-width:3px;stroke-linejoin:round">${esc(s)}</text>`;}
+function arrow(x1,y1,x2,y2,color=LOAD,w=2.4){let dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,px=-uy,py=ux,head=10,half=4;return ln(x1,y1,x2,y2,color,w)+`<path d="M${x2} ${y2} L${x2-ux*head+px*half} ${y2-uy*head+py*half} L${x2-ux*head-px*half} ${y2-uy*head-py*half} Z" fill="${color}"/>`;}
+
+function circ(x,y,r=6,color=INK){return `<circle cx="${x}" cy="${y}" r="${r}" fill="white" stroke="${color}" stroke-width="2"/>`;}
+function dot(x,y,r=3,color=LOAD){return `<circle cx="${x}" cy="${y}" r="${r}" fill="${color}" stroke="none"/>`;}
+function support(x,y,type,orient='bottom'){
+  let s='';
+  if(type==='fixed'){
+    if(orient==='left'){
+      s+=`<rect x="${x-13}" y="${y-18}" width="13" height="36" fill="#e6edf3" stroke="${INK}" stroke-width="1.5"/>`;
+      for(let i=-18;i<18;i+=8)s+=ln(x-13,y+i,x-21,y+i+8,GREY,1);
+      return s;
+    } else if(orient==='right'){
+      s+=`<rect x="${x}" y="${y-18}" width="13" height="36" fill="#e6edf3" stroke="${INK}" stroke-width="1.5"/>`;
+      for(let i=-18;i<18;i+=8)s+=ln(x+13,y+i,x+21,y+i+8,GREY,1);
+      return s;
+    } else { // bottom default
+      s+=`<rect x="${x-18}" y="${y}" width="36" height="13" fill="#e6edf3" stroke="${INK}" stroke-width="1.5"/>`;
+      for(let i=-18;i<18;i+=8)s+=ln(x+i,y+13,x+i-6,y+21,GREY,1);
+      return s;
+    }
+  }
+  s+=`<path d="M${x} ${y+2} L${x-14} ${y+21} L${x+14} ${y+21} Z" fill="#f2f6fa" stroke="${INK}" stroke-width="1.8"/>`;
+  if(type==='roller'){s+=circ(x-7,y+27,3,INK)+circ(x+7,y+27,3,INK);s+=ln(x-21,y+32,x+21,y+32,INK,1.6);}else s+=ln(x-21,y+24,x+21,y+24,INK,1.6);
+  for(let i=-18;i<=18;i+=7)s+=ln(x+i,y+(type==='roller'?34:26),x+i-5,y+(type==='roller'?40:32),GREY,.8);
+  return s;
+}
+function supportInfo(z){
+  if(z.kind==='truss') return z.indetStiffness?{pin:1,roller:1+z.degree,fixed:0}:{pin:1,roller:1,fixed:0};
+  if(z.kind==='frame'&&z.indetStiffness)return {pin:z.degree===2?1:0,roller:z.degree===1?1:0,fixed:z.degree===3?2:1};
+  if(z.kind==='frame') return z.style==='cantilever'?{pin:0,roller:0,fixed:1}:z.style==='simple'?{pin:1,roller:1,fixed:0}:{pin:2,roller:0,fixed:0};
+  if(z.kind==='beam') return z.fixed?{pin:0,roller:Math.max(0,z.sp.length-1),fixed:1}:{pin:Math.min(1,z.sp.length),roller:Math.max(0,z.sp.length-1),fixed:0};
+  return {pin:0,roller:0,fixed:0};
+}
+function supportSummaryText(z){
+  let c=supportInfo(z), parts=[];
+  if(c.roller) parts.push(`ローラー支点 ${c.roller}個`);
+  if(c.pin) parts.push(`ピン支点 ${c.pin}個`);
+  if(c.fixed) parts.push(`固定端 ${c.fixed}個`);
+  return parts.join(' ／ ');
+}
+function supportSummarySvg(z,x,y){
+  const counts=supportInfo(z), rows=[];
+  if(counts.roller)rows.push(['roller','ローラー',counts.roller]);
+  if(counts.pin)rows.push(['pin','ピン',counts.pin]);
+  if(counts.fixed)rows.push(['fixed','固定端',counts.fixed]);
+  let s=tx(x,y,'支持条件',12,INK,'start',700);
+  // アイコンと文字を独立した固定幅の領域に置き、各行の高さを確保する。
+  rows.forEach(([kind,label,n],i)=>{
+    const yy=y+25+i*30,ix=x+12,txx=x+38;
+    if(kind==='fixed'){
+      s+=`<path d="M${ix-3} ${yy-11} V${yy+11}" stroke="${INK}" stroke-width="1.6"/>`;
+      for(let v=-9;v<=9;v+=5)s+=ln(ix-3,yy+v,ix-9,yy+v+6,GREY,0.8);
+      s+=ln(ix-3,yy,ix+11,yy,INK,2.3);
+    }else{
+      s+=`<path d="M${ix} ${yy-9} L${ix-9} ${yy+5} H${ix+9} Z" fill="white" stroke="${INK}" stroke-width="1.3"/>`;
+      if(kind==='roller'){
+        s+=`<circle cx="${ix-5}" cy="${yy+9}" r="2.3" fill="white" stroke="${INK}" stroke-width="1"/><circle cx="${ix+5}" cy="${yy+9}" r="2.3" fill="white" stroke="${INK}" stroke-width="1"/>`;
+        s+=ln(ix-12,yy+13,ix+12,yy+13,INK,1.1);
+      }else s+=ln(ix-12,yy+8,ix+12,yy+8,INK,1.1);
+    }
+    s+=tx(txx,yy+4,`${label} × ${n}`,12,INK,'start');
+  });
+  return s;
+}
+function drawingLegendSvg(){
+  return `<g aria-label="図記号の凡例">`+
+    `<circle cx="372" cy="26" r="4.3" fill="${LOAD}"/>`+
+    tx(386,30,'作用点',12,INK,'start')+
+    `<circle cx="480" cy="26" r="5.4" fill="white" stroke="${INK}" stroke-width="1.8"/>`+
+    tx(494,30,'ヒンジ',12,INK,'start')+
+    `</g>`;
+}
+function momentMark(x,y,val,color=LOAD,label=null){
+  // 円弧はパラメトリックに生成。矢尻先端は円弧の最終点に厳密に一致させる。
+  // 終端接線方向から矢尻の両側を構成し、先端に小さな切れ込みを付ける。
+  const r=20, positive=val>=0, sign=positive?-1:1;
+  const start=positive?35:-35, sweep=285, n=100;
+  const angle=i=>(start+sign*sweep*i/n)*Math.PI/180;
+  const point=i=>[x+r*Math.cos(angle(i)),y+r*Math.sin(angle(i))];
+  const pts=Array.from({length:n+1},(_,i)=>point(i));
+  const tip=pts[n],theta=angle(n);
+  const ux=-Math.sin(theta)*sign,uy=Math.cos(theta)*sign;
+  const vx=-uy,vy=ux;
+  const length=10, half=4.5, notch=0;
+  const rear=[tip[0]-ux*length,tip[1]-uy*length];
+  const side1=[rear[0]+vx*half,rear[1]+vy*half];
+  const side2=[rear[0]-vx*half,rear[1]-vy*half];
+  const indent=[tip[0]-ux*notch,tip[1]-uy*notch];
+  const coord=q=>q.map(v=>v.toFixed(2)).join(' ');
+  // 先端の下に円弧が透けないよう、矢尻内部で円弧を終了する
+  const cut=pts.slice(0,-3);
+  const d=cut.map((q,i)=>`${i?'L':'M'}${coord(q)}`).join(' ');
+  return `<path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`+
+    `<path d="M${coord(tip)} L${coord(side1)} L${coord(side2)} Z" fill="${color}"/>`+
+    tx(x,y-32,label===null?`${fmt(Math.abs(val))} kN·m`:label,13,color);
+}
+function dimension(x1,x2,y,label){return ln(x1,y,x2,y,GREY,1)+ln(x1-4,y-4,x1+4,y+4,GREY,1.3)+ln(x2-4,y-4,x2+4,y+4,GREY,1.3)+tx((x1+x2)/2,y-7,label,11,GREY);}
+function svgStart(w,h){return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="構造力学問題図" style="background:#fff"><rect x="0" y="0" width="${w}" height="${h}" fill="white"/>`;}function axisStroke(path,c=BLUE){return `<path d="${path}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>`;}
+function drawBeam(z){
+  const W=1100, X=x=>170+x*800/z.L;
+  // Give every intersecting load its own lane, including point loads and couples.
+  const placed=[];
+  const loads=z.loads.map(l=>{
+    const a=l.kind==='U'||l.kind==='T'?X(l.a):X(l.x),b=l.kind==='U'||l.kind==='T'?X(l.b):a;
+    let level=0;
+    while(placed.some(p=>p.level===level&&a-52<p.b+52&&b+52>p.a-52))level++;
+    const q={l,a,b,level};placed.push(q);return q;
+  });
+  const levels=Math.max(1,...loads.map(q=>q.level+1));
+  const Y=175+levels*88, dimY=Y+190,H=dimY+92;
+  let s=svgStart(W,H)+tx(38,34,'STRUCTURAL MODEL',15,INK,'start',700)+drawingLegendSvg()+supportSummarySvg(z,W-250,23);
+  // A faint guide distinguishes the geometry from the annotations.
+  s+=ln(X(0),Y,X(z.L),Y,INK,4.5);
+  if(z.fixed)s+=support(X(0),Y,'fixed','left');
+  z.sp.forEach((p,i)=>{if(z.fixed&&i===0)return;s+=support(X(p),Y,z.fixed||i>0?'roller':'pin')+tx(X(p)+26,Y+28,`S${z.fixed?i:i+1}`,12,INK,'start',700);});
+  z.hs.forEach(h=>s+=circ(X(h),Y,7));
+  loads.forEach(({l,a,b,level})=>{
+    const base=Y-64-level*88;
+    if(l.kind==='P'){
+      s+=ln(a,base+7,a,Y-7,'#dca5a1',1,'4 4')+dot(a,Y,3.8);
+      s+=arrow(a,l.v>0?base:base-42,a,l.v>0?base-42:base,LOAD,2.5)+tx(a,base-55,`${fmt(Math.abs(l.v))} kN`,14,LOAD,'middle',700);
+    }else if(l.kind==='C'){
+      s+=ln(a,base+24,a,Y-7,'#dca5a1',1,'4 4')+dot(a,Y,3.8)+momentMark(a,base,l.v);
+    }else{
+      const v0=l.kind==='U'?l.v:l.v0,v1=l.v,scale=40/Math.max(Math.abs(v0),Math.abs(v1),1);
+      // Signed ordinates preserve zero endpoints and sign-changing trapezoids.
+      const yy=v=>base-v*scale;
+      s+=ln(a,base,a,Y-7,'#dca5a1',1,'4 4')+ln(b,base,b,Y-7,'#dca5a1',1,'4 4');
+      s+=`<path d="M${a} ${base} L${a} ${yy(v0)} L${b} ${yy(v1)} L${b} ${base} Z" fill="${LOAD}" fill-opacity=".07"/>`;
+      s+=ln(a,base,b,base,'#dca5a1',1)+ln(a,yy(v0),b,yy(v1),LOAD,2);
+      const n=Math.max(2,Math.ceil((b-a)/30));
+      for(let i=0;i<=n;i++){const t=i/n,v=v0+(v1-v0)*t,x=a+(b-a)*t;if(Math.abs(v*scale)>3)s+=arrow(x,base,x,yy(v),LOAD,1.6);}
+      if(l.kind==='U')s+=tx((a+b)/2,Math.min(base,yy(v0))-15,`${fmt(Math.abs(v0))} kN/m`,14,LOAD,'middle',700);
+      else s+=tx(a,Math.min(base,yy(v0))-15,`${fmt(Math.abs(v0))} kN/m`,13,LOAD,'start')+tx(b,Math.min(base,yy(v1))-15,`${fmt(Math.abs(v1))} kN/m`,13,LOAD,'end');
+    }
+  });
+  if(showR){
+    const entries=z.sp.map((p,i)=>({p,val:z.x[z.fixed?(i===0?0:i+1):i],name:z.fixed?(i===0?'R_A':`R_${i}`):`R_${i+1}`}));
+    entries.forEach((r,i)=>{
+      const xx=X(r.p),lane=i%2,top=Y+62,bottom=Y+108;
+      const sign=viewMode==='arrows'?1:Math.sign(r.val)||1;
+      s+=arrow(xx,sign>0?bottom:top,xx,sign>0?top:bottom,REACT,2.5);
+      s+=tx(xx,Y+132+lane*22,`${r.name}${viewMode==='arrows'?'':` = ${fmt(Math.abs(r.val))} kN`}`,14,REACT,'middle',700);
+    });
+    if(z.fixed){const v=z.x[1];s+=momentMark(X(0)-82,Y-6,viewMode==='arrows'?1:v,REACT,viewMode==='arrows'?'M_A':`M_A = ${fmt(Math.abs(v))} kN·m`);}
+  }
+  const coords=[0,z.L,...z.hs,...z.sp,...z.loads.flatMap(q=>q.kind==='U'||q.kind==='T'?[q.a,q.b]:[q.x])].sort((a,b)=>a-b).filter((v,i,a)=>i===0||v!==a[i-1]);
+  coords.forEach(v=>{s+=ln(X(v),dimY-10,X(v),dimY+10,GREY,1)+tx(X(v),dimY+31,`${v} m`,12,'#536b7f');});
+  s+=ln(X(0),dimY,X(z.L),dimY,'#9aabba',1)+dimension(X(0),X(z.L),dimY+63,`全長 ${z.L} m`);
+  return s+'</svg>';
+}
+
+function drawTruss(z){
+  let W=970,H=510,all=z.pts,ys=all.map(p=>p[1]),maxH=Math.max(...ys),X=x=>85+x*780/z.L,Y=y=>357-y*170/Math.max(maxH,1),s=svgStart(W,H);
+  s+=tx(35,32,'TRUSS MODEL',14,INK,'start',700);
+  s+=drawingLegendSvg();
+  s+=supportSummarySvg(z,W-250,23);
+  z.bars.forEach(([a,b],i)=>{ let p=all[a],q=all[b]; s+=ln(X(p[0]),Y(p[1]),X(q[0]),Y(q[1]),INK,3); if(showS){ let mx=(X(p[0])+X(q[0]))/2,my=(Y(p[1])+Y(q[1]))/2,n=z.x[i]; s+=tx(mx,my-8,`${fmt(n)}`,10,n>=0?BLUE:LOAD); } });
+  all.forEach((p,i)=>{ s+=circ(X(p[0]),Y(p[1]),4); const yy= p[1]>0 ? Y(p[1])-13 : Y(p[1])+18; s+=tx(X(p[0])+8,yy,`${i+1}`,10,GREY,'start'); });
+  s+=support(X(all[0][0]),Y(all[0][1]),'pin')+support(X(all[z.rightSupport][0]),Y(all[z.rightSupport][1]),'roller');
+  z.loads.forEach(({k,f})=>{ let p=all[k],x=X(p[0]),y=Y(p[1]); s+=circ(x,y,3,LOAD); if(f[1]){ let dir=f[1]<0?1:-1; s+=arrow(x,y-dir*55,x,y+dir*5,LOAD,2.6); s+=tx(x+17,y-dir*65,`${Math.abs(f[1])} kN`,12,LOAD,'start'); } if(f[0]){ let dir=Math.sign(f[0]); s+=arrow(x-dir*55,y,x+dir*5,y,LOAD,2.6); s+=tx(x-dir*40,y-13,`${Math.abs(f[0])} kN`,11,LOAD); } });
+  if(showR){ let m=z.bars.length, rr=[z.x[m],z.x[m+1],z.x[m+2]], coords=[all[0],all[0],all[z.rightSupport]], labels=['H_A','R_A','R_B']; rr.forEach((v,k)=>{ if(Math.abs(v)<1e-8 && viewMode==='arrows') return; let px=X(coords[k][0]),py=Y(coords[k][1]); if(k===0){ s+=arrow(px-58,py+10,px-18,py+10,REACT,2.3); s+=tx(px-64,py+29,`${labels[k]}${viewMode==='arrows'?'':`=${fmt(Math.abs(v))} kN`}`,11,REACT,'start'); } else { let rx=k===1?px-8:px+8; s+=arrow(rx,py+78,rx,py+36,REACT,2.3); s+=tx(rx+(k===1?-8:8),py+96,`${labels[k]}${viewMode==='arrows'?'':`=${fmt(Math.abs(v))} kN`}`,11,REACT,k===1?'end':'start'); } }); }
+  // パネルごとの水平距離と代表高さ。詳細な傾斜は下の座標・角度表に掲載。
+  let bottom=z.pts.map(p=>p[1]===0?p[0]:null).filter(v=>v!==null).sort((a,b)=>a-b);
+  let xs=[...new Set(bottom)];
+  for(let i=0;i<xs.length-1;i++){
+    const x1=X(xs[i]),x2=X(xs[i+1]);
+    if(x2-x1>=42){s+=ln(x1,417,x2,417,GREY,.7);s+=tx((x1+x2)/2,433,`${fmt(xs[i+1]-xs[i])} m`,10,GREY);}
+  }
+  s+=ln(X(0)-34,Y(0),X(0)-34,Y(maxH),GREY,1);
+  s+=tx(X(0)-43,(Y(0)+Y(maxH))/2,`H=${fmt(maxH)} m`,11,GREY,'end');
+  s+=dimension(X(0),X(z.L),Y(0)+112,`${z.L} m`); s+=tx(35,496,showS?'軸力：青＝引張（+）、赤＝圧縮（−）':'節点番号を表示',11,GREY,'start');
+  if(z.indetStiffness)z.extraSupports.forEach((k,i)=>{const p=all[k],xx=X(p[0]),yy=Y(p[1]);s+=support(xx,yy,'roller')+tx(xx+9,yy+62,`S${k+1}`,11,INK,'start');if(showR){const val=z.x[z.bars.length+3+i],sign=viewMode==='arrows'?1:Math.sign(val)||1;s+=arrow(xx,sign>0?yy+108:yy+57,xx,sign>0?yy+57:yy+108,REACT,2.1)+tx(xx,yy+130,`R${k+1}${viewMode==='arrows'?'':`=${fmt(Math.abs(val))} kN`}`,11,REACT);}});
+  return s+'</svg>';
+}
+function trussGeometryHtml(z){
+  const nodeRows=z.pts.map((p,i)=>`<tr><td>${i+1}</td><td>${fmt(p[0])}</td><td>${fmt(p[1])}</td></tr>`).join('');
+  const barRows=z.bars.map(([u,v],i)=>{
+    const dx=z.pts[v][0]-z.pts[u][0],dy=z.pts[v][1]-z.pts[u][1];
+    const length=Math.hypot(dx,dy), angle=Math.atan2(dy,dx)*180/Math.PI;
+    return `<tr><td>${i+1}</td><td>${u+1}–${v+1}</td><td>${fmt(length)}</td><td>${fmt(angle)}</td></tr>`;
+  }).join('');
+  return `<details open class="trussgeometry"><summary>トラスの寸法・斜材角度（計算に必要な幾何条件）</summary><div class="geometrygrid"><div><h4>節点座標（m）</h4><table><thead><tr><th>節点</th><th>x</th><th>y</th></tr></thead><tbody>${nodeRows}</tbody></table></div><div><h4>部材長と傾斜角</h4><p class="geomnote">部材の始点→終点、水平右向きを 0°（反時計回り正）とします。</p><table><thead><tr><th>部材</th><th>節点</th><th>長さ (m)</th><th>角度 (°)</th></tr></thead><tbody>${barRows}</tbody></table></div></div></details>`;
+}
+function drawFrame(z){
+  let W=970,H=480,X=x=>160+x*610/z.L,Y=y=>337-y*227/z.H,s=svgStart(W,H);
+  s+=tx(35,32,'FRAME MODEL',14,INK,'start',700);
+  s+=drawingLegendSvg();
+  s+=supportSummarySvg(z,W-260,23);
+  z.segments.forEach(([a,b])=>s+=ln(X(z.pts[a][0]),Y(z.pts[a][1]),X(z.pts[b][0]),Y(z.pts[b][1]),INK,4));
+  s+=z.style==='cantilever'?support(X(0),Y(0),'fixed','bottom'):support(X(0),Y(0),'pin');
+  if(z.style==='simple') s+=support(X(z.L),Y(0),'roller');
+  if(z.style==='three') s+=support(X(z.L),Y(0),'pin')+circ(X(z.hx),Y(z.H),8);
+  z.loads.forEach(l=>{ let x=X(l.p[0]),y=Y(l.p[1]); s+=dot(x,y,3,LOAD); if(l.m) s+=momentMark(x,y-25,l.m); else if(l.f[0]){ let sign=Math.sign(l.f[0]); s+=arrow(x-sign*48,y,x+sign*5,y,LOAD,2.6); s+=tx(x-sign*38,y-12,`${Math.abs(l.f[0])} kN`,11,LOAD); } else { let sign=Math.sign(l.f[1]); s+=arrow(x,y+sign*46,x,y-sign*5,LOAD,2.6); s+=tx(x+17,y+sign*58,`${Math.abs(l.f[1])} kN`,11,LOAD,'start'); } });
+  if(showR) z.names.forEach((n,i)=>{ let val=z.x[i], px=n.includes('_B')?X(z.L):X(0), py=Y(0); if(Math.abs(val)<1e-8 && viewMode==='arrows' && n!=='M_A') return; if(z.style==='cantilever' && px===X(0)){
+    if(n==='M_A'){ s+=momentMark(px-66,py-10,viewMode==='arrows'?1:val,REACT,`M_A${viewMode==='arrows'?'':` = ${fmt(Math.abs(val))} kN·m`}`); return; }
+    if(n.endsWith('x')){ s+=arrow(px-82,py-8,px-40,py-8,REACT,2.4)+tx(px-86,py-20,`${n.replace('_','')}${viewMode==='arrows'?'':`=${fmt(Math.abs(val))} kN`}`,12,REACT,'start'); }
+    else { s+=arrow(px-34,py+84,px-34,py+38,REACT,2.4)+tx(px-42,py+102,`${n.replace('_','')}${viewMode==='arrows'?'':`=${fmt(Math.abs(val))} kN`}`,12,REACT,'end'); }
+    return;
+  }
+  if(n==='M_A'){ s+=`<path d="M${px-72} ${py-19} A22 22 0 1 1 ${px-70} ${py+22}" stroke="${REACT}" stroke-width="2.2" fill="none"/>`+tx(px-82,py-32,`M_A${viewMode==='arrows'?'':`=${fmt(Math.abs(val))} kN·m`}`,12,REACT,'start'); return; }
+  if(n.endsWith('x')){ s+=arrow(px-83,py+15,px-44,py+15,REACT,2.4)+tx(px-86,py+34,`${n.replace('_','')}${viewMode==='arrows'?'':`=${fmt(Math.abs(val))} kN`}`,12,REACT,'start'); }
+  else { let left=px===X(0), rx=left?px-10:px+10; s+=arrow(rx,py+78,rx,py+36,REACT,2.4)+tx(rx+(left?-8:8),py+95,`${n.replace('_','')}${viewMode==='arrows'?'':`=${fmt(Math.abs(val))} kN`}`,12,REACT,left?'end':'start'); }
+  });
+  s+=dimension(X(0),X(z.L),Y(0)+100,`${z.L} m`); s+=ln(X(0)-50,Y(0),X(0)-50,Y(z.H),GREY,1)+tx(X(0)-66,(Y(0)+Y(z.H))/2,`${z.H} m`,11,GREY,'end');
+  return s+'</svg>';
+}
+
+function beamBreakpoints(z){
+  return [...new Set([0,z.L,...z.sp,...z.hs,...z.loads.flatMap(q=>(q.kind==='U'||q.kind==='T')?[q.a,q.b]:[q.x])].filter(v=>Number.isFinite(v)&&v>=0&&v<=z.L))].sort((a,b)=>a-b);
+}
+// Evaluate the one-sided boundary limit by cubic extrapolation within its interval.
+// Q is at most quadratic and M at most cubic for the supported load types.
+function beamLimit(z,x,side,k){
+  const bp=beamBreakpoints(z),i=bp.findIndex(v=>Math.abs(v-x)<1e-9);
+  if(i<0)return z.sec(x)[k];
+  const dir=(i===0?1:i===bp.length-1?-1:side==='left'?-1:1);
+  const span=dir>0?bp[i+1]-x:x-bp[i-1],h=Math.min(span/8,Math.max(1e-5,span*1e-4));
+  const vals=[1,2,3,4].map(n=>z.sec(x+dir*n*h)[k]);
+  const v=4*vals[0]-6*vals[1]+4*vals[2]-vals[3];
+  return Math.abs(v)<1e-8?0:v;
+}
+function beamCritical(z,k){
+  const bp=beamBreakpoints(z),found=[];
+  const scale=Math.max(1,...bp.flatMap(x=>[Math.abs(beamLimit(z,x,'left',k)),Math.abs(beamLimit(z,x,'right',k))]));
+  const tol=1e-8*scale;
+  function insert(x,v,kind){if(!found.some(c=>Math.abs(c.x-x)<1e-5&&c.kind===kind))found.push({x,v:Math.abs(v)<tol?0:v,kind});}
+  function roots(a,b,component,kind){
+    const h=Math.min(1e-5,(b-a)*1e-5),left=a+h,right=b-h,N=80;
+    const samples=Array.from({length:N+1},(_,i)=>({x:left+(right-left)*i/N,v:z.sec(left+(right-left)*i/N)[component]}));
+    const t=1e-8*Math.max(1,...samples.map(p=>Math.abs(p.v)));
+    if(samples.every(p=>Math.abs(p.v)<=t))return; // A zero interval is not a set of isolated roots.
+    let prev=null;
+    for(const p of samples){
+      if(Math.abs(p.v)<=t)continue;
+      if(prev&&Math.sign(prev.v)!==Math.sign(p.v)){
+        let lo=prev.x,hi=p.x,fl=prev.v;
+        for(let j=0;j<45;j++){const mid=(lo+hi)/2,f=z.sec(mid)[component];if(Math.abs(f)<=t*1e-3){lo=hi=mid;break;}if(Math.sign(f)===Math.sign(fl)){lo=mid;fl=f;}else hi=mid;}
+        const x=(lo+hi)/2;insert(x,kind==='zero'?0:z.sec(x)[k],kind);
+      }
+      prev=p;
+    }
+  }
+  for(let i=0;i<bp.length-1;i++){roots(bp[i],bp[i+1],k,'zero');if(k===1)roots(bp[i],bp[i+1],0,'extremum');}
+  return found.sort((a,b)=>a.x-b.x);
+}
+function plotBeam(z){
+  const W=1100,H=680,pad=92,bp=beamBreakpoints(z),eps=1e-5;
+  const X=x=>pad+x*(W-2*pad)/z.L;
+  let out=svgStart(W,H);
+  const caps=['Q / SHEAR FORCE [kN]','M / BENDING MOMENT [kN·m]'];
+  const tableRows=[];
+  const limit=(x,side,k)=>beamLimit(z,x,side,k);
+  for(let k=0;k<2;k++){
+    const top=28+k*330,zero=top+145;
+    const segments=[];const values=[];
+    for(let i=0;i<bp.length-1;i++){
+      const left=bp[i],right=bp[i+1];
+      let points=[];
+      for(let j=0;j<=Math.max(2,Math.ceil((right-left)*14));j++){
+        const n=Math.max(2,Math.ceil((right-left)*14)),x=left+(right-left)*j/n;
+        const v=j===0?limit(x,'right',k):j===n?limit(x,'left',k):z.sec(x)[k];
+        points.push({x,v}); values.push(v);
+      }
+      segments.push(points);
+    }
+    const critical=beamCritical(z,k);
+    critical.forEach(c=>values.push(c.v));
+    const amp=Math.max(1,...values.map(v=>Math.abs(v))),sc=92/amp,Y=v=>zero-v*sc;
+    const color=k?BLUE:REACT;
+    out+=tx(pad,top,caps[k],15,INK,'start',700)+ln(pad,zero,W-pad,zero,GREY,1);
+    segments.forEach(points=>{
+      const path=points.map((p,i)=>`${i?'L':'M'}${X(p.x).toFixed(2)},${Y(p.v).toFixed(2)}`).join(' ');
+      out+=`<path d="${path}" fill="none" stroke="${color}" stroke-width="2.7"/>`;
+    });
+    let markers=[];
+    bp.forEach((x,i)=>{
+      const l=limit(x,'left',k),r=limit(x,'right',k);
+      const jump=i>0&&i<bp.length-1&&Math.abs(l-r)>1e-7*Math.max(1,Math.abs(l),Math.abs(r));
+      if(jump)out+=ln(X(x),Y(l),X(x),Y(r),color,2.3);
+      if(jump){
+        markers.push({x,v:l,side:'左',importance:2});
+        markers.push({x,v:r,side:'右',importance:2});
+      }else{
+        markers.push({x,v:i===0?r:l,side:'',importance:2});
+      }
+      const loc=i===0?'左端':i===bp.length-1?'右端':'区間境界・荷重／支点位置';
+      tableRows.push({k,x,loc,l,r,jump});
+    });
+    critical.forEach(c=>{
+      if(c.x>1e-4&&c.x<z.L-1e-4 && !bp.some(x=>Math.abs(x-c.x)<1e-3))markers.push({x:c.x,v:c.v,side:c.kind==='zero'?'ゼロ':'極値',importance:1});
+    });
+    // Merge adjacent identically-zero intervals into one representative annotation.
+    const zeroTol=1e-8*Math.max(1,...values.map(v=>Math.abs(v))),zeroRuns=[];
+    segments.forEach(points=>{
+      if(!points.every(p=>Math.abs(p.v)<=zeroTol))return;
+      const a=points[0].x,b=points[points.length-1].x,last=zeroRuns[zeroRuns.length-1];
+      if(last&&Math.abs(last.b-a)<1e-7)last.b=b;else zeroRuns.push({a,b});
+    });
+    zeroRuns.forEach(({a,b})=>{
+      markers=markers.filter(m=>m.side==='左'||m.side==='右'||!(m.x>=a-1e-6&&m.x<=b+1e-6&&Math.abs(m.v)<=zeroTol));
+      markers.push({x:(a+b)/2,v:0,side:'',importance:1,zeroInterval:true});
+    });
+    // Every section-end value is labeled. For dense layouts, place labels on staggered tiers with leaders.
+    const placed=[];
+    markers.sort((a,b)=>a.x-b.x||b.v-a.v);
+    markers.forEach((m,i)=>{
+      const px=X(m.x),py=Y(m.v),label=`${fmt(m.v)}`+(m.side==='左'?' (−)':m.side==='右'?' (+)':'');
+      const width=label.length*8+12;
+      let best=null;
+      for(let lane=0;lane<7;lane++){
+        const below=(lane%2===1),level=Math.floor(lane/2);
+        const labelY=py+(below?1:-1)*(20+level*18);
+        const left=Math.max(4,Math.min(W-width-4,px-width/2+(m.side==='左'?-12:m.side==='右'?12:0)));
+        const rect={left,right:left+width,top:labelY-11,bottom:labelY+3};
+        const conflicts=placed.filter(p=>!(rect.right+5<p.left||rect.left-5>p.right||rect.bottom+4<p.top||rect.top-4>p.bottom)).length;
+        const penalty=conflicts*100+lane*2+(labelY<top+19||labelY>top+300?50:0);
+        if(!best||penalty<best.penalty)best={...rect,labelY,penalty};
+        if(conflicts===0&&labelY>=top+19&&labelY<=top+300)break;
+      }
+      placed.push(best);
+      if(!m.zeroInterval)out+=`<circle cx="${px.toFixed(2)}" cy="${py.toFixed(2)}" r="3.9" fill="white" stroke="${color}" stroke-width="2"/>`;
+      const lx=(best.left+best.right)/2;
+      if(Math.abs(best.labelY-py)>17||Math.abs(lx-px)>8)out+=ln(px,py-4,lx,best.labelY>py?best.labelY-13:best.labelY+4,GREY,.75);
+      out+=tx(lx,best.labelY,label,11,color,'middle',650);
+    });
+    const maxAbs=Math.max(...values.map(v=>Math.abs(v)));
+    out+=tx(W-pad,top+13,`max |${k?'M':'Q'}| = ${fmt(maxAbs)}`,12,color,'end');
+    const ticks=[...new Set([0,...z.sp,...z.hs,z.L])].sort((a,b)=>a-b);
+    ticks.forEach(x=>{out+=ln(X(x),zero-5,X(x),zero+5,GREY,1);out+=tx(X(x),zero+136,`${fmt(x)} m`,11,GREY);});
+  }
+  out+='</svg>';
+  const rows=tableRows.filter(r=>r.k===0).map(r=>{
+    const m=tableRows.find(q=>q.k===1&&Math.abs(q.x-r.x)<1e-8);
+    const formatPair=t=>t.jump?`${fmt(t.l)}（左） / ${fmt(t.r)}（右）`:fmt(t.l);
+    return `<tr><td>${fmt(r.x)}</td><td>${r.loc}</td><td>${formatPair(r)}</td><td>${formatPair(m)}</td></tr>`;
+  }).join('');
+  const crit=beamCritical(z,1).filter(c=>c.x>1e-4&&c.x<z.L-1e-4&&!bp.some(x=>Math.abs(x-c.x)<1e-3));
+  const extra=crit.map(c=>`<tr><td>${fmt(c.x)}</td><td>${c.kind==='zero'?'M=0':'Mの極値'}</td><td>${fmt(z.sec(c.x)[0])}</td><td>${fmt(c.v)}</td></tr>`).join('');
+  return out+`<div style="padding:8px 14px"><h4 style="margin:8px 0">すべての区間端・特徴点の断面力</h4><p class="hint">図中の数値は kN（Q図）・kN·m（M図）。不連続位置は左側（−）と右側（＋）を別表示します。下表ではすべての区間境界を確認できます。</p><div style="overflow-x:auto"><table class="critical-table"><thead><tr><th>x (m)</th><th>位置</th><th>Q (kN)</th><th>M (kN·m)</th></tr></thead><tbody>${rows}${extra}</tbody></table></div><p class="hint">M=0は反曲点候補です。境界・内部ヒンジでのゼロ値は必ずしも反曲点を意味しません。</p></div>`;
+}
+function calcSteps(z){
+  let html='<h4>1. 荷重とつり合い条件</h4>';
+  if(z.kind==='beam'){
+    html+='<p>鉛直上向き・反時計回りを正とします。分布荷重は合力とその作用位置に換算します。</p>';
+    html+='<table><thead><tr><th>荷重</th><th>範囲・位置</th><th>合力・作用モーメント</th></tr></thead><tbody>';
+    z.loads.forEach(l=>{
+      if(l.kind==='P')html+=`<tr><td>集中荷重</td><td>x=${fmt(l.x)} m</td><td>${fmt(l.v)} kN</td></tr>`;
+      else if(l.kind==='C')html+=`<tr><td>集中モーメント</td><td>x=${fmt(l.x)} m</td><td>${fmt(l.v)} kN·m</td></tr>`;
+      else {
+        const wa=l.kind==='U'?l.v:l.v0,wb=l.v,L=l.b-l.a,F=L*(wa+wb)/2;
+        const moment=L*L*(wa+2*wb)/6;
+        html+=`<tr><td>${l.kind==='U'?'等分布':'等変分布'}</td><td>${fmt(l.a)}～${fmt(l.b)} m（${fmt(wa)} → ${fmt(wb)} kN/m）</td><td>合力 ${fmt(F)} kN、左端回り ${fmt(moment)} kN·m</td></tr>`;
+      }
+    });
+    html+='</tbody></table>';
+  }else if(z.kind==='truss'){
+    html+='<p>各節点で ΣFx=0、ΣFy=0 を立てます。部材軸力は引張を正とします。</p>';
+  }else html+='<p>全体の ΣFx=0、ΣFy=0、ΣM=0 を用い、必要に応じてヒンジにおける曲げモーメント0の条件を加えます。</p>';
+  html+='<h4>2. 連立一次方程式 Ax = b</h4>';
+  html+='<p>以下は実際に解いている行列の各行を、そのまま式に展開したものです。</p>';
+  const unknown=z.names.map((name,i)=>name);
+  html+='<div style="max-height:420px;overflow:auto"><table><thead><tr><th>式</th><th>つり合い式</th></tr></thead><tbody>';
+  z.A.forEach((row,i)=>{
+    const terms=row.map((v,j)=>({v,name:unknown[j]})).filter(t=>Math.abs(t.v)>1e-8);
+    const lhs=terms.map((t,index)=>`${index===0?(t.v<0?'-':''):(t.v<0?' − ':' + ')}${Math.abs(Math.abs(t.v)-1)<1e-8?'':fmt(Math.abs(t.v))+'×'}${t.name}`).join('')||'0';
+    const tag=z.kind==='truss'?`節点 ${Math.floor(i/2)+1} の ΣF${i%2?'y':'x'}=0`:z.kind==='beam'?`区間 ${Math.floor(i/2)+1} の ${i%2?'ΣM=0':'ΣFy=0'}`:`条件 ${i+1}`;
+    html+=`<tr><td>${tag}</td><td><code>${esc(lhs)} = ${fmt(z.b[i])}</code></td></tr>`;
+  });
+  html+='</tbody></table></div><h4>3. 計算結果と検算</h4>';
+  html+='<table><thead><tr><th>未知量</th><th>計算値</th></tr></thead><tbody>'+
+    z.names.map((name,i)=>`<tr><td>${esc(name)}</td><td>${fmt(z.x[i])} ${name.startsWith('M_')?'kN·m':'kN'}</td></tr>`).join('')+'</tbody></table>';
+  html+=`<p>検算：最大残差 max |Ax − b| = ${z.res.toExponential(2)}</p>`;
+  if(z.kind==='beam')html+='<p>断面力 Q(x)、M(x) は左側の荷重と支点反力のつり合いから算定し、区間境界とゼロ点を調べています。</p>';
+  return html;
+}
+function plotFrame(z){let out=svgStart(970,720),names=['N [kN]','Q [kN]','M [kN·m]'];for(let k=0;k<3;k++){let top=25+k*235,zero=top+113;out+=tx(60,top+5,names[k],14,INK,'start',700)+ln(65,zero,908,zero,GREY,1);let segments=[],all=[];for(let si=0;si<3;si++){let dat=Array.from({length:151},(_,i)=>z.sec(si,(i+.001)/151));segments.push(dat);all.push(...dat.map(q=>q[k]));}let amp=Math.max(1,...all.map(v=>Math.abs(v))),scale=76/amp;segments.forEach((dat,si)=>{let left=65+si*280,d=dat.map((v,i)=>`${i?'L':'M'}${(left+280*i/(dat.length-1)).toFixed(1)},${(zero-v[k]*scale).toFixed(1)}`).join(' ');out+=`<path d="${d}" fill="none" stroke="${[BLUE,REACT,LOAD][k]}" stroke-width="2.2"/>`+tx(left+140,zero+24,['AB','BC','CD'][si],11,GREY);});out+=tx(905,top+10,`max | · | = ${fmt(amp)}`,11,GREY,'end');}return out+'</svg>';}
+
+let appLanguage='ja';
+const originalTexts=new WeakMap();
+const translationEntries=[["集中荷重：5 kN刻み ／ 集中モーメント：5 kN·m刻み ／ 分布荷重：2 kN/m刻み ／ 位置・寸法：1 m刻み。記号は ●＝作用点、〇＝ヒンジ。つり合い条件のみで解ける静定構造を生成します。SVG形式で図を保存できます。トラスは節点集中荷重のみ、ラーメンは集中荷重・集中モーメントに対応します。等分布・等変分布荷重の個数指定は現在はりにのみ適用されます。トラス部材軸力は引張正です。", "Point loads: 5 kN increments; concentrated moments: 5 kN·m; distributed loads: 2 kN/m; positions and dimensions: 1 m. ● = load point; ○ = hinge. Statically determinate structures are generated and solved using equilibrium only. SVG export is available. Trusses use joint point loads only; frames use point loads and moments. Distributed load counts apply only to beams. Positive truss axial force denotes tension."], ["図中の数値は kN（Q図）・kN·m（M図）。不連続位置は左側（−）と右側（＋）を別表示します。下表ではすべての区間境界を確認できます。", "Labels are in kN (Q) and kN·m (M). Left (−) and right (+) limits at discontinuities are shown separately. The table includes all segment boundaries."], ["全体の ΣFx=0、ΣFy=0、ΣM=0 を用い、必要に応じてヒンジにおける曲げモーメント0の条件を加えます。", "Use global ΣFx = 0, ΣFy = 0 and ΣM = 0, with zero bending moment at internal hinges when applicable."], ["断面力 Q(x)、M(x) は左側の荷重と支点反力のつり合いから算定し、区間境界とゼロ点を調べています。", "Q(x) and M(x) are calculated from equilibrium of the left-hand free body, including supports and loads, and checked at boundaries and zeros."], ["M=0は反曲点候補です。境界・内部ヒンジでのゼロ値は必ずしも反曲点を意味しません。", "M = 0 indicates a possible inflection point; zero moment at a boundary or internal hinge does not necessarily indicate an inflection point."], ["鉛直上向き・反時計回りを正とします。分布荷重は合力とその作用位置に換算します。", "Upward forces and counterclockwise moments are positive. Distributed loads are reduced to their resultants and moments."], ["各節点で ΣFx=0、ΣFy=0 を立てます。部材軸力は引張を正とします。", "Apply ΣFx = 0 and ΣFy = 0 at each joint. Positive axial force denotes tension."], ["HTML + JavaScript　・　外部ライブラリ不要　・　通信不要", "HTML + JavaScript · No external libraries · Offline"], ["以下は実際に解いている行列の各行を、そのまま式に展開したものです。", "Each row of the solved matrix is expanded into an equilibrium equation."], ["部材の始点→終点、水平右向きを 0°（反時計回り正）とします。", "Angle measured from the positive horizontal axis, from the first joint to the second (CCW positive)."], ["部材軸力は問題図の各部材に表示しています（引張正）。", "Member axial forces are shown on each member (tension positive)."], ["トラスの寸法・斜材角度（計算に必要な幾何条件）", "Truss dimensions and diagonal angles (geometry for calculations)"], ["つり合い行列 A x = b と計算残差", "Equilibrium matrix A x = b and residual"], ["荷重値・位置は指定刻みでランダム生成", "Load magnitude and position randomized in specified increments"], ["軸力：青＝引張（+）、赤＝圧縮（−）", "Axial force: blue = tension (+), red = compression (−)"], ["正方向：右向き・上向き・反時計回り", "Positive: rightward, upward, counterclockwise"], ["2. 連立一次方程式 Ax = b", "2. Linear system Ax = b"], ["完全ランダム（種類・個数も自動）", "Fully random (type and count)"], ["すべての区間端・特徴点の断面力", "Section forces at every segment end and critical point"], ["問題を生成できませんでした:", "Could not generate a problem:"], ["区間境界・荷重／支点位置", "Segment boundary / load or support"], ["1. 荷重とつり合い条件", "1. Loads and equilibrium conditions"], ["つり合い条件の行列計算", "Equilibrium matrix analysis"], ["はり・トラス・ラーメン", "Beams, trusses and frames"], ["静定構造ランダム演習", "Random exercises in statically determinate structures"], ["個数指定（従来方式）", "Specify load counts"], ["計算過程・つり合い式", "Calculation steps and equilibrium equations"], ["合力・作用モーメント", "Resultant and moment"], ["3. 計算結果と検算", "3. Results and verification"], ["荷重条件の設定方法", "Load settings"], ["荷重個数（種類別）", "Number of loads by type"], ["ブラウザ内で動作", "Runs in your browser"], ["支点反力・部材力", "Support reactions and member forces"], ["ファン（不規則）", "Fan (irregular)"], ["非対称（不規則）", "Asymmetric (irregular)"], ["集中モーメント", "Concentrated moment"], ["↻ 新しい問題", "↻ New problem"], ["支点反力の表示", "Show reaction arrows"], ["解答と計算過程", "Solution and calculations"], ["節点座標（m）", "Joint coordinates (m)"], ["部材長と傾斜角", "Member length and inclination"], ["節点番号を表示", "Joint numbers shown"], ["計算結果と検算", "Results and verification"], ["検算：最大残差", "Verification: maximum residual"], ["内部ヒンジなし", "No internal hinges"], ["クイーンポスト", "Queen-post"], ["ピン・ローラー", "Pin and roller"], ["すべてランダム", "Random (all)"], ["構造力学問題図", "Structural mechanics problem"], ["構造パターン", "Structure pattern"], ["等変分布荷重", "Linearly varying load"], ["ローラー支点", "Roller support"], ["長さ (m)", "Length (m)"], ["角度 (°)", "Angle (°)"], ["キングポスト", "King-post"], ["図記号の凡例", "Drawing symbol legend"], ["等分布荷重", "Uniformly distributed load"], ["SVG保存", "Save SVG"], ["範囲・位置", "Range / location"], ["つり合い式", "Equilibrium equation"], ["内部ヒンジ", "Internal hinges"], ["構造形式", "Structure type"], ["集中荷重", "Point load"], ["問題表示", "Problem only"], ["支点反力", "Support reactions"], ["支持条件", "Support conditions"], ["ピン支点", "Pinned support"], ["ローラー", "Roller"], ["Mの極値", "M extremum"], ["左端回り", "about left end"], ["最大残差", "Maximum residual"], ["プラット", "Pratt"], ["ワーレン", "Warren"], ["ラーメン", "Frame"], ["ランダム", "Random"], ["分布荷重", "Distributed load"], ["問題図", "Problem diagram"], ["固定端", "Fixed support"], ["作用点", "Load point"], ["ヒンジ", "Hinge"], ["（左）", "(left)"], ["（右）", "(right)"], ["未知量", "Unknowns"], ["計算値", "Calculated value"], ["屋根形", "Pitched roof"], ["非対称", "Asymmetric"], ["ファン", "Fan"], ["片持ち", "Cantilever"], ["トラス", "Truss"], [" の ", " : "], ["日本語", "日本語"], ["結果", "Results"], ["ピン", "Pin"], ["節点", "Joint"], ["部材", "Member"], ["全長", "Total length"], ["引張", "Tension"], ["圧縮", "Compression"], ["左端", "Left end"], ["右端", "Right end"], ["ゼロ", "Zero"], ["極値", "Extremum"], ["合力", "Resultant"], ["ハウ", "Howe"], ["はり", "Beam"], ["位置", "Location"], ["条件", "Condition"], ["区間", "Segment"], ["言語", "Language"], ["個", ""], ["式", "Equation"]];
+function translateTextValue(source){
+  let result=source;
+  for(const [ja,en] of translationEntries)if(ja && result.includes(ja))result=result.split(ja).join(en);
+  return result;
+}
+function applyLanguage(){
+  document.documentElement.lang=appLanguage;
+  document.title=appLanguage==='en'?'Structural Mechanics | Random Exercises':'構造力学｜静定構造ランダム問題';
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  let node;
+  while((node=walker.nextNode())){
+    if(node.parentElement?.closest('script,style'))continue;
+    if(!originalTexts.has(node)) originalTexts.set(node,node.nodeValue);
+    const base=originalTexts.get(node);
+    node.nodeValue=appLanguage==='en'?translateTextValue(base):base;
+  }
+  for(const element of document.querySelectorAll('[aria-label]')){
+    if(!element.hasAttribute('data-original-aria'))element.setAttribute('data-original-aria',element.getAttribute('aria-label'));
+    let base=element.getAttribute('data-original-aria');
+    element.setAttribute('aria-label',appLanguage==='en'?translateTextValue(base):base);
+  }
+  $('langJa').classList.toggle('lang-active',appLanguage==='ja');
+  $('langEn').classList.toggle('lang-active',appLanguage==='en');
+  $('langJa').setAttribute('aria-pressed',String(appLanguage==='ja'));
+  $('langEn').setAttribute('aria-pressed',String(appLanguage==='en'));
+}
+function setLanguage(lang){
+  appLanguage=lang==='en'?'en':'ja';
+  refreshVariantPreserve();
+  render();
+  applyLanguage();
+  finishGraphics();
+}
+function refreshVariantPreserve(){
+  const current=$('variant').value;
+  refreshVariant();
+  if(Array.from($('variant').options).some(o=>o.value===current))$('variant').value=current;
+}
+
+
+let exerciseMode='force',jointSelectionModel=null,structureCategory='determinate';
+const chooseMode=mode=>{
+  exerciseMode=mode;
+  $('chooseForce').classList.toggle('selected',mode==='force');
+  $('chooseDeflection').classList.toggle('selected',mode==='deformation');
+  $('elasticPanel').style.display=mode==='deformation'?'flex':'none';
+  $('deformationOutput').style.display=mode==='deformation'?'block':'none';
+  if(mode==='deformation'){
+    $('targetPosBox').style.display=model&&model.kind==='beam'?'grid':'none';
+    $('targetJointBox').style.display=model&&model.kind==='truss'?'grid':'none';
+    if(model?.kind==='beam'){$('targetPos').max=model.L; if(+$('targetPos').value>model.L || +$('targetPos').value===0)$('targetPos').value=fmt(model.L/2);}
+    viewMode='results';
+  }
+  render();
+};
+const stiffness=id=>{let n=Number($(id).value);if(!Number.isFinite(n)||n<=0)throw Error(id+' must be positive');return n;};
+function simpson(f,a,b){if(b-a<1e-10)return 0;const n=12,h=(b-a)/n;let sum=f(a)+f(b);for(let i=1;i<n;i++)sum+=(i%2?4:2)*f(a+i*h);return h*sum/3;}
+function integrateBreaks(f,a,b,breaks){if(b<=a)return 0;let xs=[a,...breaks.filter(x=>x>a+1e-9&&x<b-1e-9),b].sort((x,y)=>x-y),sum=0;for(let i=0;i<xs.length-1;i++){let p=xs[i],q=xs[i+1],eps=Math.min(1e-7,(q-p)*1e-5);sum+=simpson(t=>f(Math.max(p+eps,Math.min(q-eps,t))),p,q);}return sum;}
+
+// FORCE METHOD FOR EXTERNALLY INDETERMINATE CONTINUOUS BEAMS.
+// Primary structure: cantilever clamped at x=0. Rollers are vertical redundants.
+
+// Elastic stiffness formulation for statically indeterminate trusses and frames.
+function elasticKsolve(pts,elements,kind,restrained,loads,EA,EI){
+  const nd=kind==='truss'?2:3,N=nd*pts.length,K=Array.from({length:N},()=>Array(N).fill(0)),F=Array(N).fill(0),details=[];
+  for(const [idx,val] of loads)F[idx]+=val;
+  for(const [u,v] of elements){
+    const dx=pts[v][0]-pts[u][0],dy=pts[v][1]-pts[u][1],L=Math.hypot(dx,dy),c=dx/L,t=dy/L;
+    if(L<1e-9)throw Error('Zero-length element');
+    let ke,trans=null;
+    if(nd===2){
+      const a=EA/L;ke=[[c*c,c*t,-c*c,-c*t],[c*t,t*t,-c*t,-t*t],[-c*c,-c*t,c*c,c*t],[-c*t,-t*t,c*t,t*t]].map(r=>r.map(x=>a*x));
+    }else{
+      const a=EA/L,b=12*EI/L**3,d=6*EI/L**2,e=4*EI/L,f=2*EI/L;
+      const local=[[a,0,0,-a,0,0],[0,b,d,0,-b,d],[0,d,e,0,-d,f],[-a,0,0,a,0,0],[0,-b,-d,0,b,-d],[0,d,f,0,-d,e]];
+      trans=[[c,t,0,0,0,0],[-t,c,0,0,0,0],[0,0,1,0,0,0],[0,0,0,c,t,0],[0,0,0,-t,c,0],[0,0,0,0,0,1]];
+      ke=Array.from({length:6},(_,i)=>Array.from({length:6},(_,j)=>{
+        let sum=0;for(let k=0;k<6;k++)for(let l=0;l<6;l++)sum+=trans[k][i]*local[k][l]*trans[l][j];return sum;
+      }));
+    }
+    const ids=[...Array.from({length:nd},(_,i)=>nd*u+i),...Array.from({length:nd},(_,i)=>nd*v+i)];
+    ids.forEach((i,a)=>ids.forEach((j,b)=>K[i][j]+=ke[a][b]));
+    details.push({u,v,L,c,t,trans,ids});
+  }
+  const fixed=new Set(restrained),free=Array.from({length:N},(_,i)=>i).filter(i=>!fixed.has(i));
+  if(!free.length)throw Error('No free DOFs');
+  const A=free.map(i=>free.map(j=>K[i][j])),b=free.map(i=>F[i]);
+  const solved=solve(A,b),U=Array(N).fill(0);free.forEach((id,i)=>U[id]=solved.x[i]);
+  const R=K.map((row,i)=>row.reduce((q,x,j)=>q+x*U[j],-F[i]));
+  const norm=Math.max(0,...free.map(i=>Math.abs(R[i])));
+  if(norm>1e-5)throw Error('Stiffness equilibrium error '+norm);
+  return {U,R,K,F,details,free,fixed:[...fixed],A,b,err:solved.res};
+}
+function indetTruss(){
+  const degree=Number($('indetDegree').value),EA=stiffness('EA'),base=truss('random');
+  // Add distinct support ordinates to an existing stable, determinate pin/roller truss.
+  const allowed=base.pts.map((p,i)=>({p,i})).filter(q=>q.p[1]===0&&q.i!==0&&q.i!==base.rightSupport).map(q=>q.i);
+  if(allowed.length<degree)throw Error('Insufficient truss joints');
+  const extraSupports=[];for(let i=0;i<degree;i++){const k=pick(allowed.filter(q=>!extraSupports.includes(q)));extraSupports.push(k);}
+  const fixed=[0,1,2*base.rightSupport+1,...extraSupports.map(k=>2*k+1)],loads=[];
+  base.loads.forEach(q=>{loads.push([2*q.k,q.f[0]],[2*q.k+1,q.f[1]]);});
+  const sol=elasticKsolve(base.pts,base.bars,'truss',fixed,loads,EA,1),N=[];
+  for(const d of sol.details){const du=sol.U[2*d.v]-sol.U[2*d.u],dv=sol.U[2*d.v+1]-sol.U[2*d.u+1];N.push(EA/d.L*(d.c*du+d.t*dv));}
+  const reactionIds=[0,1,2*base.rightSupport+1,...extraSupports.map(k=>2*k+1)];
+  return {...base,indeterminate:true,indetStiffness:true,degree,extraSupports,x:[...N,...reactionIds.map(i=>sol.R[i])],names:[...N.map((_,i)=>'N'+(i+1)),'R_Ax','R_Ay','R_By',...extraSupports.map(k=>'R_'+(k+1)+'y')],elastic:sol, forceInput:{pts:base.pts,elements:base.bars,kind:"truss",baseFixed:[0,1,2*base.rightSupport+1],extras:extraSupports.map(k=>2*k+1),loads,EA,EI:1},
+    A:sol.A,b:sol.b,res:sol.err,title:'不静定トラス',variant:`不静定次数 ${degree}・追加ローラー ${degree} 個`,systemDescription:`Truss stiffness: K_ff u_f = F_f\n自由DOF=${sol.free.length} / 拘束DOF=${sol.fixed.length}\n残差=${sol.err.toExponential(3)}`};
+}
+function indetFrame(){
+  const degree=Number($('indetDegree').value),EA=stiffness('EA'),EI=stiffness('EI'),L=ri(7,14),H=ri(4,8),
+    pts=[[0,0],[0,H],[L,H],[L,0]],segments=[[0,1],[1,2],[2,3]],loads=[],extra=[];
+  // Divide members at concentrated-force/moment points, so all applied loads are exact nodal loads.
+  const counts=loadCounts(),panels=segments.map(([a,b],si)=>({si,a,b,inside:[]}));
+  for(let k=0;k<counts.P+counts.C;k++){
+    const si=ri(0,2),length=si===1?L:H,d=ri(1,length-1),a=pts[segments[si][0]],b=pts[segments[si][1]],t=d/length;
+    const p=[a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])],moment=k>=counts.P;
+    const f=moment?[0,0]:si===1?[0,pick([-1,1])*step(5,1,7)]:[pick([-1,1])*step(5,1,7),0],m=moment?pick([-1,1])*step(5,1,5):0;
+    loads.push({s:si,d,p,f,m});panels[si].inside.push({d,p,f,m});
+  }
+  const elements=[],elementParents=[],F=[];
+  for(const panel of panels){
+    const ord=[{d:0,id:panel.a},...panel.inside.sort((a,b)=>a.d-b.d).map(q=>{let id=pts.findIndex(p=>Math.abs(p[0]-q.p[0])<1e-8&&Math.abs(p[1]-q.p[1])<1e-8);if(id<0){id=pts.length;pts.push(q.p);}F.push([3*id,q.f[0]],[3*id+1,q.f[1]],[3*id+2,q.m]);return {d:q.d,id};}),{d:panel.si===1?L:H,id:panel.b}];
+    for(let i=0;i<ord.length-1;i++){if(ord[i].id!==ord[i+1].id){elements.push([ord[i].id,ord[i+1].id]);elementParents.push(panel.si);}}
+  }
+  const fixed=[0,1,2]; // left foot fixed
+  const addRight=degree===1?[10]:degree===2?[9,10]:[9,10,11];fixed.push(...addRight);
+  const sol=elasticKsolve(pts,elements,'frame',fixed,F,EA,EI);
+  const locals=sol.details.map(d=>{
+    const u=d.ids.map(i=>sol.U[i]),ul=d.trans.map(row=>row.reduce((a,v,j)=>a+v*u[j],0));
+    const a=EA/d.L,b=12*EI/d.L**3,c=6*EI/d.L**2,e=4*EI/d.L,f=2*EI/d.L;
+    const kk=[[a,0,0,-a,0,0],[0,b,c,0,-b,c],[0,c,e,0,-c,f],[-a,0,0,a,0,0],[0,-b,-c,0,b,-c],[0,c,f,0,-c,e]];
+    return kk.map(row=>row.reduce((x,v,j)=>x+v*ul[j],0));
+  });
+  function sec(si,t){const ids=elementParents.map((x,i)=>x===si?i:-1).filter(x=>x>=0),members=ids.map(i=>({i,from:pts[elements[i][0]],to:pts[elements[i][1]],d:sol.details[i]}));
+    const total=si===1?L:H,dist=Math.max(0,Math.min(1,t))*total;
+    let start=0;
+    for(let k=0;k<members.length;k++){const v=members[k],end=start+v.d.L;
+      if(dist<=end+1e-9||k===members.length-1){const local=locals[v.i],x=dist-start;return [-local[0],local[1],local[2]-local[1]*x];}start=end;
+    }return [0,0,0];
+  }
+  const rid=[0,1,2,...addRight];
+  return {kind:'frame',indeterminate:true,indetStiffness:true,degree,title:'不静定ラーメン',variant:`不静定次数 ${degree}`,style:'cantilever',L,H,pts:pts.slice(0,4),segments,loads,elastic:sol,sec,forceInput:{pts,elements,kind:"frame",baseFixed:[0,1,2],extras:addRight,loads:F,EA,EI},
+    names:['R_Ax','R_Ay','M_A',...addRight.map(i=>i%3===0?'R_Bx':i%3===1?'R_By':'M_B')],x:rid.map(i=>sol.R[i]),A:sol.A,b:sol.b,res:sol.err,
+    systemDescription:`Frame stiffness K_ff u_f = F_f\n節点変位自由度=${sol.free.length}; 拘束=${sol.fixed.length}\n残差=${sol.err.toExponential(3)}`,
+    displacement: [sol.U[6],sol.U[7]], elementForces:locals,elementParents};
+}
+// Force method: remove redundant constraints, apply unit loads at released DOFs,
+// construct the flexibility matrix, and recover redundant reactions.
+// The member elastic model is identical to the displacement-method model.
+function computeForceMethod(z){
+  if(z.forceSolution)return z.forceSolution;
+  const p=z.forceInput;if(!p)throw Error('余力法の基準系がありません');
+  const base=elasticKsolve(p.pts,p.elements,p.kind,p.baseFixed,p.loads,p.EA,p.EI);
+  const unit=p.extras.map(dof=>elasticKsolve(p.pts,p.elements,p.kind,p.baseFixed,[[dof,1]],p.EA,p.EI));
+  const delta=p.extras.map(id=>base.U[id]);
+  const flex=p.extras.map(id=>unit.map(q=>q.U[id]));
+  const rhs=delta.map(x=>-x);
+  const solved=solve(flex,rhs),R=solved.x;
+  const U=base.U.map((v,i)=>v+unit.reduce((t,q,j)=>t+R[j]*q.U[i],0));
+  const compatibility=Math.max(...p.extras.map(id=>Math.abs(U[id])));
+  const diff=Math.max(...U.map((v,i)=>Math.abs(v-z.elastic.U[i])));
+  const reactionDiff=Math.max(...p.extras.map((id,j)=>Math.abs(R[j]-z.elastic.R[id])));
+  const tol=Math.max(1e-7,Math.max(...R.map(Math.abs))*1e-7);
+  if(compatibility>1e-6||diff>1e-6||reactionDiff>tol)throw Error('余力法と剛性法の照合不一致: '+diff+', '+reactionDiff);
+  z.forceSolution={base,unit,delta,flex,R,U,compatibility,diff,reactionDiff,err:solved.res};
+  return z.forceSolution;
+}
+function forceMethodSteps(z,compare=false){
+  const p=z.forceInput,d=computeForceMethod(z),deg=d.R.length;
+  const lbl=idx=>{
+    if(p.kind==='truss')return `節点${Math.floor(idx/2)+1} ${idx%2?'y':'x'}`;
+    return `節点${Math.floor(idx/3)+1} ${['uₓ','uᵧ','θ'][idx%3]}`;
+  };
+  const headings=p.extras.map((idx,j)=>`X${j+1} (${lbl(idx)})`);
+  const matrix=d.flex.map((r,i)=>`[ ${r.map(q=>fmt(q)).join(' , ')} ] [ X ]  = ${fmt(-d.delta[i])}`).join('\n');
+  const frows=d.flex.map((r,i)=>`<tr><td>${i+1}</td>${r.map(q=>`<td>${fmt(q)}</td>`).join('')}<td>${fmt(d.delta[i])}</td></tr>`).join('');
+  const rhs=d.R.map((v,j)=>`<tr><td>${headings[j]}</td><td>${fmt(v)} ${p.kind==='frame'&&p.extras[j]%3===2?'kN·m':'kN'}</td><td>${fmt(z.elastic.R[p.extras[j]])}</td></tr>`).join('');
+  const matheads=d.R.map((_,j)=>`<th>f${j+1}</th>`).join('');
+  return `<div class="indet-equation"><h4>1. 余剰未知量と基準静定系 / Released structure</h4>
+  <p>元の構造から ${deg} 個の追加拘束を解除します。余剰未知量は ${headings.map(esc).join('，')} です。</p>
+  <p>基準系では既知荷重による変位 δᵢ⁽⁰⁾を求め、解除位置に1の仮想荷重を作用させて単位荷重変位を計算します。</p>
+  <h4>2. エネルギー法と柔度係数 / Energy and flexibility</h4>
+  <p>${z.kind==='truss'?'δᵢ⁽⁰⁾ = Σ N₀nᵢL/(EA)，fᵢⱼ = Σ nᵢnⱼL/(EA)':'δᵢ⁽⁰⁾ = Σ∫[M₀mᵢ/(EI) + N₀nᵢ/(EA)]ds，fᵢⱼ = Σ∫[mᵢmⱼ/(EI) + nᵢnⱼ/(EA)]ds'}</p>
+  <p>これらの積分に対応する柔度は、同じ線形弾性部材モデルに単位荷重を載荷して算出します。</p>
+  <table class="critical-table"><thead><tr><th>i</th>${matheads}<th>δᵢ⁽⁰⁾</th></tr></thead><tbody>${frows}</tbody></table>
+  <h4>3. 変形の適合条件 / Compatibility</h4><p>δᵢ⁽⁰⁾ + Σ fᵢⱼ Xⱼ = 0</p>
+  <pre class="matrix">${esc(matrix)}</pre><h4>4. 余剰反力と剛性法の比較 / Results</h4>
+  <table class="critical-table"><thead><tr><th>余剰未知量</th><th>余力法</th><th>剛性法</th></tr></thead><tbody>${rhs}</tbody></table>
+  <p>最大適合誤差：${d.compatibility.toExponential(3)} m ${p.kind==='frame'?'（回転角を含む）':''}</p>
+  <p>両手法の最大節点変位差：${d.diff.toExponential(3)}、余剰反力差：${d.reactionDiff.toExponential(3)}</p>
+  <h4>5. 最終断面力・変位 / Recovery</h4>
+  <p>変位：u = u₀ + ΣXⱼuⱼ。最終部材力はこの変位から再構成し、元の構造の支点反力および断面力と照合します。</p>
+  ${compare?'<p>剛性法 Kff uf = Ff と余力法の計算結果を上記で比較しています。</p>':''}</div>`;
+}
+function indetStiffnessSteps(z){
+  const D=z.elastic;
+  let rows=z.names.map((name,i)=>`<tr><td>${esc(name)}</td><td>${fmt(z.x[i])} ${name.startsWith('M_')?'kN·m':'kN'}</td></tr>`).join('');
+  return `<div class="indet-equation"><h4>1. 不静定次数 / Degree</h4><p>${z.kind==='truss'?'基本トラスに鉛直ローラー拘束を追加':'左柱脚固定の門形ラーメンに右柱脚の拘束を追加'}。追加拘束数：${z.degree}</p><h4>2. 剛性方程式 / Stiffness method</h4><p>Kff·uf = Ff　自由度数 ${D.free.length}、拘束自由度数 ${D.fixed.length}</p><p>トラス：部材軸剛性 EA/L。ラーメン：軸 EA/L、曲げ 12EI/L³ 等の部材剛性を全体系へ座標変換して組立てます。</p><h4>3. 変位・部材力・反力</h4><p>拘束変位を0として自由変位を解き、R = K·u − F から反力を求めます。</p><table><thead><tr><th>未知量</th><th>結果</th></tr></thead><tbody>${rows}</tbody></table><p>自由節点最大残差：${D.err.toExponential(3)}</p></div>`;
+}
+function indetStiffnessDeformation(z){
+  const D=z.elastic,EA=stiffness('EA'),EI=stiffness('EI');
+  if(z.kind==='truss'){
+    const target=Math.max(0,Math.min(z.pts.length-1,Number($('targetJoint').value)||0));
+    return `<div class="metric"><small>節点 ${target+1} / Joint displacement</small><strong>uₓ = ${fmt(D.U[2*target]*1000)} mm　uᵧ = ${fmt(D.U[2*target+1]*1000)} mm</strong></div><div class="formula"><b>弾性ひずみエネルギーと剛性法</b><p>U = Σ Nᵢ² Lᵢ/(2EA)、EA=${fmt(EA)} kN</p><p>全体剛性方程式 Kff·uf=Ff と拘束条件を解き、選択節点の水平・鉛直変位を表示しています。</p></div>`;
+  }
+  return `<div class="metric"><small>右上節点 C / Upper-right joint</small><strong>uₓ = ${fmt(z.displacement[0]*1000)} mm　uᵧ = ${fmt(z.displacement[1]*1000)} mm</strong></div><div class="formula"><b>エネルギーと平面ラーメン剛性法</b><p>U = Σ∫ [M²/(2EI) + N²/(2EA)] ds</p><p>EI=${fmt(EI)} kN·m²、EA=${fmt(EA)} kN</p><p>各部材の6×6剛性を全体系に組み立て、Kff·uf=Ff を解きます。右柱脚の拘束数により不静定次数を指定します。せん断変形は省略。</p></div>`;
+}
+
+function indetLoadMoment(loads,x){
+  let m=0;
+  for(const l of loads){
+    if(l.kind==='P'){if(l.x>x+1e-10)m+=l.v*(l.x-x);}
+    else if(l.kind==='C'){if(l.x>x+1e-10)m+=l.v;}
+    else {
+      const a=Math.max(x,l.a),b=l.b;if(a>=b)continue;
+      const w0=l.kind==='U'?l.v:l.v0+(l.v-l.v0)*(a-l.a)/(l.b-l.a);
+      const w1=l.kind==='U'?l.v:l.v0+(l.v-l.v0)*(b-l.a)/(l.b-l.a);
+      const len=b-a;
+      // First moment of a linear distributed load about section x.
+      m+=len*((a-x)*(w0+w1)/2+len*(w0+2*w1)/6);
+    }
+  }
+  return m;
+}
+function indetResultant(loads){let F=0,M=0;for(const l of loads){
+  if(l.kind==='P'){F+=l.v;M+=l.v*l.x;}
+  else if(l.kind==='C')M+=l.v;
+  else {let w0=l.kind==='U'?l.v:l.v0,w1=l.v,d=l.b-l.a;F+=d*(w0+w1)/2;M+=d*(l.a*(w0+w1)/2+d*(w0+2*w1)/6);}
+ }return {F,M};}
+function indetBeam(){
+  const L=ri(9,17),degree=Number($('indetDegree').value)||1;
+  const options=Array.from({length:L-2},(_,i)=>i+2);
+  const positions=[];
+  positions.push(L); // Roller at free tip for stable canonical problems.
+  while(positions.length<degree){let cand=pick(options.filter(x=>x<L-1&&!positions.includes(x)&&positions.every(y=>Math.abs(y-x)>=2)));if(cand===undefined)throw Error('roller spacing');positions.push(cand);}
+  positions.sort((a,b)=>a-b);
+  const loads=loadSet(L),br=[0,L,...positions,...loads.flatMap(l=>(l.kind==='U'||l.kind==='T')?[l.a,l.b]:[l.x])];
+  const g=(i,x)=>Math.max(0,positions[i]-x);
+  const m0=x=>indetLoadMoment(loads,x);
+  const matrix=positions.map((_,i)=>positions.map((__,j)=>integrateBreaks(t=>g(i,t)*g(j,t),0,L,br)));
+  const flexLoad=positions.map((_,i)=>integrateBreaks(t=>m0(t)*g(i,t),0,L,br));
+  const sol=solve(matrix,flexLoad.map(v=>-v));const RR=sol.x;
+  const total=indetResultant(loads);
+  const RA=-total.F-RR.reduce((a,b)=>a+b,0);
+  const MA=-total.M-RR.reduce((a,v,i)=>a+v*positions[i],0);
+  const moment=x=>m0(x)+RR.reduce((a,v,i)=>a+v*g(i,x),0);
+  const sec=x=>{
+    let shear=RA,m= -MA+RA*x;
+    RR.forEach((v,i)=>{if(x>positions[i]+1e-9){shear+=v;m+=v*(x-positions[i]);}});
+    for(const l of loads){if(l.kind==='P'&&x>l.x+1e-9){shear+=l.v;m+=l.v*(x-l.x);}
+      if(l.kind==='C'&&x>l.x+1e-9)m+=-l.v;
+      if(l.kind==='U'||l.kind==='T'){
+        const b=Math.min(x,l.b),a=l.a;if(b<=a)continue;
+        const w0=l.kind==='U'?l.v:l.v0,w1=l.kind==='U'?l.v:l.v0+(l.v-l.v0)*(b-l.a)/(l.b-l.a),d=b-a;
+        shear+=d*(w0+w1)/2;
+        m+=d*((x-a)*(w0+w1)/2-d*(w0+2*w1)/6);
+      }
+    }
+    return [-shear,m];
+  };
+  // Independent check against right-side section expression, away from discontinuities.
+  for(let k=0;k<39;k++){let x=L*(k+.39)/40;if(Math.abs(moment(x)-sec(x)[1])>1e-5)throw Error('moment sign inconsistency');}
+  const deflection=x=>integrateBreaks(t=>(x-t)*moment(t),0,x,br)/stiffness('EI');
+  const slope=x=>integrateBreaks(t=>moment(t),0,x,br)/stiffness('EI');
+  const err=Math.max(0,...positions.map(x=>Math.abs(deflection(x))));
+  if(err>1e-7)throw Error('compatibility residual: '+err);
+  const names=['R_Ay','M_A',...positions.map((_,i)=>`R_${i+1}y`)];
+  const A=Array.from({length:degree+2},()=>Array(degree+2).fill(0)),b=Array(degree+2).fill(0);
+  A[0][0]=1;positions.forEach((x,i)=>A[0][i+2]=1);b[0]=-total.F;
+  A[1][1]=1;positions.forEach((x,i)=>A[1][i+2]=x);b[1]=-total.M;
+  for(let i=0;i<degree;i++){for(let j=0;j<degree;j++)A[i+2][j+2]=matrix[i][j];b[i+2]=-flexLoad[i];}
+  const values=[RA,MA,...RR];
+  const errEq=Math.max(...A.map((row,i)=>Math.abs(row.reduce((a,v,j)=>a+v*values[j],0)-b[i])));
+  return {kind:'beam',title:'不静定ばり',variant:`不静定次数 ${degree}`,L,hs:[],sp:[0,...positions],fixed:true,loads,A,b,x:values,names,res:errEq,sec,
+    indeterminate:true,degree,positions,flexibility:matrix,flexLoad,RR,primaryMoment:m0,moment,deflection,slope,compatibilityError:err,br};
+}
+function indetDeformation(z){
+  const pos=Math.max(0,Math.min(z.L,Number($('targetPos').value)||0)),EI=stiffness('EI');
+  const samp=Array.from({length:261},(_,i)=>({x:z.L*i/260,y:z.deflection(z.L*i/260)}));
+  const amp=Math.max(1e-10,...samp.map(p=>Math.abs(p.y)));
+  const X=x=>86+x*850/z.L,Y=y=>132-y*76/amp;
+  const p=`<path d="${samp.map((q,i)=>`${i?'L':'M'}${X(q.x).toFixed(2)},${Y(q.y).toFixed(2)}`).join(' ')}" fill="none" stroke="${BLUE}" stroke-width="3"/>`;
+  const graph=svgStart(1020,270)+tx(40,29,'DEFLECTION / たわみ曲線',15,INK,'start',700)+ln(86,132,936,132,GREY,1.2)+p+ln(X(pos),44,X(pos),221,GREY,1,'4 4')+dot(X(pos),Y(z.deflection(pos)),4.5,LOAD)+tx(X(pos),247,`x=${fmt(pos)} m, v=${fmt(z.deflection(pos)*1000)} mm`,13,LOAD)+'</svg>';
+  const mexpr=z.loads.map(l=>l.kind==='P'?`(${fmt(l.v)})⟨${fmt(l.x)}−x⟩`:l.kind==='C'?`(${fmt(l.v)})H(${fmt(l.x)}−x)`:`[${fmt(l.a)},${fmt(l.b)}] ${l.kind==='U'?'w='+fmt(l.v):'w='+fmt(l.v0)+'→'+fmt(l.v)} kN/m`).join(' + ');
+  const f=z.flexibility,r=z.RR;
+  let rows=f.map((row,i)=>`<tr><td>δ${i+1}</td><td>${fmt(z.flexLoad[i]/EI*1000)} mm</td><td>${row.map(v=>fmt(v/EI*1000)).join(' , ')}</td><td>${fmt(r[i])} kN</td></tr>`).join('');
+  let equations=f.map((row,i)=>`${row.map((v,j)=>`${j?' + ':''}(${fmt(v/EI)})·R${j+1}`).join('')} = ${fmt(-z.flexLoad[i]/EI)}`).join('<br>');
+  const result=`<div class="metric"><small>指定位置 x=${fmt(pos)} m / 任意点の変位</small><strong>v=${Number((z.deflection(pos)*1000).toPrecision(6))} mm / θ=${Number(z.slope(pos).toPrecision(6))} rad</strong></div>`;
+  const info=`<div class="indet-equation"><h4>1. 基準系（片持ちばり）と余剰反力</h4><p>固定端以外のローラー ${z.degree} 個を取り除いた片持ちばりを基準系とします。ローラー位置：${z.positions.map(x=>fmt(x)+' m').join('，')}。</p><p>M₀(x) = ${mexpr||'0'}（自由端側の荷重から算定）</p><p>mᵢ(x)=⟨xᵢ−x⟩、ただし ⟨a⟩=max(a,0)。</p><h4>2. 単位荷重法・柔度係数</h4><p>δᵢ⁽⁰⁾ = ∫₀ᴸ M₀(x)mᵢ(x) / EI dx</p><p>fᵢⱼ = ∫₀ᴸ mᵢ(x)mⱼ(x) / EI dx</p><p>各ローラーの変位条件 δᵢ⁽⁰⁾ + Σ fᵢⱼ Rⱼ = 0 を解きます。</p><table><thead><tr><th>式</th><th>δ⁽⁰⁾</th><th>柔度係数列（mm/kN）</th><th>余剰反力</th></tr></thead><tbody>${rows}</tbody></table><p>${equations}</p><h4>3. 支点反力</h4><p>${z.names.map((n,i)=>`${n} = ${fmt(z.x[i])} ${i===1?'kN·m':'kN'}`).join('， ')}</p><h4>4. 曲げモーメントと任意点たわみ</h4><p>M(x)=M₀(x) + ${r.map((v,i)=>`(${fmt(v)})⟨${fmt(z.positions[i])}−x⟩`).join(' + ')}</p><p>v(x)=1/EI ∫₀ˣ (x−t) M(t) dt；θ(x)=1/EI ∫₀ˣ M(t) dt</p><p>EI=${fmt(EI)} kN·m²、最大支持点変位残差 ${z.compatibilityError.toExponential(2)} m。</p></div>`;
+  return graph+result+info;
+}
+function beamDeformation(z){
+  const EI=stiffness('EI'),cuts=[0,...z.hs,z.L],ns=cuts.length-1,unknowns=ns*2,br=beamBreakpoints(z);
+  function I(a,x){return integrateBreaks(t=>z.sec(t)[1]/EI,a,x,br);}
+  function J(a,x){return integrateBreaks(t=>(x-t)*z.sec(t)[1]/EI,a,x,br);}
+  // v_i(x)=c_i+d_i(x-a_i)+int_a^x (x-t) M(t)/EI dt
+  function coeff(i,x){let a=cuts[i],row=Array(unknowns).fill(0);row[2*i]=1;row[2*i+1]=x-a;return {row,rhs:-J(a,x)};}
+  let rows=[],rhs=[],descriptions=[];
+  const add=(row,r,label)=>{rows.push(row);rhs.push(r);descriptions.push(label);};
+  if(z.fixed){let r=coeff(0,0);add(r.row,r.rhs,'v(0)=0');let d=Array(unknowns).fill(0);d[1]=1;add(d,0,"v'(0)=0");}
+  z.sp.forEach(x=>{if(z.fixed&&x===0)return;let i=Math.min(ns-1,cuts.findIndex((q,k)=>k<ns&&x>=q-1e-8&&x<cuts[k+1]-1e-8));if(i<0)i=ns-1;let r=coeff(i,x);add(r.row,r.rhs,`v(${fmt(x)})=0`);});
+  z.hs.forEach((x,k)=>{let a=coeff(k,x),b=coeff(k+1,x);add(a.row.map((v,i)=>v-b.row[i]),a.rhs-b.rhs,`v(${fmt(x)}−)=v(${fmt(x)}+)`);});
+  if(rows.length!==unknowns)throw Error(`Deflection BC count ${rows.length}/${unknowns}`);
+  let constants=solve(rows,rhs).x;
+  function segmentOf(x){for(let i=0;i<ns-1;i++)if(x<cuts[i+1]-1e-8)return i;return ns-1;}
+  function value(x){const i=segmentOf(x);return constants[2*i]+constants[2*i+1]*(x-cuts[i])+J(cuts[i],x);}
+  function slope(x){const i=segmentOf(x);return constants[2*i+1]+I(cuts[i],x);}
+  const bcError=Math.max(0,...z.sp.map(x=>Math.abs(value(x))),...z.hs.map(x=>Math.abs(value(x-1e-7)-value(x+1e-7))));
+  if(bcError>1e-5)throw Error('Boundary condition residual '+bcError);
+  const target=Math.max(0,Math.min(z.L,Number($('targetPos').value)||0));
+  const samples=Array.from({length:241},(_,k)=>({x:z.L*k/240,y:value(z.L*k/240)}));
+  const max=Math.max(1e-9,...samples.map(p=>Math.abs(p.y))),X=x=>95+x*800/z.L,Y=y=>125-y*77/max;
+  let svg=svgStart(1000,250)+tx(40,26,'DEFLECTION / たわみ曲線',14,INK,'start',700)+ln(95,125,895,125,GREY,1.2)+`<path d="${samples.map((p,i)=>`${i?'L':'M'}${X(p.x).toFixed(2)},${Y(p.y).toFixed(2)}`).join(' ')}" stroke="${BLUE}" stroke-width="3" fill="none"/>`+ln(X(target),42,X(target),207,GREY,1,'4 4')+dot(X(target),Y(value(target)),5,LOAD)+tx(X(target),225,`x=${fmt(target)} m, v=${fmt(value(target)*1000)} mm`,13,LOAD)+'</svg>';
+  let eq=cuts.slice(0,-1).map((a,i)=>`<p>区間 ${i+1} (${fmt(a)} ≤ x ≤ ${fmt(cuts[i+1])} m):<br>EI·v<sub>${i+1}</sub>(x) = EI·C<sub>${i+1}</sub> + EI·D<sub>${i+1}</sub>(x−${fmt(a)}) + ∫<sub>${fmt(a)}</sub><sup>x</sup>(x−t)M(t)dt<br>C<sub>${i+1}</sub>=${fmt(constants[2*i])} m, D<sub>${i+1}</sub>=${fmt(constants[2*i+1])} rad</p>`).join('');
+  return `${svg}<div class="metric"><small>指定点 x = ${fmt(target)} m</small><strong>v = ${fmt(value(target)*1000)} mm　/　θ = ${Number(slope(target).toPrecision(5))} rad</strong></div><div class="formula"><b>たわみの方程式 / Deflection equation</b><p>v''(x) = M(x) / EI（曲げモーメントの符号は本アプリの M 図に準拠）</p>${eq}<b>境界条件 / Boundary conditions</b><p>${descriptions.join('， ')}</p><p>EI = ${fmt(EI)} kN·m²</p></div><p class="def-notes">M(x) は既存の断面力計算から取得。各荷重・ヒンジ・支点位置で数値積分を分割しています。内部ヒンジでは変位連続、回転は独立です。</p>`;
+}
+function trussDeformation(z){
+ const EA=stiffness('EA'),m=z.bars.length,unitB=(joint,axis)=>{let b=Array(z.A.length).fill(0);b[joint*2+axis]=-1;return solve(z.A,b).x;};
+ let target=Math.max(0,Math.min(z.pts.length-1,Number($('targetJoint').value)||0));
+ let answer=[],sumHtml='';
+ for(let ax=0;ax<2;ax++){
+ let unit=unitB(target,ax),sum=0;
+ for(let i=0;i<m;i++){const [u,v]=z.bars[i],p=z.pts[u],q=z.pts[v],len=Math.hypot(q[0]-p[0],q[1]-p[1]);sum+=z.x[i]*unit[i]*len/EA;}
+ answer.push(sum);
+ }
+ sumHtml=z.bars.map(([u,v],i)=>{const L=Math.hypot(z.pts[v][0]-z.pts[u][0],z.pts[v][1]-z.pts[u][1]);const nx=unitB(target,0)[i],ny=unitB(target,1)[i];return `<tr><td>${i+1}</td><td>${fmt(z.x[i])}</td><td>${fmt(nx)}</td><td>${fmt(ny)}</td><td>${fmt(L)}</td></tr>`;}).join('');
+ return `<div class="metric"><small>節点 ${target+1} / Joint ${target+1}　(x=${fmt(z.pts[target][0])}, y=${fmt(z.pts[target][1])} m)</small><strong>uₓ = ${fmt(answer[0]*1000)} mm　 uᵧ = ${fmt(answer[1]*1000)} mm</strong></div><div class="formula"><b>単位荷重法 / Unit-load (energy) method</b><p>δ = Σ Nᵢ nᵢ Lᵢ / EA,　EA = ${fmt(EA)} kN</p><p>nₓ：水平方向単位荷重、nᵧ：鉛直方向単位荷重を同一節点に作用させて再計算</p></div><table class="def-table"><thead><tr><th>部材</th><th>N (kN)</th><th>nₓ</th><th>nᵧ</th><th>L (m)</th></tr></thead><tbody>${sumHtml}</tbody></table>`;
+}
+function frameDeformation(z){
+ const EI=stiffness('EI'),EA=stiffness('EA');
+ function unitModel(axis){let p=[z.L,z.H],f=axis===0?[1,0]:[0,1],evt={p,f,m:0};let orig=z.loads.map(l=>({p:l.p,f:l.f,m:l.m})),A=z.A,total=balanceEvents([evt]);let b;
+ if(z.style==='three'){let left=balanceEvents(p[0]<z.hx?[evt]:[],[z.hx,z.H]);b=[-total[0],-total[1],-total[2],-left[2]];}
+ else b=total.map(v=>-v);
+ let sol=solve(A,b).x,rev=[{p:[0,0],f:[sol[0],sol[1]],m:z.style==='cantilever'?sol[2]:0}];
+ if(z.style==='simple')rev.push({p:[z.L,0],f:[0,sol[2]],m:0});if(z.style==='three')rev.push({p:[z.L,0],f:[sol[2],sol[3]],m:0});
+ return (si,t)=>{let [a,c]=z.segments[si],start=z.pts[a],end=z.pts[c],dx=end[0]-start[0],dy=end[1]-start[1],len=Math.hypot(dx,dy),cut=[start[0]+t*dx,start[1]+t*dy],ev=[...rev.filter(r=>r.p[0]===0),...([evt].filter(e=>e.p[0] <cut[0]-1e-7 ||(Math.abs(e.p[0]-cut[0])<1e-7 && si===2 && e.p[1]>cut[1]+1e-7)))];let v=balanceEvents(ev,cut),tx=dx/len,ty=dy/len;return[-(v[0]*tx+v[1]*ty),-v[2]];};
+ }
+ let answers=[];
+ for(let ax=0;ax<2;ax++){let virt=unitModel(ax),sum=0;for(let si=0;si<3;si++){const [a,b]=z.segments[si],p=z.pts[a],q=z.pts[b],length=Math.hypot(q[0]-p[0],q[1]-p[1]);sum+=simpson(t=>{const re=z.sec(si,Math.max(1e-7,Math.min(1-1e-7,t))),vr=virt(si,t);return (re[2]*vr[1]/EI+re[0]*vr[0]/EA)*length;},0,1);}answers.push(sum);}
+ return `<div class="metric"><small>右上節点 / Upper-right joint</small><strong>uₓ = ${fmt(answers[0]*1000)} mm　uᵧ = ${fmt(answers[1]*1000)} mm</strong></div><div class="formula"><b>単位荷重法 / Unit-load energy method</b><p>δ = Σ ∫ [M(s)m(s)/EI + N(s)n(s)/EA] ds</p><p>EI=${fmt(EI)} kN·m², EA=${fmt(EA)} kN</p><p>実荷重と単位荷重に対する断面力を各部材で求め、曲げ・軸方向ひずみエネルギーを積分します。せん断変形は省略しています。</p></div>`;
+}
+function renderDeformation(){if(!model||exerciseMode!=='deformation')return;try{ $('defContent').innerHTML=model.indetStiffness?indetStiffnessDeformation(model):model.indeterminate?indetDeformation(model):model.kind==='beam'?beamDeformation(model):model.kind==='truss'?trussDeformation(model):frameDeformation(model);}catch(e){$('defContent').innerHTML=`<p class="error">${esc(e.message)}</p>`;}}
+$('chooseForce').onclick=()=>chooseMode('force');
+$('chooseDeflection').onclick=()=>chooseMode('deformation');
+$('recalcDeflection').onclick=()=>{if(model&&model.indetStiffness)generate();else renderDeformation();};
+$('targetPos').onchange=()=>renderDeformation();
+$('targetJoint').onchange=()=>renderDeformation();
+function render(){
+  if(!model)return; let z=model; showR=viewMode==='arrows'||viewMode==='reactions'||viewMode==='results'; showS=viewMode==='results';
+  $('subtitle').textContent=`問題図 ｜ ${z.title} ー ${z.variant}`;
+  $('metadata').textContent=`荷重値・位置は指定刻みでランダム生成 ｜ 支持条件：${supportSummaryText(z)}`;
+  ['modeProblem','reaction','modeValues','section'].forEach((id,i)=>$(id).classList.toggle('active',['problem','arrows','reactions','results'][i]===viewMode));
+  $('figure').innerHTML=z.kind==='beam'?drawBeam(z):z.kind==='truss'?drawTruss(z)+trussGeometryHtml(z):drawFrame(z);
+  $('answer').classList.toggle('visible',viewMode==='reactions'||showS);
+  let indices=z.indetStiffness?z.names.map((_,i)=>i).filter(i=>z.kind==='truss'?i>=z.bars.length:true):z.kind==='truss'?z.names.map((_,i)=>i).filter(i=>i>=z.bars.length):z.kind==='beam'&&z.fixed?Array.from({length:2+z.hs.length},(_,i)=>i):z.names.map((_,i)=>i).filter(i=>z.kind!=='beam'||i<z.sp.length);
+  $('metrics').innerHTML=indices.map(i=>`<div class="metric"><small>${esc(z.names[i])}</small><strong>${fmt(z.x[i])} ${z.names[i].startsWith('M_')?'kN·m':'kN'}</strong></div>`).join('')+(showS&&z.kind==='truss'?z.bars.map((_,i)=>`<div class="metric"><small>部材 ${i+1}（${z.x[i]>=0?'引張':'圧縮'}）</small><strong>${fmt(z.x[i])} kN</strong></div>`).join(''):'');
+  try{$('sections').innerHTML=showS?(z.kind==='beam'?plotBeam(z):z.kind==='frame'?plotFrame(z):'<p class="hint">部材軸力は問題図の各部材に表示しています（引張正）。</p>'):'';}catch(error){console.error('Diagram rendering:',error);$('sections').innerHTML='<p class="error">断面力図の描画に失敗しました。問題の再生成をお試しください。</p>';}
+  $('steps').innerHTML=z.indetStiffness?($('solverMethod').value==='stiffness'?indetStiffnessSteps(z):$('solverMethod').value==='force'?forceMethodSteps(z):indetStiffnessSteps(z)+forceMethodSteps(z,true)):z.indeterminate?'<p>余力法の柔度係数・適合条件は「変形を求める」の解答欄に表示します。</p>'+calcSteps(z):calcSteps(z);
+  if(showS&&!z.indetStiffness){ let width=Math.max(...z.names.map(n=>n.length),7); $('matrix').textContent=`未知量： ${z.names.join(', ')}\n\n`+z.A.map((r,i)=>`[ ${r.map(v=>fmt(v).padStart(7)).join(' ')} ]  | ${fmt(z.b[i]).padStart(9)}`).join('\n')+`\n\n解 x =\n`+z.names.map((n,i)=>`${n.padEnd(width)} = ${fmt(z.x[i])}`).join('\n')+`\n\n最大残差 |Ax - b| = ${z.res.toExponential(2)}`; }
+  if(z.indetStiffness){$('matrix').textContent=z.systemDescription;}
+  applyLanguage();
+  try{finishGraphics();}catch(error){console.warn('Graphic adjustment skipped:',error);}
+  $('targetPosBox').style.display=exerciseMode==='deformation'&&z.kind==='beam'?'grid':'none';
+  $('targetJointBox').style.display=exerciseMode==='deformation'&&z.kind==='truss'?'grid':'none';
+  if(z.kind==='truss'){
+    const old=$('targetJoint').value,desired=z===jointSelectionModel?old:String(z.loads.length?z.loads[0].k:Math.floor(z.pts.length/2));
+    $('targetJoint').innerHTML=z.pts.map((pt,i)=>`<option value="${i}">${i+1} (x=${fmt(pt[0])} m, y=${fmt(pt[1])} m)</option>`).join('');
+    $('targetJoint').value=desired; jointSelectionModel=z;
+  }
+  renderDeformation();
+}
+function refreshVariant(){let type=$('type').value,opts=type==='beam'?[['random','ランダム'],['h0','内部ヒンジなし'],['h1','内部ヒンジ1個'],['h2','内部ヒンジ2個']]:type==='truss'?[['random','ランダム'],...[['pratt','プラット'],['howe','ハウ'],['warren','ワーレン'],['pitched','屋根形'],['king','キングポスト'],['queen','クイーンポスト'],['fan','ファン（不規則）'],['asymmetric','非対称（不規則）']]]:type==='frame'?[['random','ランダム'],['three','3ヒンジ'],['simple','ピン・ローラー'],['cantilever','片持ち']]:[['random','ランダム']];$('variant').innerHTML=opts.map(([v,t])=>`<option value="${v}">${t}</option>`).join('');}
+function generate(){let type=$('type').value;if(type==='random')type=pick(['beam','truss','frame']);generatingType=type;for(let i=0;i<400;i++){activeCounts=$('loadMode').value==='random'?sampleLoadCounts(type):null;try{model=structureCategory==='indeterminate'?(type==='beam'?indetBeam():type==='truss'?indetTruss():indetFrame()):(type==='beam'&&Math.random()<.5)?beamFixed($('variant').value):({beam,truss,frame})[type]($('variant').value);viewMode=exerciseMode==='deformation'?'results':'problem';if(type==='beam')$('targetPos').value=fmt(model.L/2);render();return;}catch(e){if(i===399){$('figure').innerHTML=`<p class="error">問題を生成できませんでした: ${esc(e.message)}</p>`;}}}}
+
+let graphicZoom=1;
+function updateGraphicZoom(){const svg=$('figure').querySelector('svg');if(svg)svg.style.width=(graphicZoom*100)+'%';$('zoomValue').value=Math.round(graphicZoom*100)+'%';}
+function finishGraphics(){
+  // SVG viewers do not all implement SVGAnimatedRect / getBBox reliably.
+  // Keep the authored viewBox unchanged and only set a stable, numeric width.
+  try{
+    document.querySelectorAll('#figure svg,#sections svg,#defContent svg').forEach(node=>{
+      if(!node || node.namespaceURI!=='http://www.w3.org/2000/svg') return;
+      const box=(node.getAttribute('viewBox')||'').trim().split(/[ ,]+/).map(Number);
+      if(box.length!==4 || box.some(v=>!Number.isFinite(v))||box[2]<=0||box[3]<=0) return;
+      node.setAttribute('aria-label',appLanguage==='en'?'Structural mechanics diagram':'構造力学問題図');
+    });
+    updateGraphicZoom();
+  }catch(error){console.warn('SVG layout skipped:',error);}
+}
+$('zoomIn').onclick=()=>{graphicZoom=Math.min(2.5,graphicZoom+.25);updateGraphicZoom();};
+$('zoomOut').onclick=()=>{graphicZoom=Math.max(.75,graphicZoom-.25);updateGraphicZoom();};
+$('zoomFit').onclick=()=>{graphicZoom=1;updateGraphicZoom();$('figure').scrollLeft=0;};
+$('langJa').addEventListener('click',()=>setLanguage('ja'));
+$('langEn').addEventListener('click',()=>setLanguage('en'));
+$('loadMode').addEventListener('change',()=>{setLoadMode();generate();});$('type').addEventListener('change',()=>{refreshVariant();generate();});$('variant').addEventListener('change',generate);$('generate').addEventListener('click',generate);$('modeProblem').addEventListener('click',()=>{viewMode='problem';render();});$('reaction').addEventListener('click',()=>{viewMode='arrows';render();});$('modeValues').addEventListener('click',()=>{viewMode='reactions';render();});$('section').addEventListener('click',()=>{viewMode='results';render();});$('save').addEventListener('click',()=>{let sv=$('figure').querySelector('svg');if(!sv)return;let blob=new Blob([new XMLSerializer().serializeToString(sv)],{type:'image/svg+xml;charset=utf-8'}),a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=`structural_${model.kind}_${Date.now()}.svg`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+$('chooseDeterminate').onclick=()=>setStructureCategory('determinate');
+$('chooseIndeterminate').onclick=()=>setStructureCategory('indeterminate');
+$('indetDegree').onchange=()=>generate();
+$('solverMethod').onchange=()=>{if(model)render();};
+function setStructureCategory(category){
+  structureCategory=category;
+  $('chooseDeterminate').classList.toggle('selected',category==='determinate');
+  $('chooseIndeterminate').classList.toggle('selected',category==='indeterminate');
+  $('indetSettings').style.display=category==='indeterminate'?'flex':'none';
+  $('type').disabled=false;
+  $('variant').disabled=category==='indeterminate';
+  if(category==='indeterminate'){
+    exerciseMode='deformation';$('chooseDeflection').classList.add('selected');$('chooseForce').classList.remove('selected');
+    $('elasticPanel').style.display='flex';$('deformationOutput').style.display='block';
+  }
+  generate();
+}
+setLoadMode();refreshVariant();generate();
+</script></body></html>
